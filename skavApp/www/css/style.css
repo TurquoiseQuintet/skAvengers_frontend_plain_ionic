@@ -5,3 +5,26 @@
   -o-background-size: cover;
   background-size: cover;
 }
+
+.button-large {
+	width: 300px;
+	margin-left: 30px;
+}
+
+.title{
+	position: absolute;
+	top: 20px;
+	width: 100%
+}
+
+.top {
+	margin-top: 120px;
+}
+
+h1 {
+	color: black;
+}
+
+/*.item-input {
+	margin: 5px 0 5px 0;
+}*/

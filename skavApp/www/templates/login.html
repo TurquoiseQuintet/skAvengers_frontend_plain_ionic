@@ -1,21 +1,24 @@
-<ion-view title="login">
-  <ion-content>
-
-    <h1> Login below</h1>
-    <div class="loginform">
-    <div ng-controller="LogInController as lic">
-      <label for="user"> Email </label>
-      <input type="text" ng-model="lic.email" name="email" />
-    <label for="password"> Password
-      <input type="text" ng-model="lic.password" name="password">
-    </label>
-
-    <button class="supbutton" ng-click="lic.login(lic.user, lic.password)"></button>
+<ion-view title="login" class="bgimg">
+  <div class="title" style="text-align: center">
+    <h1>ScAvenger</h1>
+    <hr>
+  </div>
+  <ion-content class="top">
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input type="text" ng-model="lic.username" placeholder="Username">
+      </label>
     </div>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input type="text" ng-model="lic.email" placeholder="Email">
+      </label>
     </div>
-
-
-
-
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input type="text" ng-model="lic.password" placeholder="Password">
+      </label>
+    </div>
+    <button class="button button-large button-positive" ng-click="lic.login(lic.user, lic.password)">Submit</button>
   </ion-content>
 </ion-view>
