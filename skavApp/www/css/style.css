@@ -30,3 +30,7 @@ h1 {
 	height: 60px;
 	bottom: 0;
 }
+
+a {
+	text-decoration: none;
+}

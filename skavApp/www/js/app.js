@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('skavApp', ['ionic']);
-app.config(function($stateProvider) {
+app.config(function($stateProvider, $locationProvider) {
   $stateProvider
   .state('index', {
     url: '/',
@@ -19,7 +19,11 @@ app.config(function($stateProvider) {
     url: '/admin',
     templateUrl: '/templates/admin.html'
   });
+  $locationProvider.html5Mode({
+    enabled: true,
+  });
 });
+
 
 
 app.run(function($ionicPlatform) {
