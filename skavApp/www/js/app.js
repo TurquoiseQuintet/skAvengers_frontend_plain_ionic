@@ -15,9 +15,13 @@ app.config(function($stateProvider, $locationProvider) {
     url: '/register',
     templateUrl: '/templates/register.html'
   })
-  .state('admin',{
+  .state('huntmaster-view',{
     url: '/admin',
-    templateUrl: '/templates/admin.html'
+    templateUrl: '/templates/huntmaster-view.html'
+  })
+  .state('hunter-view', {
+    url: '/user',
+    templateUrl: '/templates/hunter-view.html'
   });
   $locationProvider.html5Mode(true);
 });
