@@ -5,6 +5,10 @@ app.config(function($stateProvider) {
   $stateProvider
   .state('index', {
     url: '/',
+    templateUrl: '/templates/landing.html'
+  })
+  .state('login', {
+    url: '/login',
     templateUrl: '/templates/login.html'
   })
   .state('register', {

@@ -1,21 +1,29 @@
-<ion-view title="register">
-  <ion-content>
-    <h1> Sign up Now</h1>
-    <div class="signupform">
-      <div ng-controller="SignUpController as sup">
-        <label for="user"> User Name </label>
-        <input type="text" ng-model="sup.username" name="user" />
-        <label for="password"> Password
-          <input type="text" ng-model="sup.password" name="password">
+<ion-view title="register" class="bgimg">
+  <div class="title" style="text-align: center">
+    <h1>Sign Up</h1>
+    <hr>
+  </div>
+    <ion-content class="top" ng-controller="SignUpController as sup">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" ng-model="sup.username" placeholder="Username">
         </label>
-        <label for="email"> email
-          <input type="text" ng-model="sup.email" name="email">
-        </label>
-        <label for="avatar"> avatar
-          <input type="text" ng-model="sup.avatar" name="avatar">
-        </label>
-        <button class="supbutton" ng-click="sup.signUp(sup.username, sup.password, sup.email, sup.avatar)"> Sign up </button>
       </div>
-    </div>
-  </ion-content>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" ng-model="sup.password" placeholder="Password">
+        </label>
+      </div>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" ng-model="sup.email" placeholder="Email">
+        </label>
+      </div>
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" ng-model="sup.avatar" placeholder="Avatar URL">
+        </label>
+      </div>
+      <button class="button button-large button-positive" ng-click="sup.signUp(sup.username, sup.password, sup.email, sup.avatar)">Sign up</button>
+    </ion-content>
 </ion-view>

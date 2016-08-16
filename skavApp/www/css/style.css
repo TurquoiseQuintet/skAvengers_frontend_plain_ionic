@@ -25,6 +25,8 @@ h1 {
 	color: black;
 }
 
-/*.item-input {
-	margin: 5px 0 5px 0;
-}*/
+.bar-calm {
+	position: fixed;
+	height: 60px;
+	bottom: 0;
+}
