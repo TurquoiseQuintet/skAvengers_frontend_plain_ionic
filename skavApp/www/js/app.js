@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('skavengers', ['ionic']);
+var app = angular.module('skavApp', ['ionic']);
 
 app.run(function($ionicPlatform) {
     $ionicPlatform.ready(function() {

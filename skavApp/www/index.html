@@ -6,20 +6,38 @@
     <title>Skavengers!</title>
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+    <!-- <link href="css/ionic.app.css" rel="stylesheet"> -->
   </head>
-  <body ng-app="skavengers">
-    <ion-nav-bar class="bar-positive">
-      navbar
-    </ion-nav-bar>
+  <body ng-app="skavApp">
+    <ion-nav-bar></ion-nav-bar>
+    <br>
+    <br>
+    <ion-nav-view animation="slide-left-right">
+      <!-- Center content -->
+      <ion-checkbox ng-model="isChecked"></ion-checkbox>
+    </ion-nav-view>
+
+
+
+    <!-- <ion-login-view></ion-login-view>
+    <ion-register-view></ion-register-view> -->
+
+
+    <ion-footer-bar align-title="left" class="bar-assertive">
+      <div class="buttons">
+        <button class="button">Left Button</button>
+      </div>
+      <h1 class="title">Title!</h1>
+      <div class="buttons" ng-click="doSomething()">
+        <button class="button">Right Button</button>
+      </div>
+    </ion-footer-bar>
     <!--
       The views will be rendered in the <ion-nav-view> directive below
       Templates are in the /templates folder (but you could also
       have templates inline in this html file if you'd like).
     -->
-    <ion-login-view></ion-login-view>
+
 
     <script src="lib/ionic/js/ionic.bundle.js"></script>
     <script src="cordova.js"></script>
