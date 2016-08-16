@@ -22,6 +22,22 @@ app.config(function($stateProvider, $locationProvider) {
   .state('hunter-view', {
     url: '/user',
     templateUrl: '/templates/hunter-view.html'
+  })
+  .state('new-task', {
+    url: 'new-task',
+    templateUrl: "/templates/new-task.html"
+  })
+  .state('user', {
+    url: 'user',
+    templateUrl: "/templates/user.html"
+  })
+  .state('new-hunt', {
+    url: 'new-hunt',
+    templateUrl: "/template/new-hunt/html"
+  })
+  .state('/edit-task', {
+    url: '/edit-task',
+    templateUrl: "/templates/edit-task.html"
   });
   $locationProvider.html5Mode(true);
 });
