@@ -1,0 +1,39 @@
+'use strict';
+
+var app = angular.module('skavengers', ['ionic']);
+
+app.run(function($ionicPlatform) {
+    $ionicPlatform.ready(function() {
+      // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+      // for form inputs)
+      if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        cordova.plugins.Keyboard.disableScroll(true);
+
+      }
+      if (window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleDefault();
+      }
+    });
+  });
+
+app.config(function($stateProvider){
+  $stateProvider
+    .state('admin', {
+    url: '/admin',
+    templateUrl: 'templates/admin.html'
+  })
+  .state('register', {
+    url: '/register',
+    templateUrl: 'templates/register.html'
+  })
+  .state('login', {
+    url: '/',
+    templateUrl: 'templates/login.html'
+  });
+
+});
+// Each state's controller can be found in controllers.js
+
+// $urlRouterProvider.otherwise('/');

@@ -1,0 +1,21 @@
+<ion-view view-title="signup">
+  <ion-content class="padding center account">
+<h1> Sign up Now</h1>
+<h3> to be able to make posts and comments </h3>
+<div class="signupform">
+<div ng-controller="SignUpController as sup">
+  <label for="user"> User Name </label>
+  <input type="text" ng-model="sup.user" name="user" />
+</label>
+<br>
+<br>
+<label for="password"> Password
+  <input type="text" ng-model="sup.password" name="password">
+</label>
+<br>
+<br>
+<button class="supbutton" ng-click="sup.signUp(sup.user, sup.password)"> Sign up </button>
+</div>
+</div>
+</ion-content>
+</ion-view>

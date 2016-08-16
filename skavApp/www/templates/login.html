@@ -1,0 +1,21 @@
+<ion-view title="login">
+  <ion-content>
+
+    <h1> Login below</h1>
+    <div class="loginform">
+    <div ng-controller="LogInController as lic">
+      <label for="user"> Email </label>
+      <input type="text" ng-model="lic.email" name="email" />
+    <label for="password"> Password
+      <input type="text" ng-model="lic.password" name="password">
+    </label>
+
+    <button class="supbutton" ng-click="lic.login(lic.user, lic.password)"> Login </button>
+    </div>
+    </div>
+
+
+
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,22 @@
+<ion-view title="register">
+  <ion-content>
+    <h1> Sign up Now</h1>
+    <div class="signupform">
+      <div ng-controller="SignUpController as sup">
+        <label for="user"> User Name </label>
+        <input type="text" ng-model="sup.username" name="user" />
+        </label>
+        <label for="password"> Password
+          <input type="text" ng-model="sup.password" name="password">
+        </label>
+        <label for="email"> email
+          <input type="text" ng-model="sup.email" name="email">
+        </label>
+        <label for="avatar"> avatar
+          <input type="text" ng-model="sup.avatar" name="avatar">
+        </label>
+        <button class="supbutton" ng-click="sup.signUp(sup.username, sup.password, sup.email, sup.avatar)"> Sign up </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
