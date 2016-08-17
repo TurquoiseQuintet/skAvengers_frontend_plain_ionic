@@ -56,7 +56,7 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
       sv.message="problems in the oceans";
     });
   };
-  }
+  
 }])
 
 
