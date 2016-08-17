@@ -39,7 +39,7 @@ app.config(function($stateProvider, $locationProvider) {
     url: '/edit-task',
     templateUrl: "/templates/edit-task.html"
   });
-  // $locationProvider.html5Mode(true);
+  $locationProvider.html5Mode(true);
 });
 
 app.run(function($ionicPlatform) {
@@ -50,9 +50,9 @@ app.run(function($ionicPlatform) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
     }
-    // if (window.StatusBar) {
-    //     // org.apache.cordova.statusbar required
-    //     StatusBar.styleDefault();
-    // }
+    if (window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleDefault();
+    }
   });
 });
