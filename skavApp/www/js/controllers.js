@@ -39,9 +39,14 @@ app.controller('TaskController', [ '$window', function($window){
   // console.log(vm.userinfo);
 }]);
 
-app.controller('HeaderController', [function(UserService){
+app.controller('HeaderController', ['UserServices', function(UserServices){
   var vm = this;
-  vm.user = UserService.loggedInUser;
+  vm.user = UserServices.loggedInUser;
   vm.username = vm.user.name;
-  vm.avater = vm.user.avater;
+  vm.avatar = vm.user.avater;
+}]);
+
+app.controller('FooterController', [function(){
+  var vm = this;
+  console.log(vm);
 }]);
