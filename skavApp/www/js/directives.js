@@ -6,15 +6,9 @@ app.directive('appHeader', function(){
 	};
 });
 
-app.directive('appUserFooter', function(){
+app.directive('appFooter', function(){
 	return {
-		templateUrl: '/partials/_user_footer.html'
-	};
-});
-
-app.directive('appAdminFooter', function(){
-	return {
-		templateUrl: '/partials/_admin_footer.html'
+		templateUrl: '/partials/_footer.html'
 	};
 });
 
