@@ -39,6 +39,25 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
 }]);
 
 // hunt services -------------------------------------->
+app.service("HuntService", ['$http', '$window', '$location', function($http, $window, $location) {
+  var sv=this;
+  sv.getAllhunts= function(){
+    $http.get('https://skavengers.herokuapp.com/hunts/all')
+    .then(function(data){
+      sv.myHunts = data;
+      return $http.get('https://skavengers.herokuapp.com/hunts/mine')
+    })
+    .then(function(data) {
+      sv.Master = data;
+      //now what?
+    })
+    .then(function(err){
+      //handle it
+      sv.message="problems in the oceans";
+    });
+  };
+  }
+}])
 
 
 
