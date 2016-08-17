@@ -23,3 +23,9 @@ app.controller('HuntController', ['HuntService', function(HuntService) {
 app.controller('TaskController', [function(){
   var vm = this;
 }]);
+
+
+app.controller('LogoutController', ['LogoutService', function(LogoutService){
+  var vm = this;
+  vm.logOut = LogoutService.logOut;
+}]);
