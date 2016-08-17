@@ -222,7 +222,7 @@ app.service('taskServices', ['$http', '$window', function($http, $window){
 
 
 // user services -------------------------------->
-app.service('userServices', ['$http', '$window', function($http, $window){
+app.service('UserServices', ['$http', '$window', function($http, $window){
   var sv=this;
 
   sv.deleteUser=function(user){
