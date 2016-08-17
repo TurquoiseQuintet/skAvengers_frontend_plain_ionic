@@ -37,7 +37,7 @@ $http.get('http://skavengers.heroku.com/hunts/'+ hunt.id,
 
 // this is used to get ALL hunts (hence the name)
 sv.getAllhunts= function(){
-  $http.get('http://   /hunts')
+  $http.get('http://skavengers.heroku.com/hunts')
   .then(function(data){
     //use the data
   })

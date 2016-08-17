@@ -58,6 +58,7 @@ sv.posttask=function(hunt_id, name, xp, level_available, completed, unique, loca
   });
 };
 
+
 sv.edittask=function(name, xp, level_available, completed, location, expiration_time, task){
   $http.put('http://skavengers.heroku.com/tasks/'+task.id, {
             id:task.id,
