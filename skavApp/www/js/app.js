@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('skavApp', ['ionic']);
-app.config(function($stateProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
   .state('index', {
     url: '/',
@@ -67,6 +67,7 @@ app.config(function($stateProvider) {
     controller: 'HuntController',
     controllerAs: 'HC'
   });
+  $urlRouterProvider.otherwise('/');
 });
 
 app.run(function($ionicPlatform) {
