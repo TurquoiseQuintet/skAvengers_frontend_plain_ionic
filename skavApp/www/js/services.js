@@ -62,6 +62,7 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
     })
     .then(function(data) {
       sv.Master = data;
+
       //now what?
     })
     .catch(function(err){
