@@ -18,3 +18,5 @@ vm.getAllhunts=huntService.getAllhunts;
 // this is used to call a service which makes an http request to /hunts/:id in order to
 //delete a specific hunt
 vm.deleteHunt=huntService.deleteHunt;
+
+vm.editHung=huntService.editHunt;

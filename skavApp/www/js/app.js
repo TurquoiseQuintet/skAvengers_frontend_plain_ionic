@@ -38,6 +38,11 @@ app.config(function($stateProvider, $locationProvider) {
   .state('edit-task', {
     url: '/edit-task',
     templateUrl: "/templates/edit-task.html"
+  })
+  .state('edit-hunt', {
+    url:'/edit-hunt',
+    templateUrl: "/templates/edit-hunt.html"
+
   });
   // $locationProvider.html5Mode(true);
 });
