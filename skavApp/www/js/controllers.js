@@ -8,11 +8,7 @@ app.controller('SignUpController', ['SignUpService', function(SignUpService){
 // Log in controller -------------------------->
 app.controller('LogInController',['LogInService', function(LogInService){
   var vm=this;
-  vm.test = 'controller test'
-  vm.login = function(){
-    console.log('fire!');
-  }
-  // vm.login=LogInService.login;
+  vm.login=LogInService.login;
 }]);
 
 // Hunt in controllers -------------------------->
@@ -23,6 +19,8 @@ app.controller('HuntController', ['HuntService', function(HuntService) {
 }]);
 
 // Task controllers --------------------------------->
-app.controller('TaskController', [function(){
+app.controller('TaskController', ['sendMessageService', function(sms){
   var vm = this;
+
+  vm.takeAndSubmit = sms.takeAndSubmit;
 }]);

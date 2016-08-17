@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('skavApp', ['ionic']);
+var app = angular.module('skavApp', ['ionic', 'ngCordova']);
 app.config(function($stateProvider) {
   $stateProvider
   .state('index', {

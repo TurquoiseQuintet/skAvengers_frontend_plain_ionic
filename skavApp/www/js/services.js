@@ -66,8 +66,7 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
 // user services -------------------------------->
 
 //picture services ------------------------------->
-'use strict';
-app.service('sendMessage', ['$cordovaCamera', '$http', '$cordovaSms', function($cordovaCamera, $http, $cordovaSms){
+app.service('sendMessageService', ['$cordovaCamera', '$http', '$cordovaSms', function($cordovaCamera, $http, $cordovaSms){
   var sv = this;
   //this method will open the camera app. after a photo is taken the user will crop it into a square. It returns a promise with the data being the base64 encoded image
   sv.takePicture = function(){
@@ -103,4 +102,27 @@ app.service('sendMessage', ['$cordovaCamera', '$http', '$cordovaSms', function($
         };
          return $cordovaSms.send(number, message, options)
   }
+
+  sv.takeAndSubmit = function(taskName, username, number){
+    var url;
+    if(confirm('Please take a picture of ' + taskName)){
+      sv.takePicture()
+      .then(function(image){
+        return sv.uploadPicture(image);
+      })
+      .then(function(_url){
+        url = _url;
+        return sv.sendPicture(number, username + ' has submitted the following picture of ' + taskName + ' for review');
+      })
+      .then(function(){
+        return sv.sendPicture(number, taskName + ':\n' + url);
+      })
+      .then(function(){
+        alert(taskName + ' was successfully submitted.');
+      })
+      .catch(function(err){
+        alert('there was an issue submitting ' + taskName);
+      });
+    }
+  };
 }]);
