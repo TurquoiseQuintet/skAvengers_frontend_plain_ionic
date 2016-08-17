@@ -1,5 +1,5 @@
-<ion-view title="login" class="bgimg" ng-include="'/partials/_header.html' && '/partials/_user_footer.html'">
-
+<ion-view title="login" class="bgimg">
+<app-header></app-header>
   <div class="title" style="text-align: center">
     <a href="/#/"><i class="icon ion-ios-home"></i></a>
     <h1>Log In</h1>
@@ -24,4 +24,5 @@
     <button class="button button-large button-positive" ng-click="LIC.login(LIC.username, LIC.password)">Submit</button>
 
   </ion-content>
+  <app-user-footer><app-user-footer>
 </ion-view>
