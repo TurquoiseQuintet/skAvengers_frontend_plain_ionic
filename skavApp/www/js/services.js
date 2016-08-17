@@ -46,7 +46,7 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
     .then(function(data){
       console.log("here", data);
       sv.myHunts = data;
-      return $http.get('https://skavengers.herokuapp.com/hunts/mine')
+      return $http.get('https://skavengers.herokuapp.com/hunts/mine');
     })
     .then(function(data) {
       sv.Master = data;
@@ -105,6 +105,6 @@ app.service('sendMessage', ['$cordovaCamera', '$http', '$cordovaSms', function($
             intent: ''
           }
         };
-         return $cordovaSms.send(number, message, options)
-  }
+         return $cordovaSms.send(number, message, options);
+  };
 }]);
