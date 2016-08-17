@@ -42,3 +42,8 @@ h1 {
 a {
 	text-decoration: none;
 }
+
+.button-bar {
+	height: 40px;
+	margin: 0 auto;
+}

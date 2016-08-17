@@ -35,6 +35,10 @@ app.config(function($stateProvider) {
     url: '/new-hunt',
     templateUrl: "/templates/new-hunt.html"
   })
+  .state('tasks', {
+    url: '/tasks',
+    templateUrl: "templates/tasks.html"
+  })
   .state('edit-task', {
     url: '/edit-task',
     templateUrl: "/templates/edit-task.html"
