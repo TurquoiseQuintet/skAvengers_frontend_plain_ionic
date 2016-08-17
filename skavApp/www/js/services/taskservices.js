@@ -7,10 +7,10 @@ var sv=this;
 sv.getAlltasks= function(){
   $http.get('https://skavengers.herokuapp.com/tasks')
   .then(function(data){
-
+    sv.tasks=data.data;
   })
   .catch(function (err){
-
+    sv.message(err);
   });
 };
 
@@ -19,10 +19,10 @@ sv.deletetask=function(task){
     params:{task:task.id}
   })
   .then(function(data){
-
+    sv.result("deleted");
   })
   .catch(function(err){
-
+    sv.message("make sure you own the hunt to delete the task");
   });
 };
 
@@ -31,10 +31,11 @@ sv.gettask=function(task){
     params:{task:task.id}
   })
   .then(function(data){
+    sv.task=data.data;
 
   })
   .catch(function (err){
-
+    sv. message="troubling waters";
   });
 };
 
@@ -51,6 +52,7 @@ sv.posttask=function(hunt_id, name, xp, level_available, completed, unique, loca
 
   })
   .then(function(data){
+
 
   })
   .catch(function(err){
@@ -70,9 +72,10 @@ sv.edittask=function(name, xp, level_available, completed, location, expiration_
             expiration_time: expiration_time
   })
   .then(function(data){
-
+    //where do I want this to go?
+    // $window.path('/')
   })
   .catch(function(err){
-
+    sv.message="you do not have permission to edit that";
   });
 };
