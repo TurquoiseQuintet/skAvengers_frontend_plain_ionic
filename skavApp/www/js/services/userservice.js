@@ -4,7 +4,7 @@
 var sv=this;
 
 sv.deleteUser=function(user){
-  $http.delete('http://   /users/'+user.id)
+  $http.delete('http://skavengers.heroku.com/users/'+user.id)
   .then(function(data){
 
   })
@@ -14,7 +14,7 @@ sv.deleteUser=function(user){
 };
 
 sv.editUser=function(user){
-  $http.put('http://   /users/'+user.id)
+  $http.put('http://skavengers.heroku.com/users/'+user.id)
   .then(function(data){
 
   })
@@ -24,7 +24,7 @@ sv.editUser=function(user){
 };
 
 sv.getAllUsers=function(){
-  http.get('http://   /users')
+  http.get('http://skavengers.heroku.com/users')
   .then(function(data){
 
   })
@@ -34,7 +34,7 @@ sv.getAllUsers=function(){
 };
 
 sv.getUser=function(user){
-  http.get('http:// /user/'+user.id)
+  http.get('http://skavengers.heroku.com/user/'+user.id)
   .then(function(data){
 
   })
