@@ -33,7 +33,7 @@ app.config(function($stateProvider, $locationProvider) {
   })
   .state('new-hunt', {
     url: 'new-hunt',
-    templateUrl: "/template/new-hunt/html"
+    templateUrl: "/templates/new-hunt.html"
   })
   .state('/edit-task', {
     url: '/edit-task',
