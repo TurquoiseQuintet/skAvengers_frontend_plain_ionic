@@ -48,7 +48,7 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
     .then(function(data){
       console.log("here", data);
       sv.myHunts = data;
-      return $http.get('https://skavengers.herokuapp.com/hunts/mine')
+      return $http.get('https://skavengers.herokuapp.com/hunts/mine');
     })
     .then(function(data) {
       sv.Master = data;
@@ -59,18 +59,214 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
       sv.message="problems in the oceans";
     });
   };
+  // sv.getAllhunts();
+
+  var sv=this;
+
+  //this service is called for when we make a request to post hunts to start a new hunt
+  sv.addHunt=function(huntMaster_id, name, expiration){
+    //add heroku stuff below
+  $http.post('https://skavengers.herokuapp.com/hunts',
+  {
+      huntMaster_id: huntMaster_id,
+      name: name,
+      expiration: expiration
+    })
+  .then(function(data){
+    $location.path('/user');
+  })
+  .catch(function(err){
+  sv.message="problems with creating hunt";
+  });
+  };
+
+  //this is used to get ONE particular hunt
+  //my logic may be redundant but this is how I did it in the past and when I have done it other ways it didnt
+  //work
+  sv.getHunt=function(hunt){
+  $http.get('https://skavengers.herokuapp.com/hunts/'+ hunt.id,
+  {
+    params:{hunt:hunt.id}
+  })
+  .then(function(data){
+    sv.hunt=data.data;
+  })
+  .catch(function(err){
+    //handle yo shit
+    sv.message="What a dilemma the hunt could not be found";
+  });
+  };
+
+  // this is used to get ALL hunts (hence the name)
+  sv.getAllhunts= function(){
+    $http.get('https://skavengers.herokuapp.com/hunts')
+    .then(function(data){
+      //use the data
+      sv.hunts=data.data;
+    })
+    .then(function(err){
+      //handle it
+      sv.message="problems in the oceans";
+    });
+  };
+
+  sv.deleteHunt= function(hunt){
+    $http.delete('https://skavengers.herokuapp.com/hunts/'+ hunt.id, {
+      params:{hunt: hunt.id}
+    })
+    .then(function(data){
+      $location.path('/user');
+    })
+    .catch(function(err){
+      sv.message("a problem with the delete. Make sure you own the hunt");
+    });
+  };
+
+  sv.editHunt = function(hunt){
+    $http.put('https://skavengers.herokuapp.com/hunts/'+hunt.id, {
+      params:{hunt: hunt.id}
+    })
+    .then(function(data){
+      $location.path('user');
+    })
+    .catch(function(err){
+      sv.message("Make sure you own the hunt you are trying to edit");
+    });
+  };
+
 }]);
 
 
 
-// task controller --------------------------->
+// task services --------------------------->
+app.service('taskServices', ['$http', '$window', function($http, $window){
+  //this function makes an http request to get all tasks
+  sv.getAlltasks= function(){
+    $http.get('https://skavengers.herokuapp.com/tasks')
+    .then(function(data){
+      sv.tasks=data.data;
+    })
+    .catch(function (err){
+      sv.message(err);
+    });
+  };
 
+  sv.deletetask=function(task){
+    $http.delete('https://skavengers.herokuapp.com/tasks/'+task.id, {
+      params:{task:task.id}
+    })
+    .then(function(data){
+      sv.result("deleted");
+    })
+    .catch(function(err){
+      sv.message("make sure you own the hunt to delete the task");
+    });
+  };
+
+  sv.gettask=function(task){
+    $http.put('https://skavengers.herokuapp.com/tasks/'+ task.id, {
+      params:{task:task.id}
+    })
+    .then(function(data){
+      sv.task=data.data;
+
+    })
+    .catch(function (err){
+      sv. message="troubling waters";
+    });
+  };
+
+  sv.posttask=function(hunt_id, name, xp, level_available, completed, unique, location, expiration_time){
+    $http.post('https://skavengers.herokuapp.com/tasks', {
+      hunt_id: hunt_id,
+          name: name,
+          xp: xp,
+          level_available: xp,
+          completed: completed,
+          unique: unique,
+          location: location,
+          expiration_time: expiration_time
+
+    })
+    .then(function(data){
+
+
+    })
+    .catch(function(err){
+
+    });
+  };
+
+
+  sv.edittask=function(name, xp, level_available, completed, location, expiration_time, task){
+    $http.put('https://skavengers.herokuapp.com/tasks/'+task.id, {
+              id:task.id,
+              name: name,
+              xp: xp,
+              level_available: level_available,
+              completed: completed,
+              location: location,
+              expiration_time: expiration_time
+    })
+    .then(function(data){
+      //where do I want this to go?
+      // $window.path('/')
+    })
+    .catch(function(err){
+      sv.message="you do not have permission to edit that";
+    });
+  };
+
+
+}]);
 
 
 // user services -------------------------------->
+app.service('userServices', ['$http', '$window', function($http, $window){
+  var sv=this;
+
+  sv.deleteUser=function(user){
+    $http.delete('https://skavengers.herokuapp.com/users/'+user.id)
+    .then(function(data){
+      sv.result="that user is trashed";
+    })
+    .catch(function(err){
+      sv.message="That user will remain. Make ure you have permissions to delete them";
+    });
+  };
+
+  sv.editUser=function(user){
+    $http.put('https://skavengers.herokuapp.com/users/'+user.id)
+    .then(function(data){
+      $window.path('/user');
+    })
+    .catch(function(err){
+      sv.message="You don't have permission to edit that user";
+    });
+  };
+
+  sv.getAllUsers=function(){
+    http.get('https://skavengers.herokuapp.com/users')
+    .then(function(data){
+      sv.users=data.data;
+    })
+    .catch(function(err){
+      sv.message="problems getting users";
+    });
+  };
+
+  sv.getUser=function(user){
+    http.get('https://skavengers.herokuapp.com/user/'+user.id)
+    .then(function(data){
+
+    })
+    .catch(function(err){
+
+    });
+  };
+}]);
 
 //picture services ------------------------------->
-'use strict';
 app.service('sendMessage', ['$cordovaCamera', '$http', '$cordovaSms', function($cordovaCamera, $http, $cordovaSms){
   var sv = this;
   //this method will open the camera app. after a photo is taken the user will crop it into a square. It returns a promise with the data being the base64 encoded image
@@ -105,6 +301,6 @@ app.service('sendMessage', ['$cordovaCamera', '$http', '$cordovaSms', function($
             intent: ''
           }
         };
-         return $cordovaSms.send(number, message, options)
-  }
+         return $cordovaSms.send(number, message, options);
+  };
 }]);
