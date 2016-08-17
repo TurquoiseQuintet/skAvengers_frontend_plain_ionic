@@ -3,8 +3,8 @@
 	<button class="button" name="back">
 		<i class="icon ion-chevron-left">Back</i>
 	</button>
-	<div ng-controller="LogoutController">
-		<button class="button button-assertive" name="leave">
+	<div ng-controller="LogoutController as LC">
+		<button class="button button-assertive" name="leave" ng-click="LC.logOut()">
 			<i class="icon ion-backspace">Logout</i>
 		</button>
 	</div>

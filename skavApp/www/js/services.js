@@ -42,12 +42,11 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
 app.service("LogoutService", ['$http', '$window', "$location", function($http, $window, $location){
   var sv = this;
   sv.logOut = function(){
-    delete $window.sessionStorage.token
-  }
-  .then(function(){
+    delete $window.sessionStorage.token;
     $location.path('/');
-  })
-}])
+  };
+
+}]);
 
 // hunt services -------------------------------------->
 app.service("HuntService", ['$http', '$window', '$location', function($http, $window, $location) {

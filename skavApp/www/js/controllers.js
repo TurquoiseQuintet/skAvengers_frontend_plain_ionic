@@ -10,6 +10,11 @@ app.controller('LogInController',['LogInService', function(LogInService){
   var vm=this;
   vm.login=LogInService.login;
 }]);
+//log out controller -----------------------------
+app.controller('LogoutController', ['LogoutService', function(LogoutService){
+  var vm = this;
+  vm.logOut = LogoutService.logOut;
+}]);
 
 // Hunt in controllers -------------------------->
 
@@ -22,10 +27,4 @@ app.controller('HuntController', ['HuntService', function(HuntService) {
 // Task controllers --------------------------------->
 app.controller('TaskController', [function(){
   var vm = this;
-}]);
-
-
-app.controller('LogoutController', ['LogoutService', function(LogoutService){
-  var vm = this;
-  vm.logOut = LogoutService.logOut;
 }]);
