@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 <ion-view title="login" class="bgimg" ng-include="'/partials/_header.html' && '/partials/_user_footer.html'">
-=======
-<ion-view title="login" class="bgimg" ng-controller="LogInController as lic">
->>>>>>> 9bf1984c688185c0096ad9b5c32baea462ac6972
+
   <div class="title" style="text-align: center">
     <a href="/#/"><i class="icon ion-ios-home"></i></a>
     <h1>Log In</h1>
@@ -11,20 +8,20 @@
   <ion-content class="top">
     <div class="list list-inset">
       <label class="item item-input">
-        <input type="text" ng-model="lic.username" placeholder="Username">
+        <input type="text" ng-model="LIC.username" placeholder="Username">
       </label>
     </div>
     <div class="list list-inset">
       <label class="item item-input">
-        <input type="text" ng-model="lic.email" placeholder="Email">
+        <input type="text" ng-model="LIC.email" placeholder="Email">
       </label>
     </div>
     <div class="list list-inset">
       <label class="item item-input">
-        <input type="password" ng-model="lic.password" placeholder="Password">
+        <input type="password" ng-model="LIC.password" placeholder="Password">
       </label>
     </div>
-    <button class="button button-large button-positive" ng-click="lic.login(lic.username, lic.password)">Submit</button>
+    <button class="button button-large button-positive" ng-click="LIC.login(LIC.username, LIC.password)">Submit</button>
 
   </ion-content>
 </ion-view>
