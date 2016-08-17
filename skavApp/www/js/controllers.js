@@ -13,14 +13,13 @@ vm.login=LogInService.login;
 }]);
 
 // Hunt in controllers -------------------------->
-
+app.controller('HuntController', [function(){
+  var vm = this;
+}]);
 
 
 
 // Task controllers --------------------------------->
-
-
-
-
-
-//user controllers -------------------------------------.
+app.controller('TaskController', [function(){
+  var vm = this;
+}]);
