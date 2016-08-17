@@ -21,7 +21,9 @@ app.controller('LogoutController', ['LogoutService', function(LogoutService){
 app.controller('HuntController', ['HuntService', function(HuntService) {
   var vm = this;
   vm.myHunts = HuntService.hunts;
+  // vm.master = HuntService.master;
   HuntService.getAllHunts();
+  // HuntService.masterOf();
   console.log(vm.myHunts);
 }]);
 
