@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('skavApp', ['ionic']);
-app.config(function($stateProvider, $locationProvider) {
+app.config(function($stateProvider) {
   $stateProvider
   .state('index', {
     url: '/',
@@ -39,7 +39,6 @@ app.config(function($stateProvider, $locationProvider) {
     url: '/edit-task',
     templateUrl: "/templates/edit-task.html"
   });
-  // $locationProvider.html5Mode(true);
 });
 
 app.run(function($ionicPlatform) {
