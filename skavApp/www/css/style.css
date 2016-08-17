@@ -37,3 +37,7 @@ h1 {
 a {
 	text-decoration: none;
 }
+
+.button-right{
+	margin-left: 200;
+}
