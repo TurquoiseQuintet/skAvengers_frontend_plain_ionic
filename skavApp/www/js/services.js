@@ -1,6 +1,6 @@
 'use strict';
 // sign up service ---------------------------->
-app.service('SignUpService', ['$http', '$window', function($http, $window){
+app.service('SignUpService', ['$http', '$window', '$location', function($http, $window, $location){
   var sv=this;
 sv.signup= function(username, password, email, avatar){
   $http.post('https://skavengers.herokuapp.com/register', {username:username, password:password, email:email, avatar:avatar})
@@ -44,6 +44,7 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
   sv.getAllhunts= function(){
     $http.get('https://skavengers.herokuapp.com/hunts/all')
     .then(function(data){
+      console.log("here", data);
       sv.myHunts = data;
       return $http.get('https://skavengers.herokuapp.com/hunts/mine')
     })
@@ -56,8 +57,8 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
       sv.message="problems in the oceans";
     });
   };
-  }
-}])
+  sv.getAllhunts();
+}]);
 
 
 
