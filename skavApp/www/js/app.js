@@ -16,11 +16,11 @@ app.config(function($stateProvider, $locationProvider) {
     templateUrl: '/templates/register.html'
   })
   .state('huntmaster-view',{
-    url: '/admin',
+    url: '/huntmaster-view',
     templateUrl: '/templates/huntmaster-view.html'
   })
   .state('hunter-view', {
-    url: '/user',
+    url: '/hunter-view',
     templateUrl: '/templates/hunter-view.html'
   })
   .state('new-task', {
@@ -50,9 +50,9 @@ app.run(function($ionicPlatform) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
     }
-    // if (window.StatusBar) {
-    //     // org.apache.cordova.statusbar required
-    //     StatusBar.styleDefault();
-    // }
+    if (window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleDefault();
+    }
   });
 });
