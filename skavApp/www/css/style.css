@@ -33,17 +33,7 @@ h1 {
 	color: black;
 }
 
-.bar-calm {
-	position: fixed;
-	height: 60px;
-	bottom: 0;
-}
 
 a {
 	text-decoration: none;
-}
-
-.button-bar {
-	height: 40px;
-	margin: 0 auto;
 }
