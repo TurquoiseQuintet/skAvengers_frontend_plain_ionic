@@ -8,16 +8,16 @@ app.controller('SignUpController', ['SignUpService', function(SignUpService){
 // Log in controller -------------------------->
 app.controller('LogInController',['LogInService', function(LogInService){
   var vm=this;
-vm.login=LogInService.login;
-
+  vm.login=LogInService.login;
 }]);
 
 // Hunt in controllers -------------------------->
-app.controller('HuntController', [function(){
+
+app.controller('HuntController', ['HuntService', function(HuntService) {
   var vm = this;
+  vm.myHunts=HuntService.myHunts;
+
 }]);
-
-
 
 // Task controllers --------------------------------->
 app.controller('TaskController', [function(){
