@@ -28,6 +28,13 @@ app.controller('HuntController', ['HuntService', function(HuntService) {
 }]);
 
 // Task controllers --------------------------------->
-app.controller('TaskController', [function(){
+app.controller('TaskController', [ '$window', function($window){
   var vm = this;
+  vm.user=($window.localStorage.token.split('.'))[1];
+  // vm.user=vm.user;
+  vm.userinfo=atob(vm.user);
+  vm.userinfo1=(vm.userinfo).split(",")[0];
+  vm.name=vm.userinfo1.split(":")[1];
+  console.log(vm.name[1]);
+  // console.log(vm.userinfo);
 }]);
