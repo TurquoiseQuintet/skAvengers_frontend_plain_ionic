@@ -1,21 +1,12 @@
 <ion-view title="user" class="user">
+	<app-header></app-header>
 	<ion-content>
-		<div class="bar bar-header">
-			<button class="button icon ion-ios-home"></button>
-			<h1 class="title">Find.It</h1>
-			<button class="button">Edit</button>
+		<div class="top" ng-repeat="hunt in HC.myHunts">
+			<h1>{{ hunt.name }}</h1>
 		</div>
-		<div ng-repeat="hunt in HC.myHunts">
-			<h1>{{hunt.name}}</h1>
-		</div>
-		<a href="/#/tasks"><h5>list of hunts and each hunt name will link you to all tasks for that hunt</h5></a>
 		<a href="/#/new-hunt"><h5>Add new hunt</h5></a>
 		<ion-footer-bar align-title="left" class="bar-light">
 		</ion-footer-bar>
   </ion-content>
+	<app-footer></app-footer>
 </ion-view>
-
-
-<div class="bar bar-header bar-light">
-  <h1 class="title">bar-light</h1>
-</div>

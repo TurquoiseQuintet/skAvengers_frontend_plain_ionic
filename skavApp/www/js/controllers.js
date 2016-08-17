@@ -10,12 +10,23 @@ app.controller('LogInController',['LogInService', function(LogInService){
   var vm=this;
   vm.login=LogInService.login;
 }]);
+//log out controller -----------------------------
+app.controller('LogoutController', ['LogoutService', function(LogoutService){
+  var vm = this;
+  vm.logOut = LogoutService.logOut;
+}]);
 
 // Hunt in controllers -------------------------->
 
 app.controller('HuntController', ['HuntService', function(HuntService) {
   var vm = this;
-  vm.myHunts=HuntService.myHunts;
+  HuntService.getAllHunts();
+  vm.myHunts = [{
+  expiration: "2016-01-01T08:30:00.000Z",
+  huntMaster_id: 1,
+  id: 1,
+  name: "Swimming Pool",
+  xp_to_level_up: 100}];
 }]);
 
 // Task controllers --------------------------------->

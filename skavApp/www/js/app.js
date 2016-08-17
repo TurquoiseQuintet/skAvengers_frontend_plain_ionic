@@ -1,7 +1,9 @@
 'use strict';
 
+
 var app = angular.module('skavApp', ['ionic', 'ngCordova']);
-app.config(function($stateProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
+
   $stateProvider
   .state('index', {
     url: '/',
@@ -67,6 +69,7 @@ app.config(function($stateProvider) {
     controller: 'HuntController',
     controllerAs: 'HC'
   });
+  $urlRouterProvider.otherwise('/');
 });
 
 app.run(function($ionicPlatform) {
@@ -83,3 +86,7 @@ app.run(function($ionicPlatform) {
     }
   });
 });
+
+app.config(['$httpProvider', function($httpProvider){
+  $httpProvider.interceptors.push('authInterceptor');
+}]);
