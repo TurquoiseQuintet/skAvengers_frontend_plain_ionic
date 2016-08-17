@@ -9,14 +9,15 @@
 
 <!-- Button to save changes to task post request and return to hunt -->
 
-<ion-view title="Title" class="edit-task">
+<ion-view title="edit-task" class="edit-task">
 	<ion-content>
-    <a href="/#/user"><i class="icon ion-ios-home"></i></a>
-		<h1 style="font-size:60px;margin-left:28%;color:blue;">Find.It</h1>
+    <div class="bar bar-header">
+  <a href="/#/user"><button class="button icon ion-ios-home"></button></a>
+  <h1 class="title">Find.It</h1>
+  <button class="button">Edit</button>
+</div>
 		<ion-footer-bar align-title="left" class="bar-light">
 		  <div class="button-bar">
-				<a href="/login" class="button button-calm"><h3>Log In</h3></a>
-		    <a href="/register" class="button button-calm"><h3>Sign Up</h3></a>
 		  </div>
 		</ion-footer-bar>
   </ion-content>
