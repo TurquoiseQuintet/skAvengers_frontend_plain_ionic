@@ -38,31 +38,36 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
   };
 }]);
 
+//log out service ------------------------------------
+app.service("LogoutService", ['$http', '$window', "$location", function($http, $window, $location){
+  var sv = this;
+  sv.logOut = function(){
+    delete $window.sessionStorage.token;
+    $location.path('/');
+  };
+
+}]);
+
 // hunt services -------------------------------------->
 app.service("HuntService", ['$http', '$window', '$location', function($http, $window, $location) {
   var sv=this;
-  console.log("1");
-  sv.getAllhunts= function(){
-    console.log("2");
+  sv.hunts = {};
+  sv.getAllHunts= function(){
     $http.get('https://skavengers.herokuapp.com/hunts/all')
     .then(function(data){
-      console.log("here", data);
-      sv.myHunts = data;
-      return $http.get('https://skavengers.herokuapp.com/hunts/mine');
-    })
-    .then(function(data) {
-      sv.Master = data;
+      console.log(data.data);
+      sv.hunts.data = data.data;
+    //   return $http.get('https://skavengers.herokuapp.com/hunts/mine');
+    // })
+    // .then(function(data) {
+    //   sv.Master = data;
       //now what?
     })
-    .then(function(err){
+    .catch(function(err){
       //handle it
       sv.message="problems in the oceans";
     });
   };
-  // sv.getAllhunts();
-
-  var sv=this;
-
   //this service is called for when we make a request to post hunts to start a new hunt
   sv.addHunt=function(huntMaster_id, name, expiration){
     //add heroku stuff below
