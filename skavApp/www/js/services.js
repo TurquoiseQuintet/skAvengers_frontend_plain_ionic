@@ -42,27 +42,23 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
 app.service("HuntService", ['$http', '$window', '$location', function($http, $window, $location) {
   var sv=this;
   console.log("1");
-  sv.getAllhunts= function(){
+  sv.getAllHunts= function(){
     console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
     .then(function(data){
-      console.log("here", data);
-      sv.myHunts = data;
+      console.log(data.data);
+      sv.myHunts = data.data;
       return $http.get('https://skavengers.herokuapp.com/hunts/mine');
     })
     .then(function(data) {
       sv.Master = data;
       //now what?
     })
-    .then(function(err){
+    .catch(function(err){
       //handle it
       sv.message="problems in the oceans";
     });
   };
-  // sv.getAllhunts();
-
-  var sv=this;
-
   //this service is called for when we make a request to post hunts to start a new hunt
   sv.addHunt=function(huntMaster_id, name, expiration){
     //add heroku stuff below

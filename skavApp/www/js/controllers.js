@@ -15,8 +15,13 @@ app.controller('LogInController',['LogInService', function(LogInService){
 
 app.controller('HuntController', ['HuntService', function(HuntService) {
   var vm = this;
-  vm.myHunts=HuntService.myHunts;
-  HuntService.getAllhunts();
+  HuntService.getAllHunts();
+  vm.myHunts = [{
+  expiration: "2016-01-01T08:30:00.000Z",
+  huntMaster_id: 1,
+  id: 1,
+  name: "Swimming Pool",
+  xp_to_level_up: 100}];
 }]);
 
 // Task controllers --------------------------------->
