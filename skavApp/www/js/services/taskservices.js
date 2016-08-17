@@ -5,7 +5,7 @@
 var sv=this;
 //this function makes an http request to get all tasks
 sv.getAlltasks= function(){
-  $http.get('http://skavengers.heroku.com/tasks')
+  $http.get('https://skavengers.herokuapp.com/tasks')
   .then(function(data){
 
   })
@@ -15,7 +15,7 @@ sv.getAlltasks= function(){
 };
 
 sv.deletetask=function(task){
-  $http.delete('http://skavengers.heroku.com/tasks/'+task.id, {
+  $http.delete('https://skavengers.herokuapp.com/tasks/'+task.id, {
     params:{task:task.id}
   })
   .then(function(data){
@@ -27,7 +27,7 @@ sv.deletetask=function(task){
 };
 
 sv.gettask=function(task){
-  $http.put('http://skavengers.heroku.com/tasks/'+ task.id, {
+  $http.put('https://skavengers.herokuapp.com/tasks/'+ task.id, {
     params:{task:task.id}
   })
   .then(function(data){
@@ -39,7 +39,7 @@ sv.gettask=function(task){
 };
 
 sv.posttask=function(hunt_id, name, xp, level_available, completed, unique, location, expiration_time){
-  $http.post('http://skavengers.heroku.com/tasks', {
+  $http.post('https://skavengers.herokuapp.com/tasks', {
     hunt_id: hunt_id,
         name: name,
         xp: xp,
@@ -60,7 +60,7 @@ sv.posttask=function(hunt_id, name, xp, level_available, completed, unique, loca
 
 
 sv.edittask=function(name, xp, level_available, completed, location, expiration_time, task){
-  $http.put('http://skavengers.heroku.com/tasks/'+task.id, {
+  $http.put('https://skavengers.herokuapp.com/tasks/'+task.id, {
             id:task.id,
             name: name,
             xp: xp,
