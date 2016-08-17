@@ -2,7 +2,8 @@
 
 app.directive('appHeader', function(){
 	return {
-		templateUrl: '/partials/_header.html'
+		templateUrl: '/partials/_header.html',
+		controller: "HeaderController as HC"
 	};
 });
 
