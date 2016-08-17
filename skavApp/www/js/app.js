@@ -46,7 +46,6 @@ app.config(function($stateProvider) {
   .state('edit-hunt', {
     url:'/edit-hunt',
     templateUrl: "/templates/edit-hunt.html"
-
   });
 });
 
