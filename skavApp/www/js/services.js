@@ -1,6 +1,6 @@
 'use strict';
 // sign up service ---------------------------->
-app.service('SignUpService', ['$http', '$window', function($http, $window){
+app.service('SignUpService', ['$http', '$window', '$location', function($http, $window, $location){
   var sv=this;
 sv.signup= function(username, password, email, avatar){
   $http.post('https://skavengers.herokuapp.com/register', {username:username, password:password, email:email, avatar:avatar})
@@ -19,6 +19,7 @@ sv.signup= function(username, password, email, avatar){
 app.service("LogInService", ['$http', '$window','$location', function($http, $window, $location){
   var sv=this;
   sv.login= function(username, password){
+    console.log('fire');
     $http.post('https://skavengers.herokuapp.com/login', {
       username:username,
       password:password
@@ -26,7 +27,7 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
     .then(function(response){
       console.log(response);
       //localstorage
-      $window.sessionStorage.token=response.data.token;
+      $window.localStorage.token=response.data.token;
       // path somewhere...to their page with their hunts?
       $location.path('/user');
     })
@@ -44,6 +45,7 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
   sv.getAllhunts= function(){
     $http.get('https://skavengers.herokuapp.com/hunts/all')
     .then(function(data){
+      console.log("here", data);
       sv.myHunts = data;
       return $http.get('https://skavengers.herokuapp.com/hunts/mine');
     })
@@ -57,12 +59,8 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
     });
   };
 
-}])
-
-
-
-// task controller --------------------------->
-
+  sv.getAllhunts();
+}]);
 
 
 // user services -------------------------------->

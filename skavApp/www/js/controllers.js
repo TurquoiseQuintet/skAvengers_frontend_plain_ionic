@@ -8,7 +8,11 @@ app.controller('SignUpController', ['SignUpService', function(SignUpService){
 // Log in controller -------------------------->
 app.controller('LogInController',['LogInService', function(LogInService){
   var vm=this;
-  vm.login=LogInService.login;
+  vm.test = 'controller test'
+  vm.login = function(){
+    console.log('fire!');
+  }
+  // vm.login=LogInService.login;
 }]);
 
 // Hunt in controllers -------------------------->

@@ -25,13 +25,13 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
     .then(function(response){
       console.log("here? ", response);
       //localstorage
-      $window.sessionStorage.token=response.data.token;
+      $window.localStorage.token=response.data.token;
       // path somewhere...to their page with their hunts?
       $location.path('/user');
     })
     .catch(function(err){
 			console.log(err.message);
-      delete $window.sessionStorage.token;
+      delete $window.localStorage.token;
       sv.message="trouble logging in";
     });
   };
