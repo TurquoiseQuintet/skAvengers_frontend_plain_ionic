@@ -57,13 +57,8 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
     console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
     .then(function(data){
-<<<<<<< HEAD
-      console.log("here", data);
-      sv.myHunts = data;
-=======
       console.log(data.data);
       sv.myHunts = data.data;
->>>>>>> b11d3fadbe67f5f2e970df99648c6f7a2e00a06c
       return $http.get('https://skavengers.herokuapp.com/hunts/mine');
     })
     .then(function(data) {
@@ -285,11 +280,9 @@ app.service('userServices', ['$http', '$window', function($http, $window){
 }]);
 
 //picture services ------------------------------->
-<<<<<<< HEAD
+
 app.service('sendMessageService', ['$cordovaCamera', '$http', '$cordovaSms', function($cordovaCamera, $http, $cordovaSms){
-=======
-app.service('sendMessage', ['$cordovaCamera', '$http', '$cordovaSms', function($cordovaCamera, $http, $cordovaSms){
->>>>>>> b11d3fadbe67f5f2e970df99648c6f7a2e00a06c
+
   var sv = this;
   //this method will open the camera app. after a photo is taken the user will crop it into a square. It returns a promise with the data being the base64 encoded image
   sv.takePicture = function(){
@@ -323,7 +316,7 @@ app.service('sendMessage', ['$cordovaCamera', '$http', '$cordovaSms', function($
             intent: ''
           }
         };
-<<<<<<< HEAD
+
          return $cordovaSms.send(number, message, options)
   }
 
@@ -348,8 +341,5 @@ app.service('sendMessage', ['$cordovaCamera', '$http', '$cordovaSms', function($
         alert('there was an issue submitting ' + taskName);
       });
     }
-=======
-         return $cordovaSms.send(number, message, options);
->>>>>>> b11d3fadbe67f5f2e970df99648c6f7a2e00a06c
   };
 }]);
