@@ -52,37 +52,41 @@ app.service("LogoutService", ['$http', '$window', "$location", function($http, $
 app.service("HuntService", ['$http', '$window', '$location', function($http, $window, $location) {
   var sv=this;
   sv.hunts = {};
+  sv.master = {};
   sv.getAllHunts= function(){
     $http.get('https://skavengers.herokuapp.com/hunts/all')
     .then(function(data){
       console.log(data.data);
       sv.hunts.data = data.data;
-    //   return $http.get('https://skavengers.herokuapp.com/hunts/mine');
-    // })
-    // .then(function(data) {
-    //   sv.Master = data;
-      //now what?
     })
     .catch(function(err){
       //handle it
       sv.message="problems in the oceans";
     });
   };
+  sv.masterOf = function() {
+    $http.get('https://skavengers.herokuapp.com/hunts/mine')
+    .then(function(data) {
+      sv.master.data = data.data;
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+  };
   //this service is called for when we make a request to post hunts to start a new hunt
   sv.addHunt=function(huntMaster_id, name, expiration){
-    //add heroku stuff below
-  $http.post('https://skavengers.herokuapp.com/hunts',
-  {
-      huntMaster_id: huntMaster_id,
-      name: name,
-      expiration: expiration
+    $http.post('https://skavengers.herokuapp.com/hunts',
+    {
+        huntMaster_id: huntMaster_id,
+        name: name,
+        expiration: expiration
+      })
+    .then(function(data){
+      $location.path('/user');
     })
-  .then(function(data){
-    $location.path('/user');
-  })
-  .catch(function(err){
-  sv.message="problems with creating hunt";
-  });
+    .catch(function(err){
+    sv.message="problems with creating hunt";
+    });
   };
 
   //this is used to get ONE particular hunt
@@ -144,7 +148,7 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
 
 
 // task services --------------------------->
-app.service('taskServices', ['$http', '$window', function($http, $window){
+app.service('taskService', ['$http', '$window', function($http, $window){
   //this function makes an http request to get all tasks
   sv.getAlltasks= function(){
     $http.get('https://skavengers.herokuapp.com/tasks')
