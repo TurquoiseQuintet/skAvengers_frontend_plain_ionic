@@ -3,7 +3,7 @@
 app.service('SignUpService', ['$http', '$window', function($http, $window){
   var sv=this;
 sv.signup= function(username, password, email, avatar){
-  $http.post('http://skavengers.heroku.com/register', {username:username, password:password, email:email, avatar:avatar})
+  $http.post('https://skavengers.herokuapp.com/register', {username:username, password:password, email:email, avatar:avatar})
   .then(function(response){
     console.log(response);
     //path to login or does signup log you in and path to user home?
@@ -17,10 +17,12 @@ sv.signup= function(username, password, email, avatar){
 }]);
 
 app.service("LogInService", ['$http', '$window','$location', function($http, $window, $location){
-  console.log("click");
   var sv=this;
-  sv.login= function(user, password){
-    $http.post('http://skavengers.heroku.com/login')
+  sv.login= function(username, password){
+    $http.post('https://skavengers.herokuapp.com/login', {
+      username:username,
+      password:password
+    })
     .then(function(response){
       console.log(response);
       //localstorage
