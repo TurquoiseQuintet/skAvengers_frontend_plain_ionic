@@ -1,5 +1,5 @@
 'use strict';
-
+// sign up service ---------------------------->
 app.service('SignUpService', ['$http', '$window', function($http, $window){
   var sv=this;
 sv.signup= function(username, password, email, avatar){
@@ -15,7 +15,7 @@ sv.signup= function(username, password, email, avatar){
   });
 };
 }]);
-
+// log in service --------------------------------->
 app.service("LogInService", ['$http', '$window','$location', function($http, $window, $location){
   var sv=this;
   sv.login= function(username, password){
@@ -37,3 +37,13 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
     });
   };
 }]);
+
+// hunt services -------------------------------------->
+
+
+
+// task controller --------------------------->
+
+
+
+// user services -------------------------------->
