@@ -16,6 +16,7 @@ app.controller('LogInController',['LogInService', function(LogInService){
 app.controller('HuntController', ['HuntService', function(HuntService) {
   var vm = this;
   vm.myHunts=HuntService.myHunts;
+  HuntService.getAllhunts();
 }]);
 
 // Task controllers --------------------------------->
