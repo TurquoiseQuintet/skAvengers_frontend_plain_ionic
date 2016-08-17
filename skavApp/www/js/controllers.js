@@ -33,3 +33,11 @@ app.controller('HuntController', ['HuntService', function(HuntService) {
 app.controller('TaskController', [function(){
   var vm = this;
 }]);
+
+app.controller('HeaderController', [function($window){
+  var vm = this;
+  vm.user=($window.localStorage.token.split('.'))[1];
+  // vm.user=vm.user;
+  vm.userinfo=atob(vm.user);
+  console.log(vm.userinfo);
+}]);g
