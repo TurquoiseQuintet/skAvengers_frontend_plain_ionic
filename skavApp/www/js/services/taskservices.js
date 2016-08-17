@@ -58,9 +58,9 @@ sv.posttask=function(hunt_id, name, xp, level_available, completed, unique, loca
   });
 };
 
-sv.edittask=function(name, xp, level_available, completed, location, expiration_time, task){
-  $http.put('http://   /tasks/'+task.id, {
-            id:task.id,
+sv.edittask=function(hunt_id, name, xp, level_available, completed, location, expiration_time, task){
+  $http.put('http://   /tasks/' + task.id, {
+            id: task.id,
             name: name,
             xp: xp,
             level_available: level_available,
