@@ -24,22 +24,22 @@ app.config(function($stateProvider, $locationProvider) {
     templateUrl: '/templates/hunter-view.html'
   })
   .state('new-task', {
-    url: 'new-task',
+    url: '/new-task',
     templateUrl: "/templates/new-task.html"
   })
   .state('user', {
-    url: 'user',
+    url: '/user',
     templateUrl: "/templates/user.html"
   })
   .state('new-hunt', {
-    url: 'new-hunt',
+    url: '/new-hunt',
     templateUrl: "/templates/new-hunt.html"
   })
-  .state('/edit-task', {
+  .state('edit-task', {
     url: '/edit-task',
     templateUrl: "/templates/edit-task.html"
   });
-  $locationProvider.html5Mode(true);
+  // $locationProvider.html5Mode(true);
 });
 
 app.run(function($ionicPlatform) {

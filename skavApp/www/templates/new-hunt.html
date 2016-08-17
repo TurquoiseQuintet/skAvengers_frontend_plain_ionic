@@ -1,9 +1,43 @@
+<ion-view title="login" class="bgimg">
+	<div class="title" style="text-align: center">
+		<h1>New Hunt</h1>
+		<hr>
+	</div>
+	<ion-content class="top">
+		<div class="list list-inset">
+			<!-- name of the hunt -->
+      <label class="item item-input">
+        <input type="text" placeholder="Hunt Title">
+      </label>
+    </div>
+    <div class="list list-inset">
+			<!-- expiraton date for the hunt -->
+      <label class="item item-input">
+        <input type="date" placeholder="Expiration Date">
+      </label>
+    </div>
+		<div class="list list-inset">
+			<!-- select to add hunter(s) -->
+			<label class="item item-input">
+				<input type="text" name="searchfield" placeholder="Invite Players">
+				<ul ng-repeat="">
+					<!-- list using ng-filter showing users available by name, with avatar -->
+					placeholder for users list
+				</ul>
+			</label>
+		</div>
+		<hr>
+		<div>
+			<h1>Tasks:</h1>
+			<ul ng-repeat="">
+				placeholder for listing current tasks
+			</ul>
+		</div>
+		<!-- Button to add task to hunt, leads to hunt view -->
+		<button class="button button-large button-positive" name="addTasks" ng-click="">Add Task to Hunt</button>
+	</ion-content>
+</ion-view>
 <!-- will take user id -->
-<!-- name of the hunt -->
-<!-- expiraton date for the hunt -->
-<!-- select to add hunter(s) -->
-<!-- list using ng-filter showing users available by name, with avatar -->
-<!-- Button to add task to hunt, leads to hunt view -->
 <!-- button to edit task -->
 <!-- button to delete task -->
 <!-- button to submit creation and redirect to user -->
