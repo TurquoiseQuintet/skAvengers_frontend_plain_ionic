@@ -7,20 +7,14 @@
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <!-- <link href="css/ionic.app.css" rel="stylesheet"> -->
-    <base href="/">
+    <!-- <base href="/"> -->
     <style type="text/css">
-      [ng-cloak],
-      [x-ng-cloak],
-      [data-ng-cloak],
-      [ng-cloak],
-      [ng\:cloak],
-      [x-ng-cloak] {
-        display: none !important;
-      }
-
+    [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+      display: none !important;
+    }
     </style>
   </head>
-  <body ng-app="skavApp" >
+  <body ng-app="skavApp" ng-cloak>
 
     <ion-nav-view></ion-nav-view>
 

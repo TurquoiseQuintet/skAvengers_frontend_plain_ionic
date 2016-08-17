@@ -15,11 +15,31 @@ app.config(function($stateProvider, $locationProvider) {
     url: '/register',
     templateUrl: '/templates/register.html'
   })
-  .state('admin',{
+  .state('huntmaster-view',{
     url: '/admin',
-    templateUrl: '/templates/admin.html'
+    templateUrl: '/templates/huntmaster-view.html'
+  })
+  .state('hunter-view', {
+    url: '/user',
+    templateUrl: '/templates/hunter-view.html'
+  })
+  .state('new-task', {
+    url: '/new-task',
+    templateUrl: "/templates/new-task.html"
+  })
+  .state('user', {
+    url: '/user',
+    templateUrl: "/templates/user.html"
+  })
+  .state('new-hunt', {
+    url: '/new-hunt',
+    templateUrl: "/templates/new-hunt.html"
+  })
+  .state('edit-task', {
+    url: '/edit-task',
+    templateUrl: "/templates/edit-task.html"
   });
-  $locationProvider.html5Mode(true);
+  // $locationProvider.html5Mode(true);
 });
 
 app.run(function($ionicPlatform) {

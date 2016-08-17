@@ -1,11 +1,54 @@
-<!-- name of the hunt  -->
+<ion-view title="login" class="bgimg">
+	<div class="title" style="text-align: center">
+		<h1>New Task</h1>
+		<hr>
+	</div>
+	<!-- name of the hunt  -->
+	<ion-content class="top">
+		<h1>placeholder hunt title</h1>
+		<div class="list list-inset">
+			<!-- name of the task and description -->
+      <label class="item item-input">
+        <input type="text" placeholder="Hunt Title">
+      </label>
+    </div>
+		<div class="list list-inset">
+			<!-- xp value -->
+      <label class="item item-input">
+        <input type="number" min="10" max="300" step="10" placeholder="XP Value">
+      </label>
+    </div>
+		<div class="list list-inset">
+			<!-- prerequisite level -->
+      <label class="item item-input">
+        <input type="number" min="0" max="10" placeholder="XP Required">
+      </label>
+    </div>
+		<!-- isUnique -->
+		<h3>Is Unique?</h3>
+		<div class="list list-inset">
+			<!-- prerequisite level -->
+      <label class="item item-input">
+        <input type="checkbox" ng-click="">
+      </label>
+    </div>
+		<div class="list list-inset">
+			<!-- description of location for the task -->
+      <label class="item item-input">
+        <input type="text" placeholder="Location">
+      </label>
+    </div>
+		<!-- expiration time -->
+		<h3>Expiration Date:</h3>
+		<div class="list list-inset">
+      <label class="item item-input">
+        <input type="date" ng-click="" placeholder="Expiration Date">
+      </label>
+    </div>
+		<!-- Button to add task(s) -->
+		<button class="button button-large button-positive" name="submitTask">Add to Hunt</button>
+		<!-- button to return to user page -->
+		<button class="button button-large button-assertive" name="button">Back to User</button>
+	</ion-content>
 
-<!-- name/description -->
-<!-- xp value -->
-<!-- prerequisite level -->
-<!-- isUnique -->
-<!-- description of location for the task -->
-<!-- expiration time -->
-
-<!-- Button to add task(s) -->
-<!-- button to return to user page -->
+</ion-view>
