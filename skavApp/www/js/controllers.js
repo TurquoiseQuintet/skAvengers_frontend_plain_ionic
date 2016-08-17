@@ -20,13 +20,9 @@ app.controller('LogoutController', ['LogoutService', function(LogoutService){
 
 app.controller('HuntController', ['HuntService', function(HuntService) {
   var vm = this;
+  vm.myHunts = HuntService.hunts;
   HuntService.getAllHunts();
-  vm.myHunts = [{
-  expiration: "2016-01-01T08:30:00.000Z",
-  huntMaster_id: 1,
-  id: 1,
-  name: "Swimming Pool",
-  xp_to_level_up: 100}];
+  console.log(vm.myHunts);
 }]);
 
 // Task controllers --------------------------------->
