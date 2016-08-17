@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-
+'use strict';
 // Add Platform Class
 // v1.0
 // Automatically adds the platform class to the body tag
