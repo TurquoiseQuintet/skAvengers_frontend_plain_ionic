@@ -34,10 +34,9 @@ app.controller('TaskController', [function(){
   var vm = this;
 }]);
 
-app.controller('HeaderController', [function($window){
+app.controller('HeaderController', [function(UserService){
   var vm = this;
-  vm.user=($window.localStorage.token.split('.'))[1];
-  // vm.user=vm.user;
-  vm.userinfo=atob(vm.user);
-  console.log(vm.userinfo);
-}]);g
+  vm.user = UserService.loggedInUser;
+  vm.username = vm.user.name;
+  vm.avater = vm.user.avater;
+}]);

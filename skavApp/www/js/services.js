@@ -51,12 +51,12 @@ app.service("LogoutService", ['$http', '$window', "$location", function($http, $
 // hunt services -------------------------------------->
 app.service("HuntService", ['$http', '$window', '$location', function($http, $window, $location) {
   var sv=this;
-  console.log("1");
+  // console.log("1");
   sv.getAllHunts= function(){
-    console.log("2");
+    // console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
     .then(function(data){
-      console.log(data.data);
+      // console.log(data.data);
       sv.myHunts = data.data;
       return $http.get('https://skavengers.herokuapp.com/hunts/mine');
     })
