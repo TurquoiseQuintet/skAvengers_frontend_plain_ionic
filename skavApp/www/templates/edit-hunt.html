@@ -1,37 +1,34 @@
-<!-- will take user id -->
-
-<ion-view title="new-hunt" class="bgimg">
+<ion-view title="edit-hunt" class="bgimg">
 	<div class="title" style="text-align: center">
 		<a href="/#/user"><i class="icon ion-ios-home"></i></a>
-		<h1>New Hunt</h1>
+		<h1>Edit Hunt</h1>
 		<hr>
 	</div>
 	<ion-content class="top">
 		<div class="list list-inset">
-			<!-- name of the hunt -->
+			<h3><!-- current name of the hunt --></h3>
       <label class="item item-input">
         <input type="text" placeholder="Hunt Title">
       </label>
     </div>
     <div class="list list-inset">
-			<!-- expiraton date for the hunt -->
+			<h3><!-- current expiration date --></h3>
       <label class="item item-input">
         <input type="date" placeholder="Expiration Date">
       </label>
     </div>
 		<div class="list list-inset">
-			<!-- select to add hunter(s) -->
 			<label class="item item-input">
 				<input type="text" name="searchfield" placeholder="Invite Players">
 				<ul ng-repeat="">
-					<!-- list using ng-filter showing users available by name, with avatar -->
+					<!-- current hunter(s) -->
 					placeholder for users list
 				</ul>
 			</label>
 		</div>
 		<hr>
 		<div>
-			<h1>Tasks:</h1>
+			<h3>Current Tasks:</h3>
 			<ul ng-repeat="task in tasks">
 				placeholder for listing current tasks
 				<!-- button to edit task -->

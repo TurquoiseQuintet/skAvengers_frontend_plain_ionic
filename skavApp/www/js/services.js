@@ -1,14 +1,13 @@
 'use strict';
-
+// sign up service ---------------------------->
 app.service('SignUpService', ['$http', '$window', function($http, $window){
   var sv=this;
 sv.signup= function(username, password, email, avatar){
   $http.post('https://skavengers.herokuapp.com/register', {username:username, password:password, email:email, avatar:avatar})
-
   .then(function(response){
     console.log(response);
     //path to login or does signup log you in and path to user home?
-    $window.path('/user');
+    $location.path('/user');
   })
   .catch(function(err){
     console.log(err);
@@ -16,14 +15,16 @@ sv.signup= function(username, password, email, avatar){
   });
 };
 }]);
-
+// log in service --------------------------------->
 app.service("LogInService", ['$http', '$window','$location', function($http, $window, $location){
-  console.log("click");
   var sv=this;
   sv.login= function(username, password){
-    $http.post('https://skavengers.herokuapp.com/login', {username:username, password:password})
+    $http.post('https://skavengers.herokuapp.com/login', {
+      username:username,
+      password:password
+    })
     .then(function(response){
-      console.log("here? ", response);
+      console.log(response);
       //localstorage
       $window.sessionStorage.token=response.data.token;
       // path somewhere...to their page with their hunts?
@@ -32,7 +33,17 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
     .catch(function(err){
 			console.log(err.message);
       delete $window.sessionStorage.token;
-      sv.message="trouble logging in";
+      //handle error
     });
   };
 }]);
+
+// hunt services -------------------------------------->
+
+
+
+// task controller --------------------------->
+
+
+
+// user services -------------------------------->

@@ -1,7 +1,38 @@
-<!-- hunt name -->
-<!-- hunter name -->
-<!-- hunter avatar -->
-<!-- hunter level/xp; as exp/needed(250/300) -->
-<!-- list of all tasks ; if hunter not at appropriate level, task is unavailable ; points for completion; desc; location-->
-<!-- see all hunters and current progress -->
+<ion-view title="hunter-view" class="bgimg">
+	<div class="title" style="text-align: center">
+		<!-- hunt name -->
+		<h1>hunt name</h1>
+		<hr>
+	</div>
+
+	<ion-content class="top">
+		<div class="hunterName" style="text-align: center">
+			<!-- hunter name -->
+			<!-- hunter avatar -->
+			<h3>hunter name</h3><img ng-src="https://www.placecage.com/c/100/150" alt="" />
+			<!-- hunter level/xp; as exp/needed(250/300) -->
+			<div class="item-range">
+				<h3>XP</h3>
+				<input type="range" name="xp">
+			</div>
+			<hr>
+		</div>
+		<!-- see all hunters and current progress -->
+		<div class="competitorProgress">
+			<h3>Competitor Progress</h3>
+			<div class="item-range" ng-repeat="user in users">
+
+			</div>
+		</div>
+		<div ng-filter="levelfilter">
+			<h1>Tasks:</h1>
+			<!-- list of all tasks ; if hunter not at appropriate level, task is unavailable ; points for completion; desc; location-->
+			<ul ng-repeat="task in tasks">
+				placeholder for listing current tasks
+				<!-- button to submit completedtask -->
+			</ul>
+		</div>
 <!-- button to wuss out -->
+<button class="button button-large button-assertive" name="quit" ng-click="quit">Quit Hunt</button>
+	</ion-content>
+</ion-view>

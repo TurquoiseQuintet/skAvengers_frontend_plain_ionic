@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('skavApp', ['ionic']);
-app.config(function($stateProvider, $locationProvider) {
+app.config(function($stateProvider) {
   $stateProvider
   .state('index', {
     url: '/',
@@ -16,11 +16,11 @@ app.config(function($stateProvider, $locationProvider) {
     templateUrl: '/templates/register.html'
   })
   .state('huntmaster-view',{
-    url: '/admin',
+    url: '/huntmaster-view',
     templateUrl: '/templates/huntmaster-view.html'
   })
   .state('hunter-view', {
-    url: '/user',
+    url: '/hunter-view',
     templateUrl: '/templates/hunter-view.html'
   })
   .state('new-task', {
@@ -35,11 +35,18 @@ app.config(function($stateProvider, $locationProvider) {
     url: '/new-hunt',
     templateUrl: "/templates/new-hunt.html"
   })
+  .state('tasks', {
+    url: '/tasks',
+    templateUrl: "templates/tasks.html"
+  })
   .state('edit-task', {
     url: '/edit-task',
     templateUrl: "/templates/edit-task.html"
+  })
+  .state('edit-hunt', {
+    url:'/edit-hunt',
+    templateUrl: "/templates/edit-hunt.html"
   });
-  // $locationProvider.html5Mode(true);
 });
 
 app.run(function($ionicPlatform) {
@@ -50,9 +57,9 @@ app.run(function($ionicPlatform) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
     }
-    // if (window.StatusBar) {
-    //     // org.apache.cordova.statusbar required
-    //     StatusBar.styleDefault();
-    // }
+    if (window.StatusBar) {
+        // org.apache.cordova.statusbar required
+        StatusBar.styleDefault();
+    }
   });
 });
