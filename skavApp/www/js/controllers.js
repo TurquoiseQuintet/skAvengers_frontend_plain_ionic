@@ -21,11 +21,13 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
 
 // Hunt in controllers -------------------------->
 
-app.controller('HuntController', ['HuntService','$state','$http', function(HuntService, $state, $http) {
+app.controller('HuntController', ['HuntService','UserServices','$state','$http', function(HuntService, UserServices, $state, $http) {
   var vm = this;
   vm.$state = $state;
   vm.myHunts = HuntService.hunts;
-  console.log(vm.myHunts);
+  vm.getusers = UserServices.users;
+  UserServices.getAllUsers();
+  // console.log(vm.myHunts);
   vm.master = HuntService.master;
   // vm. getAllHunts= function(){
   //   console.log("2");
