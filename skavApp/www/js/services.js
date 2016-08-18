@@ -87,12 +87,11 @@ app.service("HuntService", ['$http', '$window', '$state', function($http, $windo
   //this service is called for when we make a request to post hunts to start a new hunt
   sv.addHunt = function(huntMaster_id, name, expiration) {
     $http.post('https://skavengers.herokuapp.com/hunts', {
-        huntMaster_id: huntMaster_id,
         name: name,
         expiration: expiration
       })
       .then(function(data) {
-        $state.go('/user');
+        $state.go('user');
       })
       .catch(function(err) {
         sv.message = "problems with creating hunt";

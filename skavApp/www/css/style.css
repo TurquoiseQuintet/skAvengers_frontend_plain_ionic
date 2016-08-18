@@ -27,6 +27,12 @@
 
 .top {
 	margin-top: 120px;
+	margin-bottom: 40px;
+}
+
+.content {
+	margin-top: 120px;
+	margin-bottom: 40px;
 }
 
 h1 {

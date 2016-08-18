@@ -1,19 +1,17 @@
-<!-- will take user id -->
-
 <ion-view title="new-hunt" class="bgimg">
 	<app-header></app-header>
 	<app-subheader></app-subheader>
-	<ion-content class="top">
+	<ion-content class="content">
 		<div class="list list-inset">
 			<!-- name for the hunt -->
       <label class="item item-input">
-        <input type="text" placeholder="Hunt Name">
+        <input ng-model="NHC.name" type="text" placeholder="Hunt Name">
       </label>
     </div>
     <div class="list list-inset">
 			<!-- expiraton date for the hunt -->
       <label class="item item-input">
-        <input type="date" placeholder="Expiration Date">
+        <input ng-model="NHC.expiration" type="date" placeholder="Expiration Date">
       </label>
     </div>
 		<div class="list list-inset">
@@ -29,8 +27,7 @@
 			</div>
 		</div>
 		<!-- button to submit creation and redirect to user -->
-		<button class="button button-block button-balanced" name="submitHunt" ng-click="">Submit</button>
+		<button class="button button-block button-balanced" name="submitHunt" ng-click="NHC.create(NHC.name, NCH.expiration)">Submit</button>
 	</ion-content>
 	<app-footer></app-footer>
-
 </ion-view>
