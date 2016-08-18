@@ -290,9 +290,28 @@ app.service('UserServices', ['$http', '$window', function($http, $window) {
 
 }]);
 
-app.service('SubmitService', ['$http', function($http) {
+app.service('SubmitService', ['$http', '$location', function($http, $location) {
   var sv = this;
-  
+  sv.user = [];
+  sv.huntTasks = [];
+  sv.hunter=($location.path()).split("/")[2];
+  sv.hunt=($location.path()).split("/")[3];
+  $http.get('https://skavengers.herokuapp.com/users/' + sv.hunter)
+  .then(function(data) {
+    sv.user.push(data.data);
+    return $http.get('https://skavengers.herokuapp.com/tasks/hunt/' + sv.hunt)
+  })
+  .then(function(data) {
+    for (var i = 0; i < data.data.tasks.length; i++) {
+      sv.huntTasks.push(data.data.tasks[i]);
+    }
+    console.log(sv.user);
+    console.log(sv.huntTasks);
+    return $http.get('https://skavengers.herokuapp.com/tasks/users_tasks')
+  })
+  .then(function(data) {
+    console.log(data);
+  })
 }]);
 
 //picture services ------------------------------->
