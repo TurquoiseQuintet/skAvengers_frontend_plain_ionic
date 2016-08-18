@@ -19,13 +19,14 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
   vm.logOut = LogoutService.logOut;
 }]);
 
-// Hunt in controllers -------------------------->
+// Hunt controllers -------------------------->
 
-app.controller('NewHuntController', ['UserServices', '$state', '$http', function(UserServices, $state, $http){
+app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', function(HuntService, UserServices, $state, $http){
   var vm=this;
   vm.$state=$state;
   vm.getusers = UserServices.users;
   UserServices.getAllUsers();
+  vm.create = HuntService.addHunt;
 }]);
 
 app.controller('HuntController', ['HuntService','UserServices','$state','$http', function(HuntService, UserServices, $state, $http) {
@@ -75,6 +76,7 @@ app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '
 
 app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http', '$location', function($window, $state, TaskService, $http, $location, sms){
   var vm = this;
+  vm.$state = $state;
   vm.newTask = TaskService.posttask;
   // vm.$state = $state;
   vm.hunt_id=($location.path()).split("/")[2];
@@ -118,12 +120,10 @@ app.controller('FooterController', ['$state', function($state){
 }]);
 
 app.controller('EditHuntController', ['$state', 'HuntService','$location', function($state, HuntService, $location){
-  console.log("ehc loaded");
   var vm=this;
   vm.$state=$state;
-  vm.EditHunt=HuntService.edit;
+  vm.EditHunt=HuntService.editHunt;
   vm.id=$location.path().split("/")[2];
-  console.log(vm.id);
 }]);
 
 app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){

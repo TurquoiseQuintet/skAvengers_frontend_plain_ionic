@@ -12,6 +12,8 @@ app.service('SignUpService', ['$http', '$window', '$location', function($http, $
       .then(function(response) {
         console.log(response);
         //path to login or does signup log you in and path to user home?
+        $window.localStorage.token = response.data.token;
+
         $location.path('/user');
       })
       .catch(function(err) {
@@ -87,14 +89,20 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
       });
   };
   //this service is called for when we make a request to post hunts to start a new hunt
-  sv.addHunt = function(huntMaster_id, name, expiration) {
+  sv.addHunt = function(name, expiration) {
     $http.post('https://skavengers.herokuapp.com/hunts', {
-        huntMaster_id: huntMaster_id,
         name: name,
         expiration: expiration
+        //something to assign this hunt to the users added in view
+      })
+      .then(function(){
+        $http.post('https://skavengers.herokuapp.com/users', {
+
+        });
       })
       .then(function(data) {
-        $state.go('/user');
+        console.log(data);
+        $state.go('new-task',{hunt_id: data.data[0]});
       })
       .catch(function(err) {
         sv.message = "problems with creating hunt";
@@ -141,11 +149,10 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
   };
 
   sv.editHunt = function(name, expiration_time, xp_to_level_up) {
-    $http.put('https://skavengers.herokuapp.com/hunts/', {
+    $http.put('https://skavengers.herokuapp.com/hunts/'+ $location.path().split("/")[2], {
           name:name,
           expiration: expiration_time,
-          // xp_to_level_up: xp_to_level_up
-
+        // xp_to_level_up: xp_to_level_up
       })
       .then(function(data) {
         console.log(data);

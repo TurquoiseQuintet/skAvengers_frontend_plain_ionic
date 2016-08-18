@@ -2,24 +2,24 @@
 	<app-header></app-header>
 	<app-subheader></app-subheader>
 	<!-- name of the hunt  -->
-	<ion-content class="top">
+	<ion-content class="content">
 		<h1>{{ ATC.hunt.name }}</h1>
 		<div class="list list-inset">
 			<!-- name of the task and description -->
       <label class="item item-input">
-        <input type="text" placeholder="Hunt Title" ng-model="task.name">
+        <input type="text" placeholder="Task Title" ng-model="task.name">
       </label>
     </div>
 		<div class="list list-inset">
 			<!-- xp value -->
       <label class="item item-input">
-        <input type="number" min="10" max="300" step="10" placeholder="XP Value" ng-model="task.xp">
+        <input type="number" placeholder="XP Value" ng-model="task.xp">
       </label>
     </div>
 		<div class="list list-inset">
 			<!-- prerequisite level -->
       <label class="item item-input">
-        <input type="number" min="0" max="10" placeholder="XP Required" ng-model="task.level_available">
+        <input type="number" placeholder="XP Required" ng-model="task.level_available">
       </label>
     </div>
 		<!-- isUnique -->
@@ -30,17 +30,11 @@
      <div class="handle"></div>
    </div>
 </label>
-		<!-- expiration time -->
-		<h3>Expiration Date:</h3>
-		<div class="list list-inset">
-      <label class="item item-input">
-        <input type="date" placeholder="Expiration Date" ng-model="task.expiration_time">
-      </label>
-    </div>
+
 		<!-- Button to add task(s) -->
 		<button class="button button-large button-positive" name="submitTask"  ng-click="ATC.newTask(task, hunt)">Add to Hunt</button>
 		<!-- button to return to user page -->
-		<button class="button button-large button-assertive" name="button" ng-click="ATC.$state.go('user')">Back to User</button>
+		<button class="button button-large button-assertive" ng-click="ATC.$state.go('huntmaster-view/' + (ATC.hunt.id))">Back to User</button>
 	</ion-content>
 	<!-- <app-footer></app-footer> -->
 
