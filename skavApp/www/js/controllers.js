@@ -89,6 +89,7 @@ app.controller('FooterController', ['$state', function($state){
 }]);
 
 app.controller('EditHuntController', ['$state', 'HuntService','$location', function($state, HuntService, $location){
+  console.log("ehc loaded");
   var vm=this;
   vm.$state=$state;
   vm.EditHunt=HuntService.edit;

@@ -55,7 +55,7 @@ app.service("LogoutService", ['$http', '$window', "$state", function($http, $win
 }]);
 
 // hunt services -------------------------------------->
-app.service("HuntService", ['$http', '$window', '$state', function($http, $window, $state) {
+app.service("HuntService", ['$http', '$window', '$state','$location', function($http, $window, $state, $location) {
   var sv = this;
   sv.hunts = [];
   sv.master = [];
@@ -141,15 +141,14 @@ app.service("HuntService", ['$http', '$window', '$state', function($http, $windo
   };
 
   sv.editHunt = function(name, expiration_time, xp_to_level_up) {
-    $http.put('https://skavengers.herokuapp.com/hunts/' + hunt_id, {
-        params: {
-          hunt: hunt.id,
+    $http.put('https://skavengers.herokuapp.com/hunts/', {
           name:name,
-          expiration_time: expiration_time,
-          xp_to_level_up: xp_to_level_up
-        }
+          expiration: expiration_time,
+          // xp_to_level_up: xp_to_level_up
+
       })
       .then(function(data) {
+        console.log(data);
         $location.path('user');
       })
       .catch(function(err) {
