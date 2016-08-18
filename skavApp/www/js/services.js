@@ -39,13 +39,12 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
 }]);
 
 //log out service ------------------------------------
-app.service("LogoutService", ['$http', '$window', "$location", function($http, $window, $location){
+app.service("LogoutService", ['$http', '$window', "$location", function($http, $window, $state){
   var sv = this;
   sv.logOut = function(){
     delete $window.sessionStorage.token;
-    $location.path('/');
+    $state.go('index');
   };
-
 }]);
 
 // hunt services -------------------------------------->

@@ -46,7 +46,8 @@ app.controller('HeaderController', ['UserServices', function(UserServices){
   vm.avatar = vm.user.avater;
 }]);
 
-app.controller('FooterController', [function(){
+app.controller('FooterController', ['LogoutService',function(LogoutService){
   var vm = this;
   console.log(vm);
+  vm.logout = LogoutService.logOut;
 }]);
