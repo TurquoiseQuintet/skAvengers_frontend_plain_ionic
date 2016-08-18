@@ -8,6 +8,9 @@
 		<div class="top" ng-repeat="hunt in HC.myHunts.data">
 			<h1>{{ hunt.name }}</h1>
 		</div>
+		<div>
+		<button ng-click="HC.$state.go('new-hunt')" class="button button-large button-positive" style="margin:400px 0 0 100px">Add Hunt</button>
+	</div>
 		<ion-footer-bar align-title="left" class="bar-light">
 		</ion-footer-bar>
   </ion-content>
