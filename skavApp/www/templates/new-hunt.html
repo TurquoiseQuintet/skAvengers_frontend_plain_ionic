@@ -23,7 +23,7 @@
 				<!-- list using ng-filter showing users available by name, with avatar -->
 						<img ng-src="{{user.avatar}}" style="height:60px; width:auto">
 						<p>{{user.username}}</p>
-						<button class="button button-balanced" name="add" ng-click="user.marked = true">Add</button>
+						<button class="button button-balanced" name="add" ng-click="user.marked = true; NHC.addUser(user.id)">Add</button>
 						<i class="icon ion-checkmark-round" ng-show="user.marked"></i>
 			</div>
 		</div>
