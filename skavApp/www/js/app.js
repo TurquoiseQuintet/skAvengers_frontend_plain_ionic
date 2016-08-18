@@ -48,8 +48,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('hunter-view', {
     url: '/hunter-view/:hunt_id',
     templateUrl: './templates/hunter-view.html',
-    controller: 'TaskController',
-    controllerAs: 'TC'
+    controller: 'HunterViewController',
+    controllerAs: 'HVC'
   })
   .state('new-task', {
     url: '/new-task/:hunt_id',
