@@ -89,7 +89,7 @@ app.controller('FooterController', ['$state', function($state){
 app.controller('EditHuntController', ['$state', 'HuntService','$location', function($state, HuntService, $location){
   var vm=this;
   vm.$state=$state;
-  vm.dataToEdit=HuntService.edit;
+  vm.EditHunt=HuntService.edit;
   vm.id=$location.path().split("/")[2];
   console.log(vm.id);
 }]);
