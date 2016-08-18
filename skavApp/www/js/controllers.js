@@ -23,10 +23,20 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
 
 app.controller('HuntController', ['HuntService','$state','$http', function(HuntService, $state, $http) {
   var vm = this;
+  console.log("HuntController load");
   vm.$state = $state;
   vm.myHunts = HuntService.hunts;
   console.log(vm.myHunts);
   vm.master = HuntService.master;
+  vm.test={
+    "things": "stuff",
+    "one":"tow",
+    "red":"blue",
+    "first":"last",
+    "stop": "go",
+    "fast":"slow"
+
+  };
   // vm. getAllHunts= function(){
   //   console.log("2");
     // $http.get('https://skavengers.herokuapp.com/hunts')
