@@ -19,18 +19,18 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
   vm.logOut = LogoutService.logOut;
 }]);
 
-// Hunt controllers -------------------------->
+// Hunt in controllers -------------------------->
 
-app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', function(HuntService, UserServices, $state, $http){
+app.controller('NewHuntController', ['UserServices', '$state', '$http', function(UserServices, $state, $http){
   var vm=this;
   vm.$state=$state;
   vm.getusers = UserServices.users;
   UserServices.getAllUsers();
-  vm.create = HuntService.addHunt;
 }]);
 
 app.controller('HuntController', ['HuntService','UserServices','$state','$http', function(HuntService, UserServices, $state, $http) {
   var vm = this;
+  console.log("HuntController load");
   vm.$state = $state;
   vm.myHunts = HuntService.hunts;
   vm.myMaster = HuntService.master;
@@ -75,7 +75,6 @@ app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '
 
 app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http', '$location', function($window, $state, TaskService, $http, $location, sms){
   var vm = this;
-  vm.$state = $state;
   vm.newTask = TaskService.posttask;
   // vm.$state = $state;
   vm.hunt_id=($location.path()).split("/")[2];
@@ -119,19 +118,17 @@ app.controller('FooterController', ['$state', function($state){
 }]);
 
 app.controller('EditHuntController', ['$state', 'HuntService','$location', function($state, HuntService, $location){
+  console.log("ehc loaded");
   var vm=this;
   vm.$state=$state;
-  vm.EditHunt=HuntService.editHunt;
+  vm.EditHunt=HuntService.edit;
   vm.id=$location.path().split("/")[2];
+  console.log(vm.id);
 }]);
 
-app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){
+app.controller('SubmitController',['SubmitService', '$state',  '$location', function(SubmitService, $state, $location){
   var vm=this;
   vm.$state = $state;
-  vm.hunter=($location.path()).split("/")[2];
-  vm.hunt=($location.path()).split("/")[3];
-  vm.user = SubmitService.user;
-  vm.huntTasks = SubmitService.huntTasks;
-  vm.userTasks = SubmitService.userTasks;
-  vm.submit = SubmitService.submit;
+  vm.params=($location.path()).split("/")[2];
+  console.log(vm.params);
 }]);

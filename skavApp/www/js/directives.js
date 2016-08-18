@@ -3,14 +3,14 @@
 app.directive('appHeader', function(){
 	return {
 		templateUrl: './partials/_header.html',
-		controller: "HeaderController as HC"
+		controller: "HeaderController as HDC"
 	};
 });
 
 app.directive('appSubheader', function(){
 	return {
 		templateUrl: './partials/_subheader.html',
-		controller: "HeaderController as HC"
+		controller: "HeaderController as HDC"
 	};
 });
 
