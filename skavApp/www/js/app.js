@@ -54,8 +54,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('new-task', {
     url: '/new-task/:hunt_id',
     templateUrl: './templates/new-task.html',
-    controller: 'TaskController',
-    controllerAs: 'TC'
+    controller: 'AddTaskController',
+    controllerAs: 'ATC'
   })
   .state('user', {
     url: '/user',
@@ -80,6 +80,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     templateUrl: './templates/edit-task.html',
     controller: 'EditTaskController',
     controllerAs: 'ETC'
+  })
+  .state('review-hunter', {
+    url: '/review-hunter/:hunter_id',
+    templateUrl: './templates/review-hunter.html',
+    controller: 'SubmitController',
+    controllerAs: 'SC'
   })
   .state('edit-hunt', {
     url:'/edit-hunt/:hunt_id',

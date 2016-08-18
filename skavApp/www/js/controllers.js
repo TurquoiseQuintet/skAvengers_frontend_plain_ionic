@@ -55,14 +55,36 @@ app.controller('HuntController', ['HuntService','UserServices','$state','$http',
 
 // Task controllers --------------------------------->
 
-app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '$location', function($window, $state, HuntService, $http, $location, sms){
+
+app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '$location', function($window, $state, HuntService, $http, $location){
   var vm = this;
+  vm.$state = $state;
+  vm.params=($location.path()).split("/")[2];
+  vm.huntUser = [];
+  $http.get('https://skavengers.herokuapp.com/hunts/users/' + vm.params)
+  .then(function(data) {
+    for (var i = 0; i < data.data.length; i++) {
+      vm.huntUser.push(data.data[i]);
+    }
+    console.log(vm.huntUser);
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+
+}]);
+
+app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http', '$location', function($window, $state, TaskService, $http, $location, sms){
+  var vm = this;
+  vm.$state = $state;
+  vm.newTask = TaskService.posttask;
   // vm.$state = $state;
-  $http.get('https://skavengers.herokuapp.com/tasks')
+  vm.hunt_id=($location.path()).split("/")[2];
+
+  $http.get('https://skavengers.herokuapp.com/hunts/' + vm.hunt_id)
   .then(function(data){
-    vm.tasks=data.data;
-    console.log(vm.tasks);
-    vm.params=($location.path()).split("/")[2];
+    vm.hunt=data.data;
+    console.log(vm.hunt);
     //I need to somehow move this function somwhere that it works
   //   for(var i=0; i<vm.tasks; i++){
   //   if (vm.tasks[i].hunt_id===Number(vm.params)){
@@ -76,7 +98,10 @@ app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '
   // vm.newtask=function(TC.name, TC.xp, TC.location)
   // vm.takeAndSubmit = sms.takeAndSubmit;
 
+
+
 }]);
+
 
 app.controller('HeaderController', ['UserServices','$state', '$window', function(UserServices, $state, $window){
   var vm = this;
@@ -95,9 +120,16 @@ app.controller('FooterController', ['$state', function($state){
 }]);
 
 app.controller('EditHuntController', ['$state', 'HuntService','$location', function($state, HuntService, $location){
+  console.log("ehc loaded");
   var vm=this;
   vm.$state=$state;
   vm.EditHunt=HuntService.edit;
   vm.id=$location.path().split("/")[2];
   console.log(vm.id);
+}]);
+
+app.controller('SubmitController',['SubmitService', '$state',  function(SubmitService, $state){
+  var vm=this;
+  vm.$state = $state;
+  
 }]);
