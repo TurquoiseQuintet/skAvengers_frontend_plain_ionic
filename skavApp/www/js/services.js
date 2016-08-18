@@ -147,11 +147,10 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
   };
 
   sv.editHunt = function(name, expiration_time, xp_to_level_up) {
-    $http.put('https://skavengers.herokuapp.com/hunts/', {
+    $http.put('https://skavengers.herokuapp.com/hunts/'+ $location.path().split("/")[2], {
           name:name,
           expiration: expiration_time,
-          // xp_to_level_up: xp_to_level_up
-
+        // xp_to_level_up: xp_to_level_up
       })
       .then(function(data) {
         console.log(data);

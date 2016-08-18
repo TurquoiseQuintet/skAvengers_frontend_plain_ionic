@@ -120,16 +120,14 @@ app.controller('FooterController', ['$state', function($state){
 }]);
 
 app.controller('EditHuntController', ['$state', 'HuntService','$location', function($state, HuntService, $location){
-  console.log("ehc loaded");
   var vm=this;
   vm.$state=$state;
-  vm.EditHunt=HuntService.edit;
+  vm.EditHunt=HuntService.editHunt;
   vm.id=$location.path().split("/")[2];
-  console.log(vm.id);
 }]);
 
 app.controller('SubmitController',['SubmitService', '$state',  function(SubmitService, $state){
   var vm=this;
   vm.$state = $state;
-  
+
 }]);
