@@ -81,6 +81,7 @@ app.service("HuntService", ['$http', '$window', '$state', function($http, $windo
         for (var i = 0; i < data.data.length; i++) {
           sv.master.push(data.data[i]);
         }
+        // console.log(sv.master);
       })
       .catch(function(err) {
         console.log(err);
@@ -93,7 +94,7 @@ app.service("HuntService", ['$http', '$window', '$state', function($http, $windo
         expiration: expiration
       })
       .then(function(data) {
-        $state.go('user');
+        $state.go('new-task', {hunt_id : });
       })
       .catch(function(err) {
         sv.message = "problems with creating hunt";

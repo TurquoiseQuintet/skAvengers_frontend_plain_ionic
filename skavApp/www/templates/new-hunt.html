@@ -23,11 +23,11 @@
 				<!-- list using ng-filter showing users available by name, with avatar -->
 						<img ng-src="{{user.avatar}}" style="height:60px; width:auto">
 						<p>{{user.username}}</p>
-						<button class="button button-balanced" name="add">Add</button>
+						<button class="button button-balanced" name="add" ng-click=>Add</button>
 			</div>
 		</div>
 		<!-- button to submit creation and redirect to user -->
-		<button class="button button-block button-balanced" name="submitHunt" ng-click="NHC.create(NHC.name, NCH.expiration)">Submit</button>
+		<button class="button button-block button-balanced" name="submitHunt" ng-click="NHC.create(NHC.name, NHC.expiration)">Submit</button>
 	</ion-content>
 	<app-footer></app-footer>
 </ion-view>

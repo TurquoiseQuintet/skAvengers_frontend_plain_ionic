@@ -7,12 +7,18 @@
         <h1>{{ hunt.name }}</h1>
       </div>
     </div>
+      <h1> Master: </h1>
     <div ng-repeat="mas in HC.myMaster">
-        <h1> Master: </h1>
         <div ng-click="HC.$state.go('huntmaster-view', {hunt_id : mas.id})">
+
         <h2> {{ mas.name}} </h2>
       </div>
     </div>
-  </ion-content>
+    <!-- <ion-footer-bar align-title="left" class="bar-light">
+      </ion-footer-bar> -->
+    </ion-content>
+
   <app-footer></app-footer>
+
+
 </ion-view>
