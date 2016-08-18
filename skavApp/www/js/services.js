@@ -91,6 +91,12 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
     $http.post('https://skavengers.herokuapp.com/hunts', {
         name: name,
         expiration: expiration
+        //something to assign this hunt to the users added in view
+      })
+      .then(function(){
+        $http.post('https://skavengers.herokuapp.com/users', {
+          
+        });
       })
       .then(function(data) {
         console.log(data);
@@ -292,7 +298,7 @@ app.service('UserServices', ['$http', '$window', function($http, $window) {
 
 app.service('SubmitService', ['$http', function($http) {
   var sv = this;
-  
+
 }]);
 
 //picture services ------------------------------->
