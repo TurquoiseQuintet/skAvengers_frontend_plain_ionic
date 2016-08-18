@@ -34,10 +34,10 @@ app.controller('HuntController', ['HuntService','$state', function(HuntService, 
 
 // Task controllers --------------------------------->
 
-app.controller('TaskController', [ '$window', '$state', function($window, $state, sms){
+app.controller('TaskController', [ '$window', '$state', 'sendMessageService', function($window, $state, sms){
   var vm = this;
   vm.$state = $state;
-  vm.takeAndSubmit = sms.takeAndSubmit;
+  // vm.takeAndSubmit = sms.takeAndSubmit;
   vm.user=($window.localStorage.token.split('.'))[1];
   // vm.user=vm.user;
   vm.userinfo=atob(vm.user);
