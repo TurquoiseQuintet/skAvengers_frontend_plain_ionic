@@ -31,7 +31,6 @@ app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$h
 
 app.controller('HuntController', ['HuntService','UserServices','$state','$http', function(HuntService, UserServices, $state, $http) {
   var vm = this;
-  console.log("HuntController load");
   vm.$state = $state;
   vm.myHunts = HuntService.hunts;
   vm.myMaster = HuntService.master;
@@ -131,4 +130,8 @@ app.controller('SubmitController',['SubmitService', '$state',  '$location', '$ht
   vm.$state = $state;
   vm.hunter=($location.path()).split("/")[2];
   vm.hunt=($location.path()).split("/")[3];
+  vm.user = SubmitService.user;
+  vm.huntTasks = SubmitService.huntTasks;
+  vm.userTasks = SubmitService.userTasks;
+  vm.submit = SubmitService.submit;
 }]);
