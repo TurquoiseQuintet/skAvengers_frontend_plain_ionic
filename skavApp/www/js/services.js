@@ -19,6 +19,7 @@ app.service('SignUpService', ['$http', '$window', '$location', function($http, $
         //need to add section for thorough error handling
       });
   };
+
 }]);
 // log in service --------------------------------->
 app.service("LogInService", ['$http', '$window', '$state', function($http, $window, $state) {
@@ -150,7 +151,6 @@ app.service("HuntService", ['$http', '$window', '$state', function($http, $windo
         sv.message("Make sure you own the hunt you are trying to edit");
       });
   };
-
 }]);
 
 

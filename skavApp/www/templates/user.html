@@ -1,15 +1,15 @@
-<ion-view title="user" class="bgimg">
-    <app-header></app-header>
-    <app-subheader></app-subheader>
+<ion-view title="user">
+    <!-- <app-header></app-header>
+    <app-subheader></app-subheader> -->
     <ion-content>
+
         <div class="top" ng-repeat="hunt in HC.myHunts">
             <h1>{{ hunt.name }}</h1>
-
+      {{HC.test}}
         </div>
 
         <ion-footer-bar align-title="left" class="bar-light">
         </ion-footer-bar>
  </ion-content>
     <app-footer></app-footer>
-
 </ion-view>
