@@ -19,7 +19,7 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
   vm.logOut = LogoutService.logOut;
 }]);
 
-// Hunt in controllers -------------------------->
+// Hunt controllers -------------------------->
 
 app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', function(HuntService, UserServices, $state, $http){
   var vm=this;
