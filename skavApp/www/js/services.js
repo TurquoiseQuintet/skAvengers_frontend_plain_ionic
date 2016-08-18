@@ -19,6 +19,7 @@ sv.signup= function(username, password, email, avatar){
 app.service("LogInService", ['$http', '$window','$location', function($http, $window, $state){
   var sv=this;
   sv.login= function(username, password){
+    console.log('fire');
     $http.post('https://skavengers.herokuapp.com/login', {
       username:username,
       password:password
@@ -119,6 +120,12 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
       sv.message="problems in the oceans";
     });
   };
+
+
+  sv.getAllhunts();
+
+
+
 
   sv.deleteHunt= function(hunt){
     $http.delete('https://skavengers.herokuapp.com/hunts/'+ hunt.id, {
@@ -277,7 +284,9 @@ app.service('UserServices', ['$http', '$window', function($http, $window){
 }]);
 
 //picture services ------------------------------->
-app.service('sendMessage', ['$cordovaCamera', '$http', '$cordovaSms', function($cordovaCamera, $http, $cordovaSms){
+
+app.service('sendMessageService', ['$cordovaCamera', '$http', '$cordovaSms', function($cordovaCamera, $http, $cordovaSms){
+
   var sv = this;
   //this method will open the camera app. after a photo is taken the user will crop it into a square. It returns a promise with the data being the base64 encoded image
   sv.takePicture = function(){
@@ -300,6 +309,9 @@ app.service('sendMessage', ['$cordovaCamera', '$http', '$cordovaSms', function($
     return $http.post('https://api.cloudinary.com/v1_1/dppfalbij/auto/upload', {
         file: imageInfo,
         upload_preset: 'addub85x'
+      })
+      .then(function(data){
+        return data.data.secure_url;
       });
   };
 
@@ -311,6 +323,30 @@ app.service('sendMessage', ['$cordovaCamera', '$http', '$cordovaSms', function($
             intent: ''
           }
         };
-         return $cordovaSms.send(number, message, options);
+
+         return $cordovaSms.send(number, message, options)
+  }
+
+  sv.takeAndSubmit = function(taskName, username, number){
+    var url;
+    if(confirm('Please take a picture of ' + taskName)){
+      sv.takePicture()
+      .then(function(image){
+        return sv.uploadPicture(image);
+      })
+      .then(function(_url){
+        url = _url;
+        return sv.sendPicture(number, username + ' has submitted the following picture of ' + taskName + ' for review');
+      })
+      .then(function(){
+        return sv.sendPicture(number, taskName + ':\n' + url);
+      })
+      .then(function(){
+        alert(taskName + ' was successfully submitted.');
+      })
+      .catch(function(err){
+        alert('there was an issue submitting ' + taskName);
+      });
+    }
   };
 }]);
