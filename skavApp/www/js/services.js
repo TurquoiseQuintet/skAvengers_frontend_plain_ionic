@@ -40,51 +40,55 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
 }]);
 
 //log out service ------------------------------------
-app.service("LogoutService", ['$http', '$window', "$location", function($http, $window, $location){
+app.service("LogoutService", ['$http', '$window', "$location", function($http, $window, $state){
   var sv = this;
   sv.logOut = function(){
     delete $window.sessionStorage.token;
-    $location.path('/');
+    $state.go('index');
   };
-
 }]);
 
 // hunt services -------------------------------------->
 app.service("HuntService", ['$http', '$window', '$location', function($http, $window, $location) {
   var sv=this;
-  console.log("1");
+
+  sv.hunts = {};
+  sv.master = {};
   sv.getAllHunts= function(){
-    console.log("2");
+    // console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
     .then(function(data){
       console.log(data.data);
-      sv.myHunts = data.data;
-      return $http.get('https://skavengers.herokuapp.com/hunts/mine');
-    })
-    .then(function(data) {
-      sv.Master = data;
-      //now what?
+      sv.hunts.data = data.data;
     })
     .catch(function(err){
       //handle it
       sv.message="problems in the oceans";
     });
   };
+  sv.masterOf = function() {
+    $http.get('https://skavengers.herokuapp.com/hunts/mine')
+    .then(function(data) {
+      sv.master.data = data.data;
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+  };
   //this service is called for when we make a request to post hunts to start a new hunt
   sv.addHunt=function(huntMaster_id, name, expiration){
-    //add heroku stuff below
-  $http.post('https://skavengers.herokuapp.com/hunts',
-  {
-      huntMaster_id: huntMaster_id,
-      name: name,
-      expiration: expiration
+    $http.post('https://skavengers.herokuapp.com/hunts',
+    {
+        huntMaster_id: huntMaster_id,
+        name: name,
+        expiration: expiration
+      })
+    .then(function(data){
+      $location.path('/user');
     })
-  .then(function(data){
-    $location.path('/user');
-  })
-  .catch(function(err){
-  sv.message="problems with creating hunt";
-  });
+    .catch(function(err){
+    sv.message="problems with creating hunt";
+    });
   };
 
   //this is used to get ONE particular hunt
@@ -152,7 +156,7 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
 
 
 // task services --------------------------->
-app.service('taskServices', ['$http', '$window', function($http, $window){
+app.service('taskService', ['$http', '$window', function($http, $window){
   //this function makes an http request to get all tasks
   sv.getAlltasks= function(){
     $http.get('https://skavengers.herokuapp.com/tasks')
@@ -235,7 +239,7 @@ app.service('taskServices', ['$http', '$window', function($http, $window){
 
 
 // user services -------------------------------->
-app.service('userServices', ['$http', '$window', function($http, $window){
+app.service('UserServices', ['$http', '$window', function($http, $window){
   var sv=this;
 
   sv.deleteUser=function(user){

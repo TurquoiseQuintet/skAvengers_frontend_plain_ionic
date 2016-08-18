@@ -1,7 +1,10 @@
 <ion-view title="user" class="user">
 	<app-header></app-header>
 	<ion-content>
-		<div class="top" ng-repeat="hunt in HC.myHunts">
+		<div class="top" ng-repeat="hunt in HC.master.data">
+			<h1>{{ hunt.name }}</h1>
+		</div>
+		<div class="top" ng-repeat="hunt in HC.myHunts.data">
 			<h1>{{ hunt.name }}</h1>
 		</div>
 		<h5 ng-click="HC.$state.go('newHunt')">Add new hunt</h5></a>

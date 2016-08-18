@@ -25,18 +25,38 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
 app.controller('HuntController', ['HuntService','$state', function(HuntService, $state) {
   var vm = this;
   vm.$state = $state;
+  vm.myHunts = HuntService.hunts;
+  vm.master = HuntService.master;
+
   HuntService.getAllHunts();
-  vm.myHunts = [{
-  expiration: "2016-01-01T08:30:00.000Z",
-  huntMaster_id: 1,
-  id: 1,
-  name: "Swimming Pool",
-  xp_to_level_up: 100}];
+  HuntService.masterOf();
+  console.log(vm.myHunts);
 }]);
 
 // Task controllers --------------------------------->
-app.controller('TaskController', ['sendMessageService','$state',  function(sms, $state){
+
+app.controller('TaskController', [ '$window', '$state', function($window, $state){
   var vm = this;
   vm.$state = $state;
   vm.takeAndSubmit = sms.takeAndSubmit;
+  vm.user=($window.localStorage.token.split('.'))[1];
+  // vm.user=vm.user;
+  vm.userinfo=atob(vm.user);
+  vm.userinfo1=(vm.userinfo).split(",")[0];
+  vm.name=vm.userinfo1.split(":")[1];
+  console.log(vm.name[1]);
+  // console.log(vm.userinfo);
+}]);
+
+app.controller('HeaderController', ['UserServices', function(UserServices){
+  var vm = this;
+  vm.user = UserServices.loggedInUser;
+  vm.username = vm.user.name;
+  vm.avatar = vm.user.avater;
+}]);
+
+app.controller('FooterController', ['LogoutService',function(LogoutService){
+  var vm = this;
+  console.log(vm);
+  vm.logout = LogoutService.logOut;
 }]);
