@@ -1,5 +1,6 @@
 'use strict';
 // sign up service ---------------------------->
+<<<<<<< HEAD
 app.service('SignUpService', ['$http', '$window', '$location', function($http, $window, $location) {
   var sv = this;
   sv.signup = function(username, password, email, avatar) {
@@ -19,6 +20,22 @@ app.service('SignUpService', ['$http', '$window', '$location', function($http, $
         //need to add section for thorough error handling
       });
   };
+=======
+app.service('SignUpService', ['$http', '$window', '$state', function($http, $window, $state){
+  var sv=this;
+sv.signup= function(username, password, email, avatar){
+  $http.post('https://skavengers.herokuapp.com/register', {username:username, password:password, email:email, avatar:avatar})
+  .then(function(response){
+    console.log(response);
+    //path to login or does signup log you in and path to user home?
+    $state.go('user');
+  })
+  .catch(function(err){
+    console.log(err);
+    //need to add section for thorough error handling
+  });
+};
+>>>>>>> 6115638584dc8813ded484742e3f045ed4e109ed
 }]);
 // log in service --------------------------------->
 app.service("LogInService", ['$http', '$window', '$state', function($http, $window, $state) {
