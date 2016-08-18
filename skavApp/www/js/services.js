@@ -51,15 +51,14 @@ app.service("LogoutService", ['$http', '$window', "$state", function($http, $win
 // hunt services -------------------------------------->
 app.service("HuntService", ['$http', '$window', '$state', function($http, $window, $state) {
   var sv=this;
-
-  sv.hunts = {};
+  sv.hunts= [];
   sv.master = {};
   sv.getAllHunts= function(){
     // console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
     .then(function(data){
       console.log(data.data);
-      sv.hunts.data = data.data;
+      sv.hunts.push(data.data);
     })
     .catch(function(err){
       //handle it
@@ -69,6 +68,7 @@ app.service("HuntService", ['$http', '$window', '$state', function($http, $windo
   sv.masterOf = function() {
     $http.get('https://skavengers.herokuapp.com/hunts/mine')
     .then(function(data) {
+
       sv.master.data = data.data;
     })
     .catch(function(err) {
@@ -281,6 +281,7 @@ app.service('UserServices', ['$http', '$window', function($http, $window){
 
     });
   };
+
 }]);
 
 //picture services ------------------------------->

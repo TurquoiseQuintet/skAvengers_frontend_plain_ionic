@@ -70,7 +70,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controllerAs: 'HC'
   })
   .state('tasks', {
-    url: '/tasks',
+    url: '/tasks/:id',
     templateUrl: './templates/tasks.html',
     controller: 'TaskController',
     controllerAs: 'TC'
