@@ -25,17 +25,18 @@ app.controller('HuntController', ['HuntService','$state','$http', function(HuntS
   var vm = this;
   vm.$state = $state;
   vm.myHunts = HuntService.hunts;
+  console.log(vm.myHunts);
   vm.master = HuntService.master;
   // vm. getAllHunts= function(){
   //   console.log("2");
-    $http.get('https://skavengers.herokuapp.com/hunts')
-    .then(function(data){
-      vm.hunts=(data.data);
-    })
-    .catch(function(err){
-      //handle it
-      vm.message="problems in the oceans";
-    });
+    // $http.get('https://skavengers.herokuapp.com/hunts')
+    // .then(function(data){
+    //   vm.hunts=(data.data);
+    // })
+    // .catch(function(err){
+    //   //handle it
+    //   vm.message="problems in the oceans";
+    // });
   // };
   HuntService.getAllHunts();
   HuntService.masterOf();
@@ -52,7 +53,7 @@ app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '
     vm.tasks=data.data;
     console.log(vm.tasks);
     vm.params=($location.path()).split("/")[2];
-    //I ned to somehow move this function somwhere that it works
+    //I need to somehow move this function somwhere that it works
   //   for(var i=0; i<vm.tasks; i++){
   //   if (vm.tasks[i].hunt_id===Number(vm.params)){
   //       console.log("HERE" , vm.tasks[i]);
