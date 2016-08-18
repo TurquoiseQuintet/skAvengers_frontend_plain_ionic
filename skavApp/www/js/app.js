@@ -75,17 +75,17 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: 'TaskController',
     controllerAs: 'TC'
   })
-  .state('edit-task', {
+  .state('edit-task/:task_id', {
     url: '/edit-task',
     templateUrl: './templates/edit-task.html',
-    controller: 'TaskController',
-    controllerAs: 'TC'
+    controller: 'EditTaskController',
+    controllerAs: 'ETC'
   })
   .state('edit-hunt', {
-    url:'/edit-hunt',
+    url:'/edit-hunt/:hunt_id',
     templateUrl: './templates/edit-hunt.html',
-    controller: 'HuntController',
-    controllerAs: 'HC'
+    controller: 'EditHuntController',
+    controllerAs: 'EHC'
   });
   $urlRouterProvider.otherwise('/');
 });
