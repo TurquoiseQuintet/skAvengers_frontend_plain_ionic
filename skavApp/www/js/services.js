@@ -119,7 +119,7 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
 
 
   sv.getAllhunts();
-}]);
+
 
 
 
@@ -305,6 +305,9 @@ app.service('sendMessageService', ['$cordovaCamera', '$http', '$cordovaSms', fun
     return $http.post('https://api.cloudinary.com/v1_1/dppfalbij/auto/upload', {
         file: imageInfo,
         upload_preset: 'addub85x'
+      })
+      .then(function(data){
+        return data.data.secure_url;
       });
   };
 
