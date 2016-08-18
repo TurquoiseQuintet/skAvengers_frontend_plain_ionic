@@ -12,6 +12,8 @@ app.service('SignUpService', ['$http', '$window', '$location', function($http, $
       .then(function(response) {
         console.log(response);
         //path to login or does signup log you in and path to user home?
+        $window.localStorage.token = response.data.token;
+
         $location.path('/user');
       })
       .catch(function(err) {
@@ -94,6 +96,7 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
         name: name,
         expiration: expiration,
         users: sv.users
+        //something to assign this hunt to the users added in view
       })
       .then(function(data) {
         console.log(data);
@@ -294,9 +297,28 @@ app.service('UserServices', ['$http', '$window', function($http, $window) {
 
 }]);
 
-app.service('SubmitService', ['$http', function($http) {
+app.service('SubmitService', ['$http', '$location', function($http, $location) {
   var sv = this;
-
+  sv.user = [];
+  sv.huntTasks = [];
+  sv.hunter=($location.path()).split("/")[2];
+  sv.hunt=($location.path()).split("/")[3];
+  $http.get('https://skavengers.herokuapp.com/users/' + sv.hunter)
+  .then(function(data) {
+    sv.user.push(data.data);
+    return $http.get('https://skavengers.herokuapp.com/tasks/hunt/' + sv.hunt)
+  })
+  .then(function(data) {
+    for (var i = 0; i < data.data.tasks.length; i++) {
+      sv.huntTasks.push(data.data.tasks[i]);
+    }
+    console.log(sv.user);
+    console.log(sv.huntTasks);
+    return $http.get('https://skavengers.herokuapp.com/tasks/users_tasks')
+  })
+  .then(function(data) {
+    console.log(data);
+  })
 }]);
 
 //picture services ------------------------------->

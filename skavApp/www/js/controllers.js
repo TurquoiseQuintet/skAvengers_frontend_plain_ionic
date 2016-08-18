@@ -127,8 +127,9 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location', funct
   vm.id=$location.path().split("/")[2];
 }]);
 
-app.controller('SubmitController',['SubmitService', '$state',  function(SubmitService, $state){
+app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){
   var vm=this;
   vm.$state = $state;
-
+  vm.hunter=($location.path()).split("/")[2];
+  vm.hunt=($location.path()).split("/")[3];
 }]);
