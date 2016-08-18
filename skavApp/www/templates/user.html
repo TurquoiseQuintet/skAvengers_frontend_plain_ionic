@@ -1,5 +1,6 @@
-<ion-view title="user" class="user">
+<ion-view title="user" class="bgimg">
 	<app-header></app-header>
+	<app-subheader></app-subheader>
 	<ion-content>
 		<div class="top" ng-repeat="hunt in HC.master.data">
 			<h1>{{ hunt.name }}</h1>
@@ -7,7 +8,7 @@
 		<div class="top" ng-repeat="hunt in HC.myHunts.data">
 			<h1>{{ hunt.name }}</h1>
 		</div>
-		<a href="/#/new-hunt"><h5>Add new hunt</h5></a>
+		<!-- <a href="/#/new-hunt"><h5>Add new hunt</h5></a> -->
 		<ion-footer-bar align-title="left" class="bar-light">
 		</ion-footer-bar>
   </ion-content>
