@@ -144,8 +144,7 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
     $http.put('https://skavengers.herokuapp.com/hunts/', {
           name:name,
           expiration: expiration_time,
-          // xp_to_level_up: xp_to_level_up
-
+        // xp_to_level_up: xp_to_level_up
       })
       .then(function(data) {
         console.log(data);
@@ -292,7 +291,7 @@ app.service('UserServices', ['$http', '$window', function($http, $window) {
 
 app.service('SubmitService', ['$http', function($http) {
   var sv = this;
-  
+
 }]);
 
 //picture services ------------------------------->
