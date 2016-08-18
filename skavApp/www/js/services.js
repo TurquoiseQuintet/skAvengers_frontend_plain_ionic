@@ -162,6 +162,7 @@ app.service("HuntService", ['$http', '$window', '$state', function($http, $windo
 
 // task services --------------------------->
 app.service('taskService', ['$http', '$window', function($http, $window) {
+  var sv = this;
   //this function makes an http request to get all tasks
   sv.getAlltasks = function() {
     $http.get('https://skavengers.herokuapp.com/tasks')

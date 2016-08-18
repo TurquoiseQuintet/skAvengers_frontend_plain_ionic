@@ -54,26 +54,21 @@ app.controller('HuntController', ['HuntService','UserServices','$state','$http',
 
 // Task controllers --------------------------------->
 
-app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '$location', function($window, $state, HuntService, $http, $location, sms){
+app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '$location', function($window, $state, HuntService, $http, $location){
   var vm = this;
-  // vm.$state = $state;
-  $http.get('https://skavengers.herokuapp.com/tasks')
-  .then(function(data){
-    vm.tasks=data.data;
-    console.log(vm.tasks);
-    vm.params=($location.path()).split("/")[2];
-    //I need to somehow move this function somwhere that it works
-  //   for(var i=0; i<vm.tasks; i++){
-  //   if (vm.tasks[i].hunt_id===Number(vm.params)){
-  //       console.log("HERE" , vm.tasks[i]);
-  //     }
-  //   }
+  vm.$state = $state;
+  vm.params=($location.path()).split("/")[2];
+  vm.huntUser = [];
+  $http.get('https://skavengers.herokuapp.com/hunts/users/' + vm.params)
+  .then(function(data) {
+    for (var i = 0; i < data.data.length; i++) {
+      vm.huntUser.push(data.data[i]);
+    }
+    console.log(vm.huntUser);
   })
-  .catch(function (err){
-    vm.message(err);
+  .catch(function(err) {
+    console.log(err);
   });
-  // vm.newtask=function(TC.name, TC.xp, TC.location)
-  // vm.takeAndSubmit = sms.takeAndSubmit;
 
 }]);
 
