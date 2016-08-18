@@ -16,7 +16,7 @@ sv.signup= function(username, password, email, avatar){
 };
 }]);
 // log in service --------------------------------->
-app.service("LogInService", ['$http', '$window','$location', function($http, $window, $state){
+app.service("LogInService", ['$http', '$window','$state', function($http, $window, $state){
   var sv=this;
   sv.login= function(username, password){
     console.log('fire');
@@ -29,7 +29,7 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
       //localstorage
       $window.localStorage.token=response.data.token;
       // path somewhere...to their page with their hunts?
-      $state.go('/user');
+      $state.go('user');
     })
     .catch(function(err){
 			console.log(err.message);
@@ -40,7 +40,7 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
 }]);
 
 //log out service ------------------------------------
-app.service("LogoutService", ['$http', '$window', "$location", function($http, $window, $state){
+app.service("LogoutService", ['$http', '$window', "$state", function($http, $window, $state){
   var sv = this;
   sv.logOut = function(){
     delete $window.sessionStorage.token;
@@ -49,7 +49,7 @@ app.service("LogoutService", ['$http', '$window', "$location", function($http, $
 }]);
 
 // hunt services -------------------------------------->
-app.service("HuntService", ['$http', '$window', '$location', function($http, $window, $state) {
+app.service("HuntService", ['$http', '$window', '$state', function($http, $window, $state) {
   var sv=this;
 
   sv.hunts = {};

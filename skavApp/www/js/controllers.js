@@ -34,7 +34,7 @@ app.controller('HuntController', ['HuntService','$state', function(HuntService, 
 
 // Task controllers --------------------------------->
 
-app.controller('TaskController', [ '$window', '$state', function($window, $state){
+app.controller('TaskController', [ '$window', '$state', function($window, $state, sms){
   var vm = this;
   vm.$state = $state;
   vm.takeAndSubmit = sms.takeAndSubmit;
@@ -47,9 +47,15 @@ app.controller('TaskController', [ '$window', '$state', function($window, $state
   // console.log(vm.userinfo);
 }]);
 
-app.controller('HeaderController', ['UserServices', function(UserServices){
+app.controller('HeaderController', ['UserServices','$state', function(UserServices, $state){
   var vm = this;
+  vm.$state = $state;
   vm.user = UserServices.loggedInUser;
   vm.username = vm.user.name;
   vm.avatar = vm.user.avater;
+}]);
+
+app.controller('FooterController', ['$state', function($state){
+  var vm = this;
+  vm.$state = $state;
 }]);
