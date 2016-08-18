@@ -171,6 +171,7 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
 app.service('TaskService', ['$http', '$window', '$location', function($http, $window, $location) {
   //this function makes an http request to get all tasks
   var sv = this;
+  sv.users=[];
   sv.getAlltasks = function() {
     $http.get('https://skavengers.herokuapp.com/tasks')
       .then(function(data) {
@@ -181,17 +182,16 @@ app.service('TaskService', ['$http', '$window', '$location', function($http, $wi
       });
   };
 
-  sv.deletetask = function(task) {
-    $http.delete('https://skavengers.herokuapp.com/tasks/' + task.id, {
-        params: {
-          task: task.id
-        }
-      })
+  sv.deleteTask = function(task_id) {
+    console.log("hello??");
+    $http.delete('https://skavengers.herokuapp.com/tasks/' + task_id)
       .then(function(data) {
-        sv.result("deleted");
+        // sv.result("deleted");
+        $window.location.reload('/edit-hunt');
       })
       .catch(function(err) {
-        sv.message("make sure you own the hunt to delete the task");
+        console.log(err);
+        // sv.message("make sure you own the hunt to delete the task");
       });
   };
 
@@ -243,7 +243,18 @@ app.service('TaskService', ['$http', '$window', '$location', function($http, $wi
         sv.message = "you do not have permission to edit that";
       });
   };
-
+sv.huntTasks=function(){
+  $http.get('http://skavengers.herokuapp.com/tasks/hunt/'+ $location.path().split("/")[2])
+  .then(function(data){
+    console.log(data);
+    for(var i=0; i<data.data.length; i++){
+      sv.users.push(data.data[i]);
+    }
+  })
+  .catch(function(err){
+    console.log(err);
+  });
+};
 
 
 }]);
@@ -294,6 +305,8 @@ app.service('UserServices', ['$http', '$window', function($http, $window) {
 
       });
   };
+
+  sv.huntUsers=function(){}
 
 }]);
 

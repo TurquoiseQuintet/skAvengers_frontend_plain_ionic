@@ -119,11 +119,16 @@ app.controller('FooterController', ['$state', function($state){
   vm.$state = $state;
 }]);
 
-app.controller('EditHuntController', ['$state', 'HuntService','$location', function($state, HuntService, $location){
+app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskService','UserService', function($state, HuntService, $location, TaskService, UserService){
   var vm=this;
   vm.$state=$state;
   vm.EditHunt=HuntService.editHunt;
   vm.id=$location.path().split("/")[2];
+  vm.tasks=TaskService.users;
+  vm.delete=TaskService.deleteTask;
+  // vm.userdelte=UserService.deleteUser;
+  TaskService.huntTasks();
+  UserService.huntUsers();
 }]);
 
 app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){

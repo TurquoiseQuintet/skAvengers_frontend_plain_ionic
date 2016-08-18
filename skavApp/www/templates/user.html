@@ -1,6 +1,6 @@
 <ion-view title="user">
-  <app-header></app-header>
-  <app-subheader></app-subheader>
+  <!-- <app-header></app-header>
+  <app-subheader></app-subheader> -->
   <ion-content class="content">
     <div ng-repeat="hunt in HC.myHunts">
       <div ng-click="HC.$state.go('hunter-view',{hunt_id:hunt.id })">
@@ -15,6 +15,7 @@
 
       </div>
     </div>
+    <button class="button button-large button-balanced" ng-click="HC.$state.go('new-hunt')"> Add a hunt </button>
     </ion-content>
 
   <app-footer></app-footer>

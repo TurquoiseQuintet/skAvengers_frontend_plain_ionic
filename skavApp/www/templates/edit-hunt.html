@@ -18,8 +18,9 @@
 		<hr>
 		<div>
 			<h3>Current Tasks:</h3>
-			<ul ng-repeat="task in tasks">
-				placeholder for listing current tasks
+			<ul ng-repeat="task in EHC.tasks">
+				<h4> {{task.name}} </h4>
+				<button class="button button-small button-balanced" ng-click="EHC.delete(task.id)"> delete task from hunt </button>
 				<!-- button to edit task -->
 				<!-- button to delete task -->
 			</ul>
