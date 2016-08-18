@@ -1,39 +1,34 @@
-<!-- will take user id -->
-
 <ion-view title="new-hunt" class="bgimg">
 	<app-header></app-header>
 	<app-subheader></app-subheader>
-	<ion-content class="top">
+	<ion-content class="content">
+		<div class="list list-inset">
+			<!-- name for the hunt -->
+      <label class="item item-input">
+        <input ng-model="NHC.name" type="text" placeholder="Hunt Name">
+      </label>
+    </div>
     <div class="list list-inset">
 			<!-- expiraton date for the hunt -->
       <label class="item item-input">
-        <input type="date" placeholder="Expiration Date">
+        <input ng-model="NHC.expiration" type="date" placeholder="Expiration Date">
       </label>
     </div>
 		<div class="list list-inset">
 			<!-- select to add hunter(s) -->
 			<label class="item item-input">
-				<input type="text" name="searchfield" placeholder="Invite Players">
-				<ul ng-repeat="">
-					<!-- list using ng-filter showing users available by name, with avatar -->
-					placeholder for users list
-				</ul>
+				<input type="text" ng-model="searchText" placeholder="Invite Players">
 			</label>
+			<div class="item-list" ng-repeat="user in NHC.getusers | filter:searchText">
+				<!-- list using ng-filter showing users available by name, with avatar -->
+						<img ng-src="{{user.avatar}}" style="height:60px; width:auto">
+						<p>{{user.username}}</p>
+						<button class="button button-balanced" name="add" ng-click="user.marked = true">Add</button>
+						<i class="icon ion-checkmark-round" ng-show="user.marked"></i>
+			</div>
 		</div>
-		<hr>
-		<div>
-			<h1>Tasks:</h1>
-			<ul ng-repeat="task in tasks">
-				placeholder for listing current tasks
-				<!-- button to edit task -->
-				<!-- button to delete task -->
-			</ul>
-		</div>
-		<!-- Button to add task to hunt, leads to hunt view -->
-		<button class="button button-large button-positive" name="addTasks" ng-click="">Add Task to Hunt</button>
 		<!-- button to submit creation and redirect to user -->
-		<button class="button button-large button-balanced" name="submitHunt" ng-click="">Submit New Hunt</button>
+		<button class="button button-block button-balanced" name="submitHunt" ng-click="NHC.create(NHC.name, NHC.expiration)">Submit</button>
 	</ion-content>
 	<app-footer></app-footer>
-
 </ion-view>

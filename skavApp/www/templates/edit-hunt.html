@@ -1,28 +1,20 @@
 <ion-view title="edit-hunt" class="bgimg">
 	<app-header></app-header>
 <app-subheader></app-subheader>
-	<ion-content class="top">
+	<ion-content class="content">
 		<div class="list list-inset">
 			<h3><!-- current name of the hunt --></h3>
       <label class="item item-input">
-        <input type="text" placeholder="Hunt Title">
+        <input type="text" placeholder="Hunt Title" ng-model="EHC.HuntTitle">
       </label>
     </div>
     <div class="list list-inset">
 			<h3><!-- current expiration date --></h3>
       <label class="item item-input">
-        <input type="date" placeholder="Expiration Date">
+        <input type="date" placeholder="Expiration Date" ng-model="EHC.ExpirationDate">
       </label>
     </div>
-		<div class="list list-inset">
-			<label class="item item-input">
-				<input type="text" name="searchfield" placeholder="Invite Players">
-				<ul ng-repeat="">
-					<!-- current hunter(s) -->
-					placeholder for users list
-				</ul>
-			</label>
-		</div>
+
 		<hr>
 		<div>
 			<h3>Current Tasks:</h3>
@@ -34,9 +26,8 @@
 		</div>
 		<div class="button-bar">
 			<!-- Button to add task to hunt, leads to hunt view -->
-			<button class="button button-large button-positive" name="addTasks" ng-click="">Add Task</button>
 			<!-- button to submit creation and redirect to user -->
-			<button class="button button-large button-balanced" name="submitHunt" ng-click="">Submit</button>
+			<button class="button button-large button-balanced" name="submitHunt" ng-click="EHC.EditHunt(EHC.HuntTitle, EHC.ExpirationDate)">Submit</button>
 		</div>
 	</ion-content>
 	<app-footer></app-footer>

@@ -1,7 +1,7 @@
 <ion-view title="hunter-view" class="bgimg">
 	<app-header></app-header>
 	<app-subheader></app-subheader>
-	<ion-content class="top">
+	<ion-content class="content">
 
 <div ng-repeat="task in HVC.tasks">
 	<button class="button button-large" name="quit" ng-click="HVC.takeAndSubmit(task.name, HVC.username, HVC.huntMaster.number)">{{task.name}}</button>

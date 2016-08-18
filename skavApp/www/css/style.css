@@ -1,10 +1,10 @@
-.bgimg {
+/*.bgimg {
 	background-image: url("/img/download.jpeg");
 	-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-}
+}*/
 
 .landbg {
 	background-image: url("http://4.bp.blogspot.com/-6_OnPvLUHYc/UfvhZFhV4AI/AAAAAAABo_A/dPVGyhynV9c/s1600/detective+kids+costume.jpg");
@@ -25,8 +25,14 @@
 	width: 100%
 }*/
 
-.top {
+/*.top {
 	margin-top: 120px;
+	margin-bottom: 40px;
+}*/
+
+.content {
+	margin-top: 120px;
+	margin-bottom: 40px;
 }
 
 h1 {

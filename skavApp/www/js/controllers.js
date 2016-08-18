@@ -76,7 +76,6 @@ app.controller('HeaderController', ['UserServices','$state', '$window', function
   //the values as needed and returns a username and a quoted url for the avatar
   vm.username=(((atob(($window.localStorage.token.split('.'))[1])).split(",")[0]).split(":")[1]).slice(1, -1);
   vm.avatar=((atob(($window.localStorage.token.split('.'))[1])).split(",")[3].split(":"))[1]+((atob(($window.localStorage.token.split('.'))[1])).split(",")[3].split(":"))[2];
-
 }]);
 
 app.controller('FooterController', ['$state', function($state){

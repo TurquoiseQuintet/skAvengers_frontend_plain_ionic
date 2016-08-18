@@ -52,10 +52,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controllerAs: 'HVC'
   })
   .state('new-task', {
-    url: '/new-task',
+    url: '/new-task/:hunt_id',
     templateUrl: './templates/new-task.html',
-    controller: 'TaskController',
-    controllerAs: 'TC'
+    controller: 'AddTaskController',
+    controllerAs: 'ATC'
   })
   .state('user', {
     url: '/user',
@@ -66,8 +66,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('new-hunt', {
     url: '/new-hunt',
     templateUrl: './templates/new-hunt.html',
-    controller: 'HuntController',
-    controllerAs: 'HC'
+    controller: 'NewHuntController',
+    controllerAs: 'NHC'
   })
   .state('tasks', {
     url: '/tasks/:id',
@@ -75,17 +75,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: 'TaskController',
     controllerAs: 'TC'
   })
-  .state('edit-task', {
+  .state('edit-task/:task_id', {
     url: '/edit-task',
     templateUrl: './templates/edit-task.html',
-    controller: 'TaskController',
-    controllerAs: 'TC'
+    controller: 'EditTaskController',
+    controllerAs: 'ETC'
+  })
+  .state('review-hunter', {
+    url: '/review-hunter/:hunter_id/:hunt_id',
+    templateUrl: './templates/review-hunter.html',
+    controller: 'SubmitController',
+    controllerAs: 'SC'
   })
   .state('edit-hunt', {
-    url:'/edit-hunt',
+    url:'/edit-hunt/:hunt_id',
     templateUrl: './templates/edit-hunt.html',
-    controller: 'HuntController',
-    controllerAs: 'HC'
+    controller: 'EditHuntController',
+    controllerAs: 'EHC'
   });
   $urlRouterProvider.otherwise('/');
 });
