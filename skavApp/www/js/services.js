@@ -151,7 +151,6 @@ app.service("HuntService", ['$http', '$window', '$state', function($http, $windo
         sv.message("Make sure you own the hunt you are trying to edit");
       });
   };
-
 }]);
 
 

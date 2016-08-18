@@ -40,13 +40,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controllerAs: 'SUC'
   })
   .state('huntmaster-view',{
-    url: '/huntmaster-view',
+    url: '/huntmaster-view/:hunt_id',
     templateUrl: './templates/huntmaster-view.html',
     controller: 'TaskController',
     controllerAs: 'TC'
   })
   .state('hunter-view', {
-    url: '/hunter-view',
+    url: '/hunter-view/:hunt_id',
     templateUrl: './templates/hunter-view.html',
     controller: 'TaskController',
     controllerAs: 'TC'
