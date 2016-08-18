@@ -52,10 +52,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controllerAs: 'TC'
   })
   .state('new-task', {
-    url: '/new-task',
+    url: '/new-task/:hunt_id',
     templateUrl: './templates/new-task.html',
-    controller: 'TaskController',
-    controllerAs: 'TC'
+    controller: 'AddTaskController',
+    controllerAs: 'ATC'
   })
   .state('user', {
     url: '/user',

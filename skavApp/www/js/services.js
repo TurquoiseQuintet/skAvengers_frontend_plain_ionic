@@ -161,9 +161,10 @@ app.service("HuntService", ['$http', '$window', '$state', function($http, $windo
 
 
 // task services --------------------------->
-app.service('taskService', ['$http', '$window', function($http, $window) {
-  var sv = this;
+
+app.service('TaskService', ['$http', '$window', '$location', function($http, $window, $location) {
   //this function makes an http request to get all tasks
+  var sv = this;
   sv.getAlltasks = function() {
     $http.get('https://skavengers.herokuapp.com/tasks')
       .then(function(data) {
@@ -203,23 +204,17 @@ app.service('taskService', ['$http', '$window', function($http, $window) {
       });
   };
 
-  sv.posttask = function(hunt_id, name, xp, level_available, completed, unique, location, expiration_time) {
-    $http.post('https://skavengers.herokuapp.com/tasks', {
-        hunt_id: hunt_id,
-        name: name,
-        xp: xp,
-        level_available: xp,
-        completed: completed,
-        unique: unique,
-        location: location,
-        expiration_time: expiration_time
-
-      })
+  sv.posttask = function(task) {
+    task.hunt_id = ($location.path()).split("/")[2];
+    task.completed = false;
+    console.log(task);
+    $http.post('https://skavengers.herokuapp.com/tasks', task)
       .then(function(data) {
-
+        console.log(data);
 
       })
       .catch(function(err) {
+        console.log("err", err);
 
       });
   };
@@ -232,7 +227,6 @@ app.service('taskService', ['$http', '$window', function($http, $window) {
         xp: xp,
         level_available: level_available,
         completed: completed,
-        location: location,
         expiration_time: expiration_time
       })
       .then(function(data) {
@@ -243,6 +237,7 @@ app.service('taskService', ['$http', '$window', function($http, $window) {
         sv.message = "you do not have permission to edit that";
       });
   };
+
 
 
 }]);
