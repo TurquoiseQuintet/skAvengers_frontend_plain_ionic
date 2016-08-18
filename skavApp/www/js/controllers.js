@@ -21,38 +21,62 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
 
 // Hunt in controllers -------------------------->
 
-app.controller('HuntController', ['HuntService','$state', function(HuntService, $state) {
+app.controller('HuntController', ['HuntService','$state','$http', function(HuntService, $state, $http) {
   var vm = this;
   vm.$state = $state;
   vm.myHunts = HuntService.hunts;
+  console.log(vm.myHunts);
   vm.master = HuntService.master;
-
+  // vm. getAllHunts= function(){
+  //   console.log("2");
+    // $http.get('https://skavengers.herokuapp.com/hunts')
+    // .then(function(data){
+    //   vm.hunts=(data.data);
+    // })
+    // .catch(function(err){
+    //   //handle it
+    //   vm.message="problems in the oceans";
+    // });
+  // };
   HuntService.getAllHunts();
   HuntService.masterOf();
-  console.log(vm.myHunts);
+  // console.log("infor here " , vm.getAllHunts);
 }]);
 
 // Task controllers --------------------------------->
 
-app.controller('TaskController', [ '$window', '$state', function($window, $state, sms){
+app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '$location', function($window, $state, HuntService, $http, $location, sms){
   var vm = this;
-  vm.$state = $state;
-  vm.takeAndSubmit = sms.takeAndSubmit;
-  vm.user=($window.localStorage.token.split('.'))[1];
-  // vm.user=vm.user;
-  vm.userinfo=atob(vm.user);
-  vm.userinfo1=(vm.userinfo).split(",")[0];
-  vm.name=vm.userinfo1.split(":")[1];
-  console.log(vm.name[1]);
-  // console.log(vm.userinfo);
+  // vm.$state = $state;
+  $http.get('https://skavengers.herokuapp.com/tasks')
+  .then(function(data){
+    vm.tasks=data.data;
+    console.log(vm.tasks);
+    vm.params=($location.path()).split("/")[2];
+    //I need to somehow move this function somwhere that it works
+  //   for(var i=0; i<vm.tasks; i++){
+  //   if (vm.tasks[i].hunt_id===Number(vm.params)){
+  //       console.log("HERE" , vm.tasks[i]);
+  //     }
+  //   }
+  })
+  .catch(function (err){
+    vm.message(err);
+  });
+  // vm.newtask=function(TC.name, TC.xp, TC.location)
+  // vm.takeAndSubmit = sms.takeAndSubmit;
+
 }]);
 
-app.controller('HeaderController', ['UserServices','$state', function(UserServices, $state){
+app.controller('HeaderController', ['UserServices','$state', '$window', function(UserServices, $state, $window){
   var vm = this;
   vm.$state = $state;
-  vm.user = UserServices.loggedInUser;
-  vm.username = vm.user.name;
-  vm.avatar = vm.user.avater;
+
+  //the code below takes the user token seperates the user portio and unencrypts it then seperates
+  //the values as needed and returns a username and a quoted url for the avatar
+  vm.username=(((atob(($window.localStorage.token.split('.'))[1])).split(",")[0]).split(":")[1]).slice(1, -1);
+  vm.avatar=((atob(($window.localStorage.token.split('.'))[1])).split(",")[3].split(":"))[1]+((atob(($window.localStorage.token.split('.'))[1])).split(",")[3].split(":"))[2];
+
 }]);
 
 app.controller('FooterController', ['$state', function($state){
