@@ -1,15 +1,11 @@
 <ion-view title="hunter-view" class="bgimg">
 	<app-header></app-header>
-	<!-- <app-subheader></app-subheader> -->
+	<app-subheader></app-subheader>
 	<ion-content class="top">
-		<div ng-filter="levelfilter">
-			<h1>Tasks:</h1>
-			<!-- list of all tasks ; if hunter not at appropriate level, task is unavailable ; points for completion; desc; location-->
-			<ul ng-repeat="task in tasks">
-				placeholder for listing current tasks
-				<!-- button to submit completedtask -->
-			</ul>
-		</div>
+
+<div ng-repeat="task in HVC.tasks">
+	<button class="button button-large" name="quit" ng-click="HVC.takeAndSubmit(task.name, HVC.username, HVC.huntMaster.number)">{{task.name}}</button>
+</div>
 <!-- button to wuss out -->
 <button class="button button-large button-assertive" name="quit" ng-click="quit">Quit Hunt</button>
 <app-footer></app-footer>
