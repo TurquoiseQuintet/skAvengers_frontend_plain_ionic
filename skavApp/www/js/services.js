@@ -77,11 +77,10 @@ app.service("HuntService", ['$http', '$window', '$state', function($http, $windo
   sv.masterOf = function() {
     $http.get('https://skavengers.herokuapp.com/hunts/mine')
       .then(function(data) {
-
         for (var i = 0; i < data.data.length; i++) {
           sv.master.push(data.data[i]);
         }
-        // console.log(sv.master);
+        console.log(sv.master);
       })
       .catch(function(err) {
         console.log(err);
