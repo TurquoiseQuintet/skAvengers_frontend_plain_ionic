@@ -4,6 +4,12 @@
 	<app-header></app-header>
 	<app-subheader></app-subheader>
 	<ion-content class="top">
+		<div class="list list-inset">
+			<!-- title for the hunt -->
+      <label class="item item-input">
+        <input type="text" placeholder="Title">
+      </label>
+    </div>
     <div class="list list-inset">
 			<!-- expiraton date for the hunt -->
       <label class="item item-input">
@@ -14,7 +20,7 @@
 			<!-- select to add hunter(s) -->
 			<label class="item item-input">
 				<input type="text" name="searchfield" placeholder="Invite Players">
-				<ul ng-repeat="">
+				<ul ng-repeat="user in users">
 					<!-- list using ng-filter showing users available by name, with avatar -->
 					placeholder for users list
 				</ul>
