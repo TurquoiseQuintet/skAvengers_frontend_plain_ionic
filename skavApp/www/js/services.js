@@ -272,7 +272,6 @@ app.service('UserServices', ['$http', '$window', function($http, $window) {
         for(var i = 0; i < data.data.length; i++){
           sv.users.push(data.data[i]);
         }
-        console.log(sv.users);
       })
       .catch(function(err) {
         sv.message = "problems getting users";

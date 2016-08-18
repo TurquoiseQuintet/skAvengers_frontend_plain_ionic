@@ -66,8 +66,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('new-hunt', {
     url: '/new-hunt',
     templateUrl: './templates/new-hunt.html',
-    controller: 'HuntController',
-    controllerAs: 'HC'
+    controller: 'NewHuntController',
+    controllerAs: 'NHC'
   })
   .state('tasks', {
     url: '/tasks/:id',

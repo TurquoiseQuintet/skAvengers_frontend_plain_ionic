@@ -19,13 +19,14 @@
 		<div class="list list-inset">
 			<!-- select to add hunter(s) -->
 			<label class="item item-input">
-				<input type="text" name="searchfield" placeholder="Invite Players">
-				<ul class="list-group" ng-repeat="user in HC.getusers">
-					<!-- list using ng-filter showing users available by name, with avatar -->
-					  <li class="list-group-item">{{user.username}}{{user.avatar}}</li>
-
-				</ul>
+				<input type="text" ng-model="searchText" placeholder="Invite Players">
 			</label>
+			<div class="item-list" ng-repeat="user in NHC.getusers | filter:searchText">
+				<!-- list using ng-filter showing users available by name, with avatar -->
+						<img ng-src="{{user.avatar}}" style="height:60px; width:auto">
+						<p>{{user.username}}</p>
+						<button class="button button-balanced" name="add">Add</button>
+			</div>
 		</div>
 		<!-- button to submit creation and redirect to user -->
 		<button class="button button-block button-balanced" name="submitHunt" ng-click="">Submit</button>
