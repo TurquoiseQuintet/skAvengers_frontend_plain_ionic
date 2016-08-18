@@ -13,7 +13,48 @@
 	<app-header></app-header>
 <app-subheader></app-subheader>
 	<ion-content>
-
+		<h1>placeholder hunt title</h1>
+		<div class="list list-inset">
+			<!-- name of the task and description -->
+			<label class="item item-input">
+				<input type="text" placeholder="Hunt Title" ng-model="ETC.name">
+			</label>
+		</div>
+		<div class="list list-inset">
+			<!-- xp value -->
+			<label class="item item-input">
+				<input type="number" min="10" max="300" step="10" placeholder="XP Value" ng-model="ETC.xp">
+			</label>
+		</div>
+		<div class="list list-inset">
+			<!-- prerequisite level -->
+			<label class="item item-input">
+				<input type="number" min="0" max="10" placeholder="XP Required">
+			</label>
+		</div>
+		<!-- isUnique -->
+		<h3>Is Unique?</h3>
+		<div class="list list-inset">
+			<!-- prerequisite level -->
+			<label class="item item-input">
+				<input type="checkbox">
+			</label>
+		</div>
+		<div class="list list-inset">
+			<!-- description of location for the task -->
+			<label class="item item-input">
+				<input type="text" placeholder="Location" ng.model="ETC.location">
+			</label>
+		</div>
+		<!-- expiration time -->
+		<h3>Expiration Date:</h3>
+		<div class="list list-inset">
+			<label class="item item-input">
+				<input type="date" placeholder="Expiration Date">
+			</label>
+		</div>
+		<!-- Button to add task(s) -->
+		<button class="button button-large button-positive" name="submitTask"  ng-click="{{ETC.id}},ETC.editTask(ETC.name, ETC.xp, ETC.location, ETC.level_available, ETC.location, ETC.expiration_time)">Add to Hunt</button>
   </ion-content>
 	<app-footer></app-footer>
 
