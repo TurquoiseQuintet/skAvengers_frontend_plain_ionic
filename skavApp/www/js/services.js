@@ -270,11 +270,13 @@ app.service('UserServices', ['$http', '$window', function($http, $window) {
         sv.message = "You don't have permission to edit that user";
       });
   };
-
+  sv.users=[];
   sv.getAllUsers = function() {
-    http.get('https://skavengers.herokuapp.com/users')
+    $http.get('https://skavengers.herokuapp.com/users')
       .then(function(data) {
-        sv.users = data.data;
+        for(var i = 0; i < data.data.length; i++){
+          sv.users.push(data.data[i]);
+        }
       })
       .catch(function(err) {
         sv.message = "problems getting users";
