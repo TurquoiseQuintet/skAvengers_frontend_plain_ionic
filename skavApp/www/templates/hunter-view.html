@@ -2,12 +2,15 @@
 	<app-header></app-header>
 	<app-subheader></app-subheader>
 	<ion-content class="content">
-
+<div>
+	<h3>Experience: {{HVC.info.experience}}</h3>
+</div>
 <div ng-repeat="task in HVC.tasks">
-	<button class="button button-large" name="quit" ng-click="HVC.takeAndSubmit(task.name, HVC.username, HVC.huntMaster.number)">{{task.name}}</button>
+	<button ng-hide="task.comleted" class="button button-large" ng-click="HVC.takeAndSubmit(task.name, HVC.username, HVC.info.number)">{{task.name}}</button>
 </div>
 <!-- button to wuss out -->
 <button class="button button-large button-assertive" name="quit" ng-click="quit">Quit Hunt</button>
-<app-footer></app-footer>
+
 	</ion-content>
+	<app-footer></app-footer>
 </ion-view>

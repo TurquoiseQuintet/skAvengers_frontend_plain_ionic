@@ -395,17 +395,20 @@ app.service('sendMessageService', ['$cordovaCamera', '$http', '$cordovaSms', fun
 app.service('hunterViewService', ['$http', function($http){
 var sv = this;
 sv.tasks = [];
-sv.huntMaster = {
+sv.info = {
   number: 0
 };
 sv.getTasks = function(){
   $http.get('https://skavengers.herokuapp.com/tasks/hunt/' + sv.hunt_id)
   .then(function(data){
     console.log(data);
-    sv.huntMaster.number = data.data.huntMasterNumber;
+    sv.info.number = data.data.huntMasterNumber;
+    sv.info.experience = data.data.experience;
     for(var i = 0; i < data.data.tasks.length; i++){
       sv.tasks.push(data.data.tasks[i]);
     }
+    console.log(sv.tasks);
+    console.log(sv.info);
   })
   .catch(function(err){
     console.log(err);

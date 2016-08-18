@@ -87,7 +87,7 @@ app.controller('HunterViewController', ['$state', 'hunterViewService', '$locatio
   var vm = this;
   vm.$state = $state;
   vm.tasks = hvs.tasks;
-  vm.huntMaster = hvs.huntMaster;
+  vm.info = hvs.info;
   hvs.hunt_id = ($location.path()).split("/")[2];
   vm.username=(((atob(($window.localStorage.token.split('.'))[1])).split(",")[0]).split(":")[1]).slice(1, -1);
   hvs.getTasks();
