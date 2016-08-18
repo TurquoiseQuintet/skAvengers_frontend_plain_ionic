@@ -14,16 +14,16 @@
   background-size: cover;
 }
 
-.button-large {
+/*.button-large {
 	width: 300px;
 	margin-left: 30px;
-}
+}*/
 
-.title{
+/*.title{
 	position: absolute;
 	top: 20px;
 	width: 100%
-}
+}*/
 
 .top {
 	margin-top: 120px;
@@ -31,13 +31,4 @@
 
 h1 {
 	color: black;
-}
-
-
-a {
-	text-decoration: none;
-}
-
-.button-right{
-	margin-left: 200;
 }
