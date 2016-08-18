@@ -7,7 +7,7 @@
 				<h3 class="col-xs-4">{{ hunt.experience }}</h3>
       </div>
 			<div>
-				<button ng-click="TC.$state.go('edit-hunt')">Edit Hunt</button>
+				<button ng-click="TC.$state.go('edit-hunt', {hunt_id: TC.params})">Edit Hunt</button>
 				<button ng-click="TC.$state.go('new-task')">Add Task</button>
 			</div>
   </ion-content>
