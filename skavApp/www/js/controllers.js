@@ -75,6 +75,7 @@ app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '
 
 app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http', '$location', function($window, $state, TaskService, $http, $location, sms){
   var vm = this;
+  vm.$state = $state;
   vm.newTask = TaskService.posttask;
   // vm.$state = $state;
   vm.hunt_id=($location.path()).split("/")[2];
