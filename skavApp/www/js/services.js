@@ -58,7 +58,7 @@ app.service("LogoutService", ['$http', '$window', "$state", function($http, $win
 app.service("HuntService", ['$http', '$window', '$state', function($http, $window, $state) {
   var sv = this;
   sv.hunts = [];
-  sv.master = {};
+  sv.master = [];
   sv.getAllHunts = function() {
     // console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
@@ -78,7 +78,9 @@ app.service("HuntService", ['$http', '$window', '$state', function($http, $windo
     $http.get('https://skavengers.herokuapp.com/hunts/mine')
       .then(function(data) {
 
-        sv.master.data = data.data;
+        for (var i = 0; i < data.data.length; i++) {
+          sv.master.push(data.data[i]);
+        }
       })
       .catch(function(err) {
         console.log(err);
@@ -137,10 +139,13 @@ app.service("HuntService", ['$http', '$window', '$state', function($http, $windo
       });
   };
 
-  sv.editHunt = function(hunt) {
-    $http.put('https://skavengers.herokuapp.com/hunts/' + hunt.id, {
+  sv.editHunt = function(name, expiration_time, xp_to_level_up) {
+    $http.put('https://skavengers.herokuapp.com/hunts/' + hunt_id, {
         params: {
-          hunt: hunt.id
+          hunt: hunt.id,
+          name:name,
+          expiration_time: expiration_time,
+          xp_to_level_up: xp_to_level_up
         }
       })
       .then(function(data) {
@@ -218,9 +223,9 @@ app.service('taskService', ['$http', '$window', function($http, $window) {
   };
 
 
-  sv.edittask = function(name, xp, level_available, completed, location, expiration_time, task) {
-    $http.put('https://skavengers.herokuapp.com/tasks/' + task.id, {
-        id: task.id,
+  sv.edittask = function(name, xp, level_available, completed, location, expiration_time) {
+    $http.put('https://skavengers.herokuapp.com/tasks/', {
+        id: taskid,
         name: name,
         xp: xp,
         level_available: level_available,

@@ -34,17 +34,9 @@ app.controller('HuntController', ['HuntService','UserServices','$state','$http',
   console.log("HuntController load");
   vm.$state = $state;
   vm.myHunts = HuntService.hunts;
-  // console.log(vm.myHunts);
-  vm.master = HuntService.master;
-  vm.test={
-    "things": "stuff",
-    "one":"tow",
-    "red":"blue",
-    "first":"last",
-    "stop": "go",
-    "fast":"slow"
+  vm.myMaster = HuntService.master;
 
-  };
+
   // vm. getAllHunts= function(){
   //   console.log("2");
     // $http.get('https://skavengers.herokuapp.com/hunts')
@@ -100,4 +92,12 @@ app.controller('HeaderController', ['UserServices','$state', '$window', function
 app.controller('FooterController', ['$state', function($state){
   var vm = this;
   vm.$state = $state;
+}]);
+
+app.controller('EditHuntController', ['$state', 'HuntService','$location', function($state, HuntService, $location){
+  var vm=this;
+  vm.$state=$state;
+  vm.EditHunt=HuntService.edit;
+  vm.id=$location.path().split("/")[2];
+  console.log(vm.id);
 }]);
