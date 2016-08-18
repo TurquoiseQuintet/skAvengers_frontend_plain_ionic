@@ -296,6 +296,11 @@ app.service('UserServices', ['$http', '$window', function($http, $window) {
 
 }]);
 
+app.service('SubmitService', ['$http', function($http) {
+  var sv = this;
+  
+}]);
+
 //picture services ------------------------------->
 
 app.service('sendMessageService', ['$cordovaCamera', '$http', '$cordovaSms', function($cordovaCamera, $http, $cordovaSms) {

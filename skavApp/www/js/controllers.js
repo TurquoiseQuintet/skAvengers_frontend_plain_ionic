@@ -95,3 +95,9 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location', funct
   vm.id=$location.path().split("/")[2];
   console.log(vm.id);
 }]);
+
+app.controller('SubmitController',['SubmitService', '$state',  function(SubmitService, $state){
+  var vm=this;
+  vm.$state = $state;
+  
+}]);

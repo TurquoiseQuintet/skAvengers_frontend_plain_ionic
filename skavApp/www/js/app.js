@@ -81,6 +81,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: 'EditTaskController',
     controllerAs: 'ETC'
   })
+  .state('review-hunter', {
+    url: '/review-hunter/:hunter_id',
+    templateUrl: './templates/review-hunter.html',
+    controller: 'SubmitController',
+    controllerAs: 'SC'
+  })
   .state('edit-hunt', {
     url:'/edit-hunt/:hunt_id',
     templateUrl: './templates/edit-hunt.html',

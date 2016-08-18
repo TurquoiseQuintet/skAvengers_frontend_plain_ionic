@@ -3,7 +3,7 @@
 	<app-subheader></app-subheader>
 	<ion-content>
 		  <div class="button-bar" ng-repeat="hunt in TC.huntUser">
-				<h3 class="col-xs-8">{{ hunt.username }}</h3>
+				<h3 class="col-xs-8" ng-click="TC.$state.go('review-hunter', {hunter_id: hunt.id})">{{ hunt.username }}</h3>
 				<h3 class="col-xs-4">{{ hunt.experience }}</h3>
       </div>
 			<div>
