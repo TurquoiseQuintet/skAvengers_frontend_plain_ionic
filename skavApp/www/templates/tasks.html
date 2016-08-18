@@ -1,12 +1,8 @@
 <ion-view title="tasks" class="task">
 	<ion-content>
-    <a href="/#/user"><i class="icon ion-ios-home"></i></a>
-		<h1 style="font-size:60px;margin-left:28%;color:blue;">Find.It</h1>
-		<ion-footer-bar align-title="left" class="bar-light">
 		  <div class="button-bar">
-			<a href="/#/edit-task"><h5>list of tasks and each task name will link you to all prepopulated inputs for that task</h5></a>
-      <a href="/#/new-task"><h5>Add new task</h5></a>
+
+      <button ng-click="TC.$state.go('new-task')"><h5>Add new task</h5></button>
       </div>
-		</ion-footer-bar>
   </ion-content>
 </ion-view>

@@ -9,6 +9,7 @@ app.controller('SignUpController', ['SignUpService', function(SignUpService){
 app.controller('LogInController',['LogInService', function(LogInService){
   var vm=this;
   vm.login=LogInService.login;
+  // vm.register=SignUpService.signUp;
 }]);
 //log out controller -----------------------------
 app.controller('LogoutController', ['LogoutService', function(LogoutService){
@@ -44,10 +45,4 @@ app.controller('HeaderController', ['UserServices', function(UserServices){
   vm.user = UserServices.loggedInUser;
   vm.username = vm.user.name;
   vm.avatar = vm.user.avater;
-}]);
-
-app.controller('FooterController', ['LogoutService',function(LogoutService){
-  var vm = this;
-  console.log(vm);
-  vm.logout = LogoutService.logOut;
 }]);

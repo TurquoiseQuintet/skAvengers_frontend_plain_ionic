@@ -1,7 +1,7 @@
 	<h1 style="font-size:60px;margin-left:28%;color:blue;">Find.It</h1>
 	<ion-footer-bar align-title="left" class="bar-calm">
-		<div class="button-bar">
-			<a href="/#/login" class="button button-calm"><h3>Log In</h3></a>
-			<a href="/#/register" class="button button-calm"><h3>Sign Up</h3></a>
+		<div class="button-bar" controller="FooterController as FC">
+			<button class="button button-calm" ng-click="FC.$state.go('login')"><h3>Log In</h3></button>
+			<button class="button button-calm" ng-click="FC.$state.go('register')"><h3>Sign Up</h3></button>
 		</div>
 	</ion-footer-bar>

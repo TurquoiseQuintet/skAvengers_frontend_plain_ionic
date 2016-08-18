@@ -16,7 +16,7 @@ sv.signup= function(username, password, email, avatar){
 };
 }]);
 // log in service --------------------------------->
-app.service("LogInService", ['$http', '$window','$location', function($http, $window, $location){
+app.service("LogInService", ['$http', '$window','$location', function($http, $window, $state){
   var sv=this;
   sv.login= function(username, password){
     $http.post('https://skavengers.herokuapp.com/login', {
@@ -28,7 +28,7 @@ app.service("LogInService", ['$http', '$window','$location', function($http, $wi
       //localstorage
       $window.localStorage.token=response.data.token;
       // path somewhere...to their page with their hunts?
-      $location.path('/user');
+      $state.go('/user');
     })
     .catch(function(err){
 			console.log(err.message);
@@ -48,7 +48,7 @@ app.service("LogoutService", ['$http', '$window', "$location", function($http, $
 }]);
 
 // hunt services -------------------------------------->
-app.service("HuntService", ['$http', '$window', '$location', function($http, $window, $location) {
+app.service("HuntService", ['$http', '$window', '$location', function($http, $window, $state) {
   var sv=this;
 
   sv.hunts = {};
@@ -83,7 +83,7 @@ app.service("HuntService", ['$http', '$window', '$location', function($http, $wi
         expiration: expiration
       })
     .then(function(data){
-      $location.path('/user');
+      $state.go('/user');
     })
     .catch(function(err){
     sv.message="problems with creating hunt";
