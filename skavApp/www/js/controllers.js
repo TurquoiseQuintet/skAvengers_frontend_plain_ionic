@@ -27,6 +27,7 @@ app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$h
   vm.getusers = UserServices.users;
   UserServices.getAllUsers();
   vm.create = HuntService.addHunt;
+  vm.addUser = HuntService.addUser;
 }]);
 
 app.controller('HuntController', ['HuntService','UserServices','$state','$http', function(HuntService, UserServices, $state, $http) {

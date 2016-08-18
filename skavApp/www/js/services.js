@@ -59,6 +59,7 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
   var sv = this;
   sv.hunts = [];
   sv.master = [];
+  sv.users = [];
   sv.getAllHunts = function() {
     // console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
@@ -88,15 +89,11 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
   };
   //this service is called for when we make a request to post hunts to start a new hunt
   sv.addHunt = function(name, expiration) {
+    console.log(sv.users);
     $http.post('https://skavengers.herokuapp.com/hunts', {
         name: name,
-        expiration: expiration
-        //something to assign this hunt to the users added in view
-      })
-      .then(function(){
-        $http.post('https://skavengers.herokuapp.com/users', {
-          
-        });
+        expiration: expiration,
+        users: sv.users
       })
       .then(function(data) {
         console.log(data);
@@ -106,7 +103,9 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
         sv.message = "problems with creating hunt";
       });
   };
-
+  sv.addUser = function(user_id){
+    sv.users.push(user_id);
+  };
   //this is used to get ONE particular hunt
   //my logic may be redundant but this is how I did it in the past and when I have done it other ways it didnt
   //work
