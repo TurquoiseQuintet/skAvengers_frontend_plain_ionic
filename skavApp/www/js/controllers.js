@@ -159,6 +159,7 @@ app.controller('HuntmasterController', [ '$window', '$state','HuntmasterService'
       for (var i = 0; i < data.data.length; i++) {
         vm.huntUsers.push(data.data[i]);
       }
+      console.log(vm.huntUsers);
     })
     .catch(function(err) {
       console.log(err);
