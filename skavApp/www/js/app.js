@@ -54,7 +54,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('new-task', {
     url: '/new-task/:hunt_id',
     templateUrl: './templates/new-task.html',
-    // controller: 'AddTaskController',
+    controller: 'AddTaskController',
     controllerAs: 'ATC'
   })
   .state('user', {
