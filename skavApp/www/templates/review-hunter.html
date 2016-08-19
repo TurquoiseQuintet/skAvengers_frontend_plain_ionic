@@ -1,10 +1,10 @@
-<ion-view title="review-hunter">
+<ion-view title="review-hunter" cache-view="false">
 	<app-header></app-header>
 	<app-subheader></app-subheader>
 	<ion-content class="content">
     <h1>{{ SC.user[0].username}}</h1>
-    <div ng-repeat="task in SC.huntTasks | orderBy:'level_available'">
-			<button class="button button-large" ng-click="SC.submit(SC.user[0].id, task.id)">{{task.name}} | Worth: {{task.xp}}XP</button>
+    <div ng-repeat="task in SC.huntTasks | orderBy:'level_available'" style="margin-bottom: 1px;">
+			<button class="button button-large" ng-click="SC.submit(SC.user[0].id, task.id)">Confirm Find for: {{task.name}}</button>
     </div>
   </ion-content>
 	<app-footer></app-footer>

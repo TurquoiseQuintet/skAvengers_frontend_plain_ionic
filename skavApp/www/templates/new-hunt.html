@@ -1,8 +1,8 @@
-<ion-view title="new-hunt" class="bgimg">
+<ion-view title="new-hunt" class="bgimg" cache-view="false">
   <app-header></app-header>
   <app-subheader></app-subheader>
   <ion-content class="content">
-    <form name="newHuntForm" ng-submit="NHC.create(NHC.name, NHC.expiration)">
+    <form name="newHuntForm" ng-submit="NHC.create(NHC.name, NHC.expiration);NHC.name=''; NHC.expiration=''; NHC.searchText='';">
     <div class="list list-inset">
       <!-- name for the hunt -->
       <label class="item item-input">
@@ -24,7 +24,9 @@
     <input type="submit" class="button button-block button-balanced" name="submitHunt" ng-disabled="newHuntForm.$invalid" value="Submit">
 
     </form>
-    <div class="card" ng-repeat="user in NHC.getusers | filter:NHC.searchText" ng-show="NHC.searchText.length > 0">
+    <div ng-repeat="user in NHC.users">
+    </div>
+    <div class="card" ng-repeat="user in NHC.getusers | filter: {username: NHC.searchText}" ng-show="NHC.searchText.length > 0">
 
       <div class="item item-avatar" ng-hide="user.id===NHC.currentUserId">
         <img ng-src="{{user.avatar}}" style="height:120px; width:auto">
@@ -35,10 +37,7 @@
         </div>
       </div>
     </div>
-    <div class="card" ng-repeat="user in NHC.users">
-
-
-
+  
     <!-- button to submit creation and redirect to user -->
   </ion-content>
   <app-footer></app-footer>

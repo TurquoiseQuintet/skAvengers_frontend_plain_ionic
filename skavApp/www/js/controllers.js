@@ -3,7 +3,7 @@
 app.controller('SignUpController', ['SignUpService', '$state', 'sendMessageService', function(SignUpService, $state, sms){
   var vm=this;
   vm.$state = $state;
-  vm.avatar = sms.profilePictureURL;
+  vm.picture = sms.picture;
   vm.signUp= SignUpService.signup;
   vm.takeProfilePicture = sms.takeProfilePicture;
 }]);
@@ -20,16 +20,19 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
   vm.logOut = LogoutService.logOut;
 }]);
 // Hunt in controllers -------------------------->
-app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', 'UserInfo', function(HuntService, UserServices, $state, $http, UserInfo){
+app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', 'UserInfo', function(HuntService, UserService, $state, $http, UserInfo){
   var vm=this;
   vm.$state=$state;
-  vm.getusers = UserServices.users;
-  UserServices.getAllUsers();
+  vm.users=UserService.usershunt;
+  vm.getusers = UserService.users;
+  UserService.getAllUsers();
   vm.create = HuntService.addHunt;
   vm.addUser = HuntService.addUser;
   UserInfo.getInfo();
   vm.currentUserId = UserInfo.userInfo.id;
 // (((atob(($window.localStorage.token.split('.'))[1])).split(",")[0]).split(":")[1]).slice(1, -1)
+
+
 
 }]);
 app.controller('HuntController', ['HuntService','UserServices','$state','$http', function(HuntService, UserServices, $state, $http) {
@@ -108,6 +111,7 @@ app.controller('HeaderController', ['UserServices','$state','UserInfo', function
   UserInfo.getInfo();
   vm.username = UserInfo.userInfo.username;
   vm.avatar = UserInfo.userInfo.avatar;
+  console.log(UserInfo);
   //the code below takes the user token seperates the user portio and unencrypts it then seperates
   //the values as needed and returns a username and a quoted url for the avatar
 
@@ -128,16 +132,17 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   vm.hunttoedit=HuntService.hunttoedit;
   vm.tasks=TaskService.users;
   vm.users=UserService.usershunt;
+  vm.allUsers=UserService.users;
   vm.delete=TaskService.deleteTask;
   vm.deleteUser=UserService.deleteUser;
+  vm.addUser = HuntService.addUser;
   TaskService.huntTasks();
-  UserService.huntUsers();
   HuntService.getHunt();
+  UserService.getAllUsers();
+  UserService.huntUsers();
+
 }]);
 
-app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){
-  var vm=this;
-}]);
 
 
 app.controller('HunterViewController', ['$state', 'hunterViewService', '$location', 'sendMessageService', 'UserInfo', function($state, hvs, $location, sms, UserInfo){
@@ -178,10 +183,6 @@ app.controller('HuntmasterController', [ '$window', '$state','HuntmasterService'
 app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){
   var vm=this;
   vm.$state = $state;
-  vm.hunter=($location.path()).split("/")[2];
-  vm.hunt=($location.path()).split("/")[3];
-  vm.experience=($location.path()).split("/")[4];
-  console.log(vm.experience);
   vm.user = SubmitService.user;
   vm.getTasks = SubmitService.getTasks;
   vm.huntTasks = SubmitService.huntTasks;

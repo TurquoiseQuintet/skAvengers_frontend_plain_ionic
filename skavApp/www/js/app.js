@@ -81,12 +81,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: 'TaskController',
     controllerAs: 'TC'
   })
-  .state('edit-task/:task_id', {
-    url: '/edit-task',
-    templateUrl: './templates/edit-task.html',
-    controller: 'EditTaskController',
-    controllerAs: 'ETC'
-  })
   .state('review-hunter', {
     url: '/review-hunter/:hunter_id/:hunt_id/:xp',
     templateUrl: './templates/review-hunter.html',

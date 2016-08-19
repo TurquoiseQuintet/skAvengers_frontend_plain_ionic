@@ -1,6 +1,6 @@
 'use strict';
 // sign up service ---------------------------->
-app.service('SignUpService', ['$http', '$window', '$location', function($http, $window, $location) {
+app.service('SignUpService', ['$http', '$window', '$state', function($http, $window, $state) {
   var sv = this;
   sv.signup = function(username, password, email, avatar, phone) {
     $http.post('https://skavengers.herokuapp.com/register', {
@@ -14,7 +14,7 @@ app.service('SignUpService', ['$http', '$window', '$location', function($http, $
         console.log(response);
         //path to login or does signup log you in and path to user home?
         $window.localStorage.token = response.data.token;
-        $location.path('/user');
+        $state.go('user');
       })
       .catch(function(err) {
         console.log(err);
@@ -63,10 +63,11 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
   sv.hunts = [];
   sv.master = [];
   sv.users = [];
+  sv.usersEdit =[];
   sv.getAllHunts = function() {
-    // console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
       .then(function(data) {
+        sv.hunts.length =0;
         for (var i = 0; i < data.data.length; i++) {
           sv.hunts.push(data.data[i]);
         }
@@ -141,22 +142,35 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
         }
       })
       .then(function(data) {
-        $location.path('/user');
+        $state.go('user');
       })
       .catch(function(err) {
         sv.message("a problem with the delete. Make sure you own the hunt");
       });
   };
-
+  sv.addUser = function(user_id){
+    sv.usersEdit.push(user_id);
+  };
   sv.editHunt = function(name, expiration_time, xp_to_level_up) {
     $http.put('https://skavengers.herokuapp.com/hunts/'+ $location.path().split("/")[2], {
           name:name,
           expiration: expiration_time
         // xp_to_level_up: xp_to_level_up
       })
+      .then(function(data){
+        console.log(sv.usersEdit);
+        if(sv.usersEdit.length > 0){
+          console.log('POST');
+          return $http.post('https://skavengers.herokuapp.com/hunts/users/' + $location.path().split("/")[2], {users: sv.usersEdit})
+        }else{
+          return 'nothing';
+        }
+
+      })
       .then(function(data) {
+        sv.usersEdit.length =0;
         console.log(data);
-        $location.path('user');
+        $state.go('user');
       })
       .catch(function(err) {
         sv.message("Make sure you own the hunt you are trying to edit");
@@ -215,11 +229,23 @@ app.service('TaskService', ['$http', '$window', '$location', '$state', function(
       });
   };
 
-  sv.posttask = function() {
+  sv.posttask = function(_name, _xp, _level_available, _unique) {
+    console.log(_name, _xp, _level_available, _unique);
+    var sv = this;
     sv.hunt_id = ($location.path()).split("/")[2];
-    $http.post('https://skavengers.herokuapp.com/tasks', sv.task)
+    $http.post('https://skavengers.herokuapp.com/tasks',{
+      name: _name,
+      xp: _xp,
+      level_available: _level_available,
+      unique: _unique,
+      hunt_id: sv.hunt_id
+    })
       .then(function(data) {
-        $state.go('alert', {"hunt_id": sv.task.hunt_id});
+        console.log(data);
+        console.log("hello", sv.hunt_id);
+        if(!confirm('Task Added! Add another?')){
+          $state.go('huntmaster-view', {hunt_id: sv.hunt_id});
+        }
       })
       .catch(function(err) {
         console.log("err", err);
@@ -332,9 +358,9 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
   sv.user = [];
   sv.huntTasks = [];
   sv.userTasks = [];
-  sv.hunter=($location.path()).split("/")[2];
-  sv.hunt=($location.path()).split("/")[3];
   sv.getTasks = function(){
+    sv.hunter=($location.path()).split("/")[2];
+    sv.hunt=($location.path()).split("/")[3];
     sv.user.length=0;
   $http.get('https://skavengers.herokuapp.com/users/' + sv.hunter)
   .then(function(data) {
@@ -456,6 +482,7 @@ app.service('sendMessageService', ['$cordovaCamera', '$http', '$cordovaSms', fun
     })
     .then(function(data){
       sv.picture.avatar = data;
+      console.log(sv.picture.avatar);
     })
     .catch(function(err){
       console.log(err);
