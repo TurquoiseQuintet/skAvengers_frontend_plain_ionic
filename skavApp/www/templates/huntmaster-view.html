@@ -2,11 +2,11 @@
 	<app-header></app-header>
 	<app-subheader></app-subheader>
 	<ion-content class="content">
-		  <div class="button-bar" ng-repeat="user in TC.getHuntUsers">
+		  <div class="button-bar" ng-repeat="user in TC.huntUsers">
 				<h3 class="col-xs-8" ng-click="TC.$state.go('review-hunter', {hunter_id: user.id, hunt_id: TC.params})">{{ user.username }}</h3>
 				<h3 class="col-xs-4">{{ user.experience }}</h3>
       </div>
-			<div>
+			<div class="button-bar">
 				<button class="button button-large button-positive" ng-click="TC.$state.go('edit-hunt', {hunt_id: TC.params})">Edit Hunt</button>
 				<button class="button button-large button-balanced" ng-click="TC.$state.go('new-task', {hunt_id: TC.params})">Add Task</button>
 			</div>

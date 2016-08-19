@@ -2,12 +2,13 @@
 // sign up service ---------------------------->
 app.service('SignUpService', ['$http', '$window', '$location', function($http, $window, $location) {
   var sv = this;
-  sv.signup = function(username, password, email, avatar) {
+  sv.signup = function(username, password, email, avatar, phone) {
     $http.post('https://skavengers.herokuapp.com/register', {
         username: username,
         password: password,
         email: email,
-        avatar: avatar
+        avatar: avatar,
+        phone_number: phone
       })
       .then(function(response) {
         console.log(response);
@@ -66,7 +67,6 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
     // console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
       .then(function(data) {
-        sv.hunts.length = 0;
         for (var i = 0; i < data.data.length; i++) {
           sv.hunts.push(data.data[i]);
         }
