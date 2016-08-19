@@ -20,12 +20,12 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
   vm.logOut = LogoutService.logOut;
 }]);
 // Hunt in controllers -------------------------->
-app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', 'UserInfo', function(HuntService, UserService, $state, $http, UserInfo){
+app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', 'UserInfo', function(HuntService, UserServices, $state, $http, UserInfo){
   var vm=this;
   vm.$state=$state;
-  vm.users=UserService.usershunt;
-  vm.getusers = UserService.users;
-  UserService.getAllUsers();
+  vm.users=UserServices.usershunt;
+  vm.getusers = UserServices.users;
+  UserServices.getAllUsers();
   vm.create = HuntService.addHunt;
   vm.addUser = HuntService.addUser;
   UserInfo.getInfo();
