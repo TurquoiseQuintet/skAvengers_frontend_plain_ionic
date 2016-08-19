@@ -1,41 +1,41 @@
 <ion-view title="new-task" class="bgimg">
-	<app-header></app-header>
-	<app-subheader></app-subheader>
-	<!-- name of the hunt  -->
-	<ion-content class="content">
-		<h1>{{ ATC.hunt.name }}</h1>
-		<div class="list list-inset">
-			<!-- name of the task and description -->
+  <app-header></app-header>
+  <app-subheader></app-subheader>
+  <!-- name of the hunt  -->
+  <ion-content class="content">
+    <h1>{{ ATC.hunt.name }}</h1>
+    <div class="list list-inset">
+      <!-- name of the task and description -->
       <label class="item item-input">
         <input type="text" placeholder="Task Title" ng-model="ATC.task.name">
       </label>
     </div>
-		<div class="list list-inset">
-			<!-- xp value -->
+    <div class="list list-inset">
+      <!-- xp value -->
       <label class="item item-input">
         <input type="number" placeholder="XP Value" ng-model="ATC.task.xp">
       </label>
     </div>
-		<div class="list list-inset">
-			<!-- prerequisite level -->
+    <div class="list list-inset">
+      <!-- prerequisite level -->
       <label class="item item-input">
         <input type="number" placeholder="XP Required" ng-model="ATC.task.level_available">
       </label>
     </div>
-		<!-- isUnique -->
-		<h3 style="width:80%;margin:0;float:left;">Is Task Unique?</h3>
-		<label class="toggle">
-   <input type="checkbox" ng-model="task.unique" ng-init="task.unique=false">
-   <div class="track">
-     <div class="handle"></div>
-   </div>
-</label>
+    <!-- isUnique -->
+    <h3 style="width:80%;margin:0;float:left;">Is Task Unique?</h3>
+    <label class="toggle">
+      <input type="checkbox" ng-model="task.unique" ng-init="task.unique=false">
+      <div class="track">
+        <div class="handle"></div>
+      </div>
+    </label>
 
-		<!-- Button to add task(s) -->
-		<button class="button button-large button-positive" name="submitTask"  ng-click="ATC.newTask(ATC.task, ATC.hunt)">Add to Hunt</button>
-		<!-- button to return to user page -->
-		<button class="button button-large button-assertive" ng-click="ATC.$state.go('huntmaster-view', {hunt_id: ATC.hunt_id})">Back to User</button>
-	</ion-content>
-	<!-- <app-footer></app-footer> -->
+    <!-- Button to add task(s) -->
+    <button class="button button-large button-positive" name="submitTask" ng-click="ATC.newTask(task, hunt); ATC.$state.go('huntmaster-view', {hunt_id: ATC.hunt.id})">Add to Hunt</button>
+    <!-- button to return to user page -->
+    <button class="button button-large button-assertive" ng-click="ATC.$state.go('huntmaster-view', {hunt_id: ATC.hunt.id})">View Hunt</button>
+  </ion-content>
+  <app-footer></app-footer>
 
 </ion-view>

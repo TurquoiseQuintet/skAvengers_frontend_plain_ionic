@@ -55,6 +55,7 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   vm.newTask = TaskService.posttask;
   // vm.$state = $state;
   vm.hunt_id=($location.path()).split("/")[2];
+  console.log(vm.hunt_id);
 
 
   $http.get('https://skavengers.herokuapp.com/hunts/' + vm.hunt_id)
@@ -99,10 +100,7 @@ app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '
 app.controller('HeaderController', ['UserServices','$state', '$window', function(UserServices, $state, $window){
   var vm = this;
   vm.$state = $state;
-  //the code below takes the user token seperates the user portio and unencrypts it then seperates
-  //the values as needed and returns a username and a quoted url for the avatar
-  vm.username=(((atob(($window.localStorage.token.split('.'))[1])).split(",")[0]).split(":")[1]).slice(1, -1);
-  vm.avatar=((atob(($window.localStorage.token.split('.'))[1])).split(",")[3].split(":"))[1]+((atob(($window.localStorage.token.split('.'))[1])).split(",")[3].split(":"))[2];
+
 }]);
 app.controller('FooterController', ['$state', function($state){
   var vm = this;
@@ -117,6 +115,7 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   vm.EditHunt=HuntService.editHunt;
   vm.id=$location.path().split("/")[2];
   vm.tasks=TaskService.users;
+  vm.users=UserService.usershunt;
   vm.delete=TaskService.deleteTask;
   vm.userdelte=UserService.deleteUser;
   TaskService.huntTasks();
@@ -143,16 +142,21 @@ app.controller('HuntmasterController', [ '$window', '$state','HuntmasterService'
   var vm = this;
   vm.$state = $state;
   vm.params=($location.path()).split("/")[2];
-  vm.huntUser = [];
-  $http.get('https://skavengers.herokuapp.com/hunts/users/' + vm.params)
-  .then(function(data) {
-    for (var i = 0; i < data.data.length; i++) {
-      vm.huntUser.push(data.data[i]);
-    }
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
+  vm.huntUsers = [];
+  vm.getHuntUsers = function(){
+    $http.get('https://skavengers.herokuapp.com/hunts/users/' + vm.params)
+    .then(function(data) {
+      for (var i = 0; i < data.data.length; i++) {
+        vm.huntUsers.push(data.data[i]);
+      }
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+  };
+  vm.getHuntUsers();
+
+
 }]);
 
 app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){

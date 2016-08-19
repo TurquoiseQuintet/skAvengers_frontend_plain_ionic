@@ -1,19 +1,19 @@
 <ion-view title="edit-hunt" class="bgimg">
 	<app-header></app-header>
-<app-subheader></app-subheader>
+	<app-subheader></app-subheader>
 	<ion-content class="content">
 		<div class="list list-inset">
 			<h3><!-- current name of the hunt --></h3>
-      <label class="item item-input">
-        <input type="text" placeholder="Hunt Title" ng-model="EHC.HuntTitle">
-      </label>
-    </div>
-    <div class="list list-inset">
+			<label class="item item-input">
+				<input type="text" placeholder="Hunt Title" ng-model="EHC.HuntTitle">
+			</label>
+		</div>
+		<div class="list list-inset">
 			<h3><!-- current expiration date --></h3>
-      <label class="item item-input">
-        <input type="date" placeholder="Expiration Date" ng-model="EHC.ExpirationDate">
-      </label>
-    </div>
+			<label class="item item-input">
+				<input type="date" placeholder="Expiration Date" ng-model="EHC.ExpirationDate">
+			</label>
+		</div>
 
 		<hr>
 		<div>
@@ -21,9 +21,14 @@
 			<ul ng-repeat="task in EHC.tasks">
 				<h4> {{task.name}} </h4>
 				<button class="button button-small button-balanced" ng-click="EHC.delete(task.id)"> delete task from hunt </button>
-				<!-- button to edit task -->
-				<!-- button to delete task -->
 			</ul>
+			<h3> Current Users: </h3>
+			<ul ng-repeat="user in EHC.users">
+				<h4> {{user}} <h4>
+				<button nc-click="EHC.deleteUser(user.id)"> remove user from hunt </button>
+			</ul>
+
+
 		</div>
 		<div class="button-bar">
 			<!-- Button to add task to hunt, leads to hunt view -->
