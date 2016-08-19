@@ -144,13 +144,13 @@ app.controller('HuntmasterController', [ '$window', '$state','HuntmasterService'
   var vm = this;
   vm.$state = $state;
   vm.params=($location.path()).split("/")[2];
-  vm.huntUser = [];
-  vm.getHuntUser = function(){
+  vm.huntUsers = [];
+  vm.getHuntUsers = function(){
     $http.get('https://skavengers.herokuapp.com/hunts/users/' + vm.params)
     .then(function(data) {
       vm.huntUser.length = 0;
       for (var i = 0; i < data.data.length; i++) {
-        vm.huntUser.push(data.data[i]);
+        vm.huntUsers.push(data.data[i]);
       }
     })
     .catch(function(err) {
