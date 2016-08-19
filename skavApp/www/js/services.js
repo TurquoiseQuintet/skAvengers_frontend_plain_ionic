@@ -220,8 +220,10 @@ app.service('TaskService', ['$http', '$window', '$location', '$state', function(
     sv.completed = false;
     $http.post('https://skavengers.herokuapp.com/tasks')
       .then(function(data) {
-        console.log("hello", data.hunt_id);
-        $state.go('alert', {"hunt_id": data.hunt_id});
+        console.log("hello", sv.hunt_id);
+        if(!confirm('Task Added! Add another?')){
+          $state.go('huntmaster-view', {hunt_id: sv.hunt_id});
+        }
       })
       .catch(function(err) {
         console.log("err", err);

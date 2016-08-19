@@ -24,7 +24,7 @@
     <input type="submit" class="button button-block button-balanced" name="submitHunt" ng-disabled="newHuntForm.$invalid" value="Submit">
 
     </form>
-    <div class="card" ng-repeat="user in NHC.getusers | filter:NHC.searchText" ng-show="NHC.searchText.length > 0">
+    <div class="card" ng-repeat="user in NHC.getusers | filter: {username: NHC.searchText}" ng-show="NHC.searchText.length > 0">
 
       <div class="item item-avatar" ng-hide="user.id===NHC.currentUserId">
         <img ng-src="{{user.avatar}}" style="height:120px; width:auto">

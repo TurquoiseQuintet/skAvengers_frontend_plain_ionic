@@ -4,7 +4,7 @@
   <!-- name of the hunt  -->
   <ion-content class="content">
     <h1>{{ ATC.hunt.name }}</h1>
-    <form name="newTaskForm" ng-submit="ATC.newTask(ATC.task, hunt); ATC.$state.go('huntmaster-view', {hunt_id: ATC.hunt.id}); ATC.task.name=''; ATC.task.xp; ATC.task.level_available; ATC.task.unique;">
+    <form name="newTaskForm" ng-submit="ATC.newTask(ATC.task, hunt); ATC.task.name=''; ATC.task.xp=''; ATC.task.level_available=''; ATC.task.unique=false;">
       <div class="list list-inset">
         <!-- name of the task and description -->
         <label class="item item-input">
