@@ -452,3 +452,36 @@ sv.getTasks = function(){
   });
 };
 }]);
+
+app.service('HuntmasterService', ['$http', function($http){
+  var sv = this;
+  sv.hunts = [];
+  sv.master = [];
+  sv.users = [];
+  sv.getAllHunts = function() {
+    // console.log("2");
+    $http.get('https://skavengers.herokuapp.com/hunts/all')
+      .then(function(data) {
+        for (var i = 0; i < data.data.length; i++) {
+          sv.hunts.push(data.data[i]);
+        }
+        console.log(sv.hunts);
+      })
+      .catch(function(err) {
+        //handle it
+        sv.message = "problems in the oceans";
+      });
+  };
+  sv.masterOf = function() {
+    $http.get('https://skavengers.herokuapp.com/hunts/mine')
+      .then(function(data) {
+        for (var i = 0; i < data.data.length; i++) {
+          sv.master.push(data.data[i]);
+        }
+        console.log(sv.master);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  };
+}]);
