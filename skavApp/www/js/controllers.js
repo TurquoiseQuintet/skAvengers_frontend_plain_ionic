@@ -31,7 +31,7 @@ app.controller('HuntController', ['HuntService','UserServices','$state','$http',
   vm.$state = $state;
   vm.myHunts = HuntService.hunts;
   console.log(vm.myHunts);
-  vm.master = HuntService.master;
+  vm.myMaster = HuntService.master;
   // vm. getAllHunts= function(){
   //   console.log("2");
     // $http.get('https://skavengers.herokuapp.com/hunts')
