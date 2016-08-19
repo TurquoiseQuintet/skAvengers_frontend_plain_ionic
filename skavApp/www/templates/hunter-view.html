@@ -6,7 +6,6 @@
 	<h3>Current XP: {{HVC.info.experience}}</h3>
 </div>
 <div ng-repeat="task in HVC.tasks| orderBy: 'level_available'">
-	{{task.users_id}}
 	<button ng-hide="task.completed || task.level_available > HVC.info.experience" class="button button-large" ng-click="HVC.takeAndSubmit(task.name, HVC.username, HVC.info.number)">{{task.name}} | Worth: {{task.xp}}XP</button>
 	<div ng-hide="task.completed || task.level_available <= HVC.info.experience" class="button button-large">Available at {{task.level_available}}XP</div>
 </div>
