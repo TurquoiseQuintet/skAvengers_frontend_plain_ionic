@@ -425,7 +425,7 @@ app.service('sendMessageService', ['$cordovaCamera', '$http', '$cordovaSms', fun
       }
     };
 
-    return $cordovaSms.send(number, message, options)
+    return $cordovaSms.send(number, message, options);
   }
 
   sv.takeAndSubmit = function(taskName, username, number) {
