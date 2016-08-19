@@ -136,7 +136,7 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   vm.allUsers=UserService.users;
   vm.delete=TaskService.deleteTask;
   vm.deleteUser=UserService.deleteUser;
-  vm.addUser = HuntService.addUser;
+  vm.addUser = HuntService.addUserEdit;
   TaskService.huntTasks();
   HuntService.getHunt();
   UserService.getAllUsers();
