@@ -16,14 +16,12 @@
       </label>
     </div>
     <div class="list list-inset">
-      <label class="item item-input">
-        <input type="text" ng-model="NHC.searchText" placeholder="Invite Players">
-      </label>
+
 
     </div>
     <input type="submit" class="button button-block button-balanced" name="submitHunt" ng-disabled="newHuntForm.$invalid" value="Submit">
 
-    </form>
+
     <div ng-repeat="user in NHC.users">
     </div>
     <div class="card" ng-repeat="user in NHC.getusers | filter: {username: NHC.searchText}" ng-show="NHC.searchText.length > 0">
@@ -32,12 +30,21 @@
         <img ng-src="{{user.avatar}}" style="height:120px; width:auto">
         <h3>{{user.username}}</h3>
         <div class="item item-divider">
-          <button class="button button-block button-balanced" name="add" ng-click="user.marked = true; NHC.addUser(user.id); NHC.searchText=''">Add</button>
+          <div class="button button-block button-balanced" name="add" ng-click="user.marked = true; NHC.addUser(user.id); NHC.searchText='';NHC.addedUsers.push(user.username)">Add</div>
           <i class="icon ion-checkmark-round" ng-show="user.marked">Added!</i>
         </div>
       </div>
     </div>
-  
+    <label class="item item-input">
+      <input type="text" ng-model="NHC.searchText" placeholder="Invite Players">
+    </label>
+  </form>
+  <h5>Users Added: </h5>
+  <ul>
+    <li ng-repeat="username in NHC.addedUsers">
+      <h5>{{username}}</h5>
+    </li>
+  </ul>
     <!-- button to submit creation and redirect to user -->
   </ion-content>
   <app-footer></app-footer>

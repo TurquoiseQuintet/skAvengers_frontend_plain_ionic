@@ -23,6 +23,7 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
 app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', 'UserInfo', function(HuntService, UserServices, $state, $http, UserInfo){
   var vm=this;
   vm.$state=$state;
+  vm.addedUsers =[];
   vm.users=UserServices.usershunt;
   vm.getusers = UserServices.users;
   UserServices.getAllUsers();
@@ -140,6 +141,7 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   HuntService.getHunt();
   UserService.getAllUsers();
   UserService.huntUsers();
+  vm.goback=HuntService.goback;
 
 }]);
 
@@ -185,7 +187,8 @@ app.controller('SubmitController',['SubmitService', '$state',  '$location', '$ht
   vm.$state = $state;
   vm.user = SubmitService.user;
   vm.getTasks = SubmitService.getTasks;
-  vm.huntTasks = SubmitService.huntTasks;
+  vm.huntTasks = SubmitService.toAdd;
   vm.submit = SubmitService.submit;
   SubmitService.getTasks();
+  vm.goback=SubmitService.goback;
 }]);
