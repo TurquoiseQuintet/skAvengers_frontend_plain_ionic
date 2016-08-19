@@ -69,7 +69,6 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
         for (var i = 0; i < data.data.length; i++) {
           sv.hunts.push(data.data[i]);
         }
-        console.log(sv.hunts);
       })
       .catch(function(err) {
         //handle it
@@ -82,7 +81,6 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
         for (var i = 0; i < data.data.length; i++) {
           sv.master.push(data.data[i]);
         }
-        console.log(sv.master);
       })
       .catch(function(err) {
         console.log(err);
@@ -325,7 +323,6 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
     return $http.get('https://skavengers.herokuapp.com/tasks/hunt/' + sv.hunt)
   })
   .then(function(data) {
-    console.log(data);
     for (var i = 0; i < data.data.length; i++) {
       sv.huntTasks.push(data.data[i]);
     }
@@ -335,7 +332,6 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
     for (var i = 0; i < data.data.length; i++) {
       sv.userTasks.push(data.data[i]);
     }
-    console.log(sv.users, sv.userTasks, sv.huntTasks);
     for (var i = 0; i < sv.userTasks.length; i++) {
       if (sv.userTasks[i].users_id == sv.user[0].id) {
         for (var j = 0; j < sv.huntTasks.length; j++) {
@@ -352,7 +348,6 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
   sv.submit = function(user_id, task_id) {
     $http.put('https://skavengers.herokuapp.com/submit/' + user_id +'/' + task_id)
     .then(function() {
-      console.log("next");
       $state.go('user');
     })
     .catch(function(err) {
@@ -444,8 +439,6 @@ sv.getTasks = function(){
     for(var i = 0; i < data.data.tasks.length; i++){
       sv.tasks.push(data.data.tasks[i]);
     }
-    console.log(sv.tasks);
-    console.log(sv.info);
   })
   .catch(function(err){
     console.log(err);
@@ -478,7 +471,6 @@ app.service('HuntmasterService', ['$http', function($http){
         for (var i = 0; i < data.data.length; i++) {
           sv.master.push(data.data[i]);
         }
-        console.log(sv.master);
       })
       .catch(function(err) {
         console.log(err);
