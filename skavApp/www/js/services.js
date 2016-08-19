@@ -245,11 +245,9 @@ app.service('TaskService', ['$http', '$window', '$location', function($http, $wi
 sv.huntTasks=function(){
   $http.get('http://skavengers.herokuapp.com/tasks/hunt/'+ $location.path().split("/")[2])
   .then(function(data){
-    console.log(data);
     sv.users.length = 0;
     for(var i=0; i<data.data.length; i++){
       sv.users.push(data.data[i]);
-      console.log(sv.users);
     }
   })
   .catch(function(err){
@@ -465,7 +463,6 @@ sv.info = {
 sv.getTasks = function(){
   $http.get('https://skavengers.herokuapp.com/tasks/hunter/hunt/' + sv.hunt_id)
   .then(function(data){
-    console.log(data);
     sv.info.number = data.data.huntMasterNumber;
     sv.info.experience = data.data.experience;
     sv.tasks.length = 0;
