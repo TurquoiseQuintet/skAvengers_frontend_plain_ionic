@@ -1,34 +1,38 @@
 <ion-view title="new-hunt" class="bgimg">
-	<app-header></app-header>
-	<app-subheader></app-subheader>
-	<ion-content class="content">
-		<div class="list list-inset">
-			<!-- name for the hunt -->
+  <app-header></app-header>
+  <app-subheader></app-subheader>
+  <ion-content class="content">
+    <div class="list list-inset">
+      <!-- name for the hunt -->
       <label class="item item-input">
         <input ng-model="NHC.name" type="text" placeholder="Hunt Name">
       </label>
     </div>
     <div class="list list-inset">
-			<!-- expiraton date for the hunt -->
+      <!-- expiraton date for the hunt -->
       <label class="item item-input">
         <input ng-model="NHC.expiration" type="date" placeholder="Expiration Date">
       </label>
     </div>
-		<div class="list list-inset">
-			<!-- select to add hunter(s) -->
-			<label class="item item-input">
-				<input type="text" ng-model="searchText" placeholder="Invite Players">
-			</label>
-			<div class="item-list" ng-repeat="user in NHC.getusers | filter:searchText">
-				<!-- list using ng-filter showing users available by name, with avatar -->
-						<img ng-src="{{user.avatar}}" style="height:60px; width:auto">
-						<p>{{user.username}}</p>
-						<button class="button button-balanced" name="add" ng-click="user.marked = true; NHC.addUser(user.id)">Add</button>
-						<i class="icon ion-checkmark-round" ng-show="user.marked"></i>
-			</div>
-		</div>
-		<!-- button to submit creation and redirect to user -->
-		<button class="button button-block button-balanced" name="submitHunt" ng-click="NHC.create(NHC.name, NHC.expiration)">Submit</button>
-	</ion-content>
-	<app-footer></app-footer>
+    <div class="list list-inset">
+      <!-- select to add hunter(s) -->
+      <label class="item item-input">
+        <input type="text" ng-model="searchText" placeholder="Invite Players">
+      </label>
+      <div class="card" ng-repeat="user in NHC.getusers | filter:searchText">
+        <div class="item item-avatar">
+          <img ng-src="{{user.avatar}}" style="height:120px; width:auto">
+          <h3>{{user.username}}</h3>
+          <div class="item item-divider">
+						<button class="button button-block button-balanced" name="add" ng-click="user.marked = true; NHC.addUser(user.id)">Add</button>
+						<i class="icon ion-checkmark-round" ng-show="user.marked">Added!</i>
+				 	</div>
+        </div>
+      </div>
+
+    </div>
+    <!-- button to submit creation and redirect to user -->
+    <button class="button button-block button-balanced" name="submitHunt" ng-click="NHC.create(NHC.name, NHC.expiration)">Submit</button>
+  </ion-content>
+  <app-footer></app-footer>
 </ion-view>
