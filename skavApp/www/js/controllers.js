@@ -54,6 +54,33 @@ app.controller('HuntController', ['HuntService','UserServices','$state','$http',
 }]);
 
 // Task controllers --------------------------------->
+app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http', '$location', function($window, $state, TaskService, $http, $location, sms){
+  var vm = this;
+  vm.$state = $state;
+  vm.newTask = TaskService.posttask;
+  // vm.$state = $state;
+  vm.hunt_id=($location.path()).split("/")[2];
+
+  $http.get('https://skavengers.herokuapp.com/hunts/' + vm.hunt_id)
+  .then(function(data){
+    vm.hunt=data.data;
+    console.log(vm.hunt);
+    //I need to somehow move this function somwhere that it works
+  //   for(var i=0; i<vm.tasks; i++){
+  //   if (vm.tasks[i].hunt_id===Number(vm.params)){
+  //       console.log("HERE" , vm.tasks[i]);
+  //     }
+  //   }
+  })
+  .catch(function (err){
+    vm.message(err);
+  });
+  // vm.newtask=function(TC.name, TC.xp, TC.location)
+  // vm.takeAndSubmit = sms.takeAndSubmit;
+
+
+
+}]);
 
 
 app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '$location', 'sendMessageService', function($window, $state, HuntService, $http, $location, sms){
