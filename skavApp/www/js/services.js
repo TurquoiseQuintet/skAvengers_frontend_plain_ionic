@@ -179,7 +179,7 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
 
 
   sv.goback=function(){
-    $state.go('huntmaster-view', {hunt_id: sv.hunt_id = ($location.path()).split("/")[1]} );
+    $state.go('huntmaster-view', {hunt_id: ($location.path()).split("/")[2]} );
   };
 
 }]);
