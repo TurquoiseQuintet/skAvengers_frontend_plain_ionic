@@ -34,7 +34,7 @@
     <!-- Button to add task(s) -->
     <button class="button button-large button-positive" name="submitTask" ng-click="ATC.newTask(task, hunt)">Add to Hunt</button>
     <!-- button to return to user page -->
-    <button class="button button-large button-assertive" ng-click="ATC.$state.go('huntmaster-view', {hunt_id: ATC.hunt_id.id})">Back to User</button>
+    <button class="button button-large button-assertive" ng-click="ATC.$state.go('huntmaster-view', {hunt_id: ATC.hunt.id})">Back</button>
   </ion-content>
   <app-footer></app-footer>
 
