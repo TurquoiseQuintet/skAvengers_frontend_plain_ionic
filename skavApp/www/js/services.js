@@ -372,7 +372,6 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
     for (var i = 0; i < data.data.length; i++) {
       sv.huntTasks.push(data.data[i]);
     }
-    console.log(sv.huntTasks);
     return $http.get('https://skavengers.herokuapp.com/tasks/users_tasks')
   })
   .then(function(data) {
@@ -389,6 +388,17 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
         }
       }
     }
+    sv.toDelete = [];
+    for (i = 0; i < sv.huntTasks.length; i++) {
+      console.log(sv.huntTasks[i].completed);
+      if ((sv.huntTasks[i].completed == true) || (sv.huntTasks[i].name === null)) {
+        sv.toDelete.push(i);
+      }
+    }
+    for (i = 0; i < sv.toDelete.length; i++) {
+      sv.huntTasks.splice(sv.toDelete[i], 1);
+    }
+    console.log(sv.huntTasks);
   })
   .catch(function(err) {
     console.log(err);
