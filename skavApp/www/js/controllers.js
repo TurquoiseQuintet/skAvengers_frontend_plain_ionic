@@ -186,6 +186,8 @@ app.controller('SubmitController',['SubmitService', '$state',  '$location', '$ht
   vm.$state = $state;
   vm.hunter=($location.path()).split("/")[2];
   vm.hunt=($location.path()).split("/")[3];
+  vm.experience=($location.path()).split("/")[4];
+  console.log(vm.experience);
   vm.user = SubmitService.user;
   vm.getTasks = SubmitService.getTasks;
   vm.huntTasks = SubmitService.huntTasks;

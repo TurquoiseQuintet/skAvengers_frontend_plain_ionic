@@ -3,8 +3,8 @@
 	<app-subheader></app-subheader>
 	<ion-content class="content">
     <h1>{{ SC.user[0].username}}</h1>
-    <div ng-repeat="task in SC.huntTasks">
-      <h4>{{task.name}}<span ng-click="SC.submit(SC.user[0].id, task.id)" ng-hide="task.completed">ACCEPT</span></h4>
+    <div ng-repeat="task in SC.huntTasks | orderBy:'level_available'">
+			<button class="button button-large" ng-click="SC.submit(SC.user[0].id, task.id)">{{task.name}} | Worth: {{task.xp}}XP</button>
     </div>
   </ion-content>
 	<app-footer></app-footer>
