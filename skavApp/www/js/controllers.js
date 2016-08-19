@@ -23,6 +23,7 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
 app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', 'UserInfo', function(HuntService, UserServices, $state, $http, UserInfo){
   var vm=this;
   vm.$state=$state;
+  vm.addedUsers =[];
   vm.users=UserServices.usershunt;
   vm.getusers = UserServices.users;
   UserServices.getAllUsers();
