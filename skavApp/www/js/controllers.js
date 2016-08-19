@@ -144,7 +144,7 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   UserService.getAllUsers();
   UserService.huntUsers();
   UserInfo.getInfo();
-  vm.currentUserId = UserInfo.id
+  vm.currentUserId = UserInfo.userInfo.id;
   vm.goback=HuntService.goback;
 
 }]);
