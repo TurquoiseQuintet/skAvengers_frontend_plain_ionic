@@ -69,7 +69,6 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
         for (var i = 0; i < data.data.length; i++) {
           sv.hunts.push(data.data[i]);
         }
-        console.log(sv.hunts);
       })
       .catch(function(err) {
         //handle it
@@ -82,7 +81,6 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
         for (var i = 0; i < data.data.length; i++) {
           sv.master.push(data.data[i]);
         }
-        console.log(sv.master);
       })
       .catch(function(err) {
         console.log(err);
@@ -333,7 +331,6 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
     return $http.get('https://skavengers.herokuapp.com/tasks/hunt/' + sv.hunt)
   })
   .then(function(data) {
-    console.log(data);
     for (var i = 0; i < data.data.length; i++) {
       sv.huntTasks.push(data.data[i]);
     }
@@ -343,7 +340,6 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
     for (var i = 0; i < data.data.length; i++) {
       sv.userTasks.push(data.data[i]);
     }
-    console.log(sv.users, sv.userTasks, sv.huntTasks);
     for (var i = 0; i < sv.userTasks.length; i++) {
       if (sv.userTasks[i].users_id == sv.user[0].id) {
         for (var j = 0; j < sv.huntTasks.length; j++) {
@@ -360,7 +356,6 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
   sv.submit = function(user_id, task_id) {
     $http.put('https://skavengers.herokuapp.com/submit/' + user_id +'/' + task_id)
     .then(function() {
-      console.log("next");
       $state.go('user');
     })
     .catch(function(err) {
@@ -374,16 +369,19 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
 app.service('sendMessageService', ['$cordovaCamera', '$http', '$cordovaSms', function($cordovaCamera, $http, $cordovaSms) {
 
   var sv = this;
+  sv.picture = {
+    avatar: ''
+  };
   //this method will open the camera app. after a photo is taken the user will crop it into a square. It returns a promise with the data being the base64 encoded image
-  sv.takePicture = function() {
+  sv.takePicture = function(height) {
 
     var options = {
       destinationType: Camera.DestinationType.DATA_URL,
       sourceType: Camera.PictureSourceType.CAMERA,
       encodingType: Camera.EncodingType.JPEG,
       allowEdit: true,
-      targetWidth: 500,
-      targetHeight: 500
+      targetWidth: height,
+      targetHeight: height
     };
     return $cordovaCamera.getPicture(options)
       .then(function(data) {
@@ -416,7 +414,7 @@ app.service('sendMessageService', ['$cordovaCamera', '$http', '$cordovaSms', fun
   sv.takeAndSubmit = function(taskName, username, number) {
     var url;
     if (confirm('Please take a picture of ' + taskName)) {
-      sv.takePicture()
+      sv.takePicture(1000)
         .then(function(image) {
           return sv.uploadPicture(image);
         })
@@ -435,6 +433,19 @@ app.service('sendMessageService', ['$cordovaCamera', '$http', '$cordovaSms', fun
         });
     }
   };
+
+  sv.takeProfilePicture = function(){
+    sv.takePicture(500)
+    .then(function(image) {
+      return sv.uploadPicture(image);
+    })
+    .then(function(data){
+      sv.picture.avatar = data;
+    })
+    .catch(function(err){
+      console.log(err);
+    });
+  };
 }]);
 
 app.service('hunterViewService', ['$http', function($http){
@@ -452,8 +463,6 @@ sv.getTasks = function(){
     for(var i = 0; i < data.data.tasks.length; i++){
       sv.tasks.push(data.data.tasks[i]);
     }
-    console.log(sv.tasks);
-    console.log(sv.info);
   })
   .catch(function(err){
     console.log(err);
@@ -486,7 +495,6 @@ app.service('HuntmasterService', ['$http', function($http){
         for (var i = 0; i < data.data.length; i++) {
           sv.master.push(data.data[i]);
         }
-        console.log(sv.master);
       })
       .catch(function(err) {
         console.log(err);

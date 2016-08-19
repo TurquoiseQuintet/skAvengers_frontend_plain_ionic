@@ -1,9 +1,11 @@
 'use strict';
  // sign in controller -------------------------->
-app.controller('SignUpController', ['SignUpService', '$state', function(SignUpService, $state){
+app.controller('SignUpController', ['SignUpService', '$state', 'sendMessageService', function(SignUpService, $state, sms){
   var vm=this;
   vm.$state = $state;
+  vm.avatar = sms.profilePictureURL;
   vm.signUp= SignUpService.signup;
+  vm.takeProfilePicture = sms.takeProfilePicture;
 }]);
 // Log in controller -------------------------->
 app.controller('LogInController',['LogInService', 'sendMessageService','$state',  function(LogInService, sms, $state){
@@ -30,7 +32,7 @@ app.controller('HuntController', ['HuntService','UserServices','$state','$http',
   var vm = this;
   vm.$state = $state;
   vm.myHunts = HuntService.hunts;
-  console.log(vm.myHunts);
+
   vm.myMaster = HuntService.master;
   // vm. getAllHunts= function(){
   //   console.log("2");
