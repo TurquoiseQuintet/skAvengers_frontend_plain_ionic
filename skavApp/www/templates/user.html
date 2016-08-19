@@ -10,8 +10,8 @@
       </div>
     </div>
       <h1>Master of: </h1>
-    <div ng-repeat="mas in HC.myMaster" class="myHunts">
-        <div ng-click="HC.$state.go('huntmaster-view', {hunt_id : mas.id})">
+    <div ng-repeat="mas in HC.myMaster">
+        <div class="myHunts" ng-click="HC.$state.go('huntmaster-view', {hunt_id : mas.id})">
 
         <h2> {{ mas.name}} </h2>
 

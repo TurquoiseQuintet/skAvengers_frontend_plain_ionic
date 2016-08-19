@@ -176,6 +176,12 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
         sv.message("Make sure you own the hunt you are trying to edit");
       });
   };
+
+
+  sv.goback=function(){
+    $state.go('huntmaster-view', {hunt_id: sv.hunt_id = ($location.path()).split("/")[1]} );
+  };
+
 }]);
 
 
@@ -372,7 +378,6 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
     for (var i = 0; i < data.data.length; i++) {
       sv.huntTasks.push(data.data[i]);
     }
-    console.log(sv.huntTasks);
     return $http.get('https://skavengers.herokuapp.com/tasks/users_tasks')
   })
   .then(function(data) {
@@ -389,6 +394,17 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
         }
       }
     }
+    sv.toDelete = [];
+    for (i = 0; i < sv.huntTasks.length; i++) {
+      console.log(sv.huntTasks[i].completed);
+      if ((sv.huntTasks[i].completed == true) || (sv.huntTasks[i].name === null)) {
+        sv.toDelete.push(i);
+      }
+    }
+    for (i = 0; i < sv.toDelete.length; i++) {
+      sv.huntTasks.splice(sv.toDelete[i], 1);
+    }
+    console.log(sv.huntTasks);
   })
   .catch(function(err) {
     console.log(err);
@@ -402,7 +418,10 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
     .catch(function(err) {
       console.log(err);
     });
-  }
+  };
+  sv.goback=function(){
+    $state.go('huntmaster-view', {hunt_id: sv.hunt_id = ($location.path()).split("/")[3]} );
+  };
 }]);
 
 //picture services ------------------------------->
