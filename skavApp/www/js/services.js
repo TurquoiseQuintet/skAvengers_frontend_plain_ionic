@@ -116,8 +116,8 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
     console.log($location.path().split("/")[2]);
     $http.get('https://skavengers.herokuapp.com/hunts/' + $location.path().split("/")[2])
       .then(function(data) {
-        console.log(data.data);
-
+        // console.log(data.data);
+        sv.hunttoedit.length=0;
         sv.hunttoedit.push(data.data);
 
       })
