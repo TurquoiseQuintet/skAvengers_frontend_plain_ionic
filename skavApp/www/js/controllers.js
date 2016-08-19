@@ -130,12 +130,15 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   vm.$state=$state;
   vm.EditHunt=HuntService.editHunt;
   // vm.id=$location.path().split("/")[2];
+  // vm.currenthunt=HuntService.getHunt;
+  vm.hunttoedit=HuntService.hunttoedit;
   vm.tasks=TaskService.users;
   vm.users=UserService.usershunt;
   vm.delete=TaskService.deleteTask;
   vm.deleteUser=UserService.deleteUser;
   TaskService.huntTasks();
   UserService.huntUsers();
+  HuntService.getHunt();
 }]);
 
 app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){
