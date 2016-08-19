@@ -213,15 +213,14 @@ app.service('TaskService', ['$http', '$window', '$location', '$state', function(
       });
   };
 
-  sv.posttask = function(task) {
-    task.hunt_id = ($location.path()).split("/")[2];
-    task.completed = false;
-
-    console.log(task);
-    $http.post('https://skavengers.herokuapp.com/tasks', task)
+  sv.posttask = function() {
+    var sv = this;
+    sv.hunt_id = ($location.path()).split("/")[2];
+    sv.completed = false;
+    $http.post('https://skavengers.herokuapp.com/tasks')
       .then(function(data) {
-        console.log("hello", task.hunt_id);
-        $state.go('alert', {"hunt_id": task.hunt_id});
+        console.log("hello", data.hunt_id);
+        $state.go('alert', {"hunt_id": data.hunt_id});
       })
       .catch(function(err) {
         console.log("err", err);

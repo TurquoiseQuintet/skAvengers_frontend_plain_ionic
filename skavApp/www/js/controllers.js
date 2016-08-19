@@ -60,6 +60,7 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   // vm.$state = $state;
   vm.hunt_id=($location.path()).split("/")[2];
   console.log(vm.hunt_id);
+  TaskService.posttask();
 
 
   $http.get('https://skavengers.herokuapp.com/hunts/' + vm.hunt_id)
