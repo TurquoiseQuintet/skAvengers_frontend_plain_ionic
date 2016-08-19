@@ -59,19 +59,13 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   vm.newTask = TaskService.posttask;
   // vm.$state = $state;
   vm.hunt_id=($location.path()).split("/")[2];
-  console.log("what do you say ", vm.hunt_id);
 
 
   $http.get('https://skavengers.herokuapp.com/hunts/' + vm.hunt_id)
+
   .then(function(data){
     vm.hunt=data.data;
-    console.log(vm.hunt);
-    //I need to somehow move this function somwhere that it works
-  //   for(var i=0; i<vm.tasks; i++){
-  //   if (vm.tasks[i].hunt_id===Number(vm.params)){
-  //       console.log("HERE" , vm.tasks[i]);
-  //     }
-  //   }
+    TaskService.hunt = vm.hunt;
   })
   .catch(function (err){
     vm.message(err);

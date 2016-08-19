@@ -8,25 +8,25 @@
       <div class="list list-inset">
         <!-- name of the task and description -->
         <label class="item item-input">
-          <input type="text" placeholder="Task Title" ng-model="ATC.task.name" required>
+          <input type="text" placeholder="Task Title" ng-model="ATC.name" required>
         </label>
       </div>
       <div class="list list-inset">
         <!-- xp value -->
         <label class="item item-input">
-          <input type="number" placeholder="XP Value" ng-model="ATC.task.xp" required>
+          <input type="number" placeholder="XP Value" ng-model="ATC.xp" required>
         </label>
       </div>
       <div class="list list-inset">
         <!-- prerequisite level -->
         <label class="item item-input">
-          <input type="number" placeholder="XP Required" ng-model="ATC.task.level_available" required>
+          <input type="number" placeholder="XP Required" ng-model="ATC.level_available" required>
         </label>
       </div>
       <!-- isUnique -->
       <h3 style="width:80%;margin:0;float:left;">Is Task Unique?</h3>
       <label class="toggle">
-        <input type="checkbox" ng-model="task.unique" ng-init="ATC.task.unique=false">
+        <input type="checkbox" ng-model="unique" ng-init="ATC.unique=false">
         <div class="track">
           <div class="handle"></div>
         </div>
