@@ -42,7 +42,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
   .state('huntmaster-view',{
     url: '/huntmaster-view/:hunt_id',
     templateUrl: './templates/huntmaster-view.html',
-    controller: 'TaskController',
+    controller: 'HuntmasterController',
     controllerAs: 'TC'
   })
   .state('hunter-view', {
