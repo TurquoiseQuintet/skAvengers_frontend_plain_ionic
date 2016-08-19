@@ -364,9 +364,11 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
   sv.user = [];
   sv.huntTasks = [];
   sv.userTasks = [];
+  sv.toAdd = [];
   sv.getTasks = function(){
     sv.hunter=($location.path()).split("/")[2];
     sv.hunt=($location.path()).split("/")[3];
+    sv.toAdd.length = 0;
     sv.user.length=0;
   $http.get('https://skavengers.herokuapp.com/users/' + sv.hunter)
   .then(function(data) {
@@ -394,23 +396,20 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
         }
       }
     }
-    sv.toDelete = [];
     for (i = 0; i < sv.huntTasks.length; i++) {
-      console.log(sv.huntTasks[i].completed);
-      if ((sv.huntTasks[i].completed == true) || (sv.huntTasks[i].name === null)) {
-        sv.toDelete.push(i);
+      console.log(sv.huntTasks[i].completed, sv.huntTasks[i].name);
+      if ((sv.huntTasks[i].completed !== true) && (sv.huntTasks[i].name !== null)) {
+        sv.toAdd.push(sv.huntTasks[i]);
       }
     }
-    for (i = 0; i < sv.toDelete.length; i++) {
-      sv.huntTasks.splice(sv.toDelete[i], 1);
-    }
-    console.log(sv.huntTasks);
+    console.log(sv.toAdd);
   })
   .catch(function(err) {
     console.log(err);
   });
 };
   sv.submit = function(user_id, task_id) {
+    console.log(user_id, task_id);
     $http.put('https://skavengers.herokuapp.com/submit/' + user_id +'/' + task_id)
     .then(function() {
       $state.go('user');
