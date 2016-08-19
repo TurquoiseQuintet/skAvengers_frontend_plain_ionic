@@ -1,7 +1,7 @@
 <ion-view title="register" class="bgimg">
   <app-header></app-header>
     <ion-content class="content">
-      <form  name="registerForm" ng-submit="SUC.signUp(SUC.username, SUC.password, SUC.email, SUC.avatar, SUC.phone)">
+      <form  name="registerForm" ng-submit="SUC.signUp(SUC.username, SUC.password, SUC.email, SUC.avatar, SUC.phone); SUC.username=''; SUC.password=''; SUC.email=''; SUC.phone=''; SUC.avatar;">
       <div class="list list-inset">
         <label class="item item-input">
           <input type="text" ng-model="SUC.username" placeholder="Username" required>

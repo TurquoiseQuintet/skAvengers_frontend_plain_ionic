@@ -5,7 +5,7 @@
 		<div class="list list-inset">
 
 			<h3><!-- current name of the hunt --></h3>
-		
+
 			<label class="item item-input">
 				<input type="text"  ng-model="EHC.HuntTitle" ng-value="EHC.hunttoedit[0].name">
 			</label>
@@ -39,7 +39,7 @@
 		<div class="button-bar">
 			<!-- Button to add task to hunt, leads to hunt view -->
 			<!-- button to submit creation and redirect to user -->
-			<button class="button button-large button-balanced" name="submitHunt" ng-click="EHC.EditHunt(EHC.HuntTitle, EHC.ExpirationDate)">Submit</button>
+			<button class="button button-large button-balanced" name="submitHunt" ng-click="EHC.EditHunt(EHC.HuntTitle, EHC.ExpirationDate); EHC.HuntTitle=''; EHC.ExpirationDate=''">Submit</button>
 		</div>
 	</ion-content>
 	<app-footer></app-footer>

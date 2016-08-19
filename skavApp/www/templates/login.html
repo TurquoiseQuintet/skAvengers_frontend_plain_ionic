@@ -11,7 +11,7 @@
         <input type="password" ng-model="LIC.password" placeholder="Password">
       </label>
     </div>
-    <button class="button button-large button-positive" ng-click="LIC.login(LIC.username, LIC.password)">Submit</button>
+    <button class="button button-large button-positive" ng-click="LIC.login(LIC.username, LIC.password); LIC.username=''; LIC.password='';">Submit</button>
   </ion-content>
   <app-footer><app-footer>
 </ion-view>

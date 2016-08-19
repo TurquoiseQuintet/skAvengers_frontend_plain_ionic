@@ -2,7 +2,7 @@
   <app-header></app-header>
   <app-subheader></app-subheader>
   <ion-content class="content">
-    <form name="newHuntForm" ng-submit="NHC.create(NHC.name, NHC.expiration)">
+    <form name="newHuntForm" ng-submit="NHC.create(NHC.name, NHC.expiration);NHC.name=''; NHC.expiration=''; NHC.searchText='';">
     <div class="list list-inset">
       <!-- name for the hunt -->
       <label class="item item-input">
