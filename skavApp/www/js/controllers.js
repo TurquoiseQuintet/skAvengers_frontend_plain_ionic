@@ -145,16 +145,20 @@ app.controller('HuntmasterController', [ '$window', '$state','HuntmasterService'
   vm.$state = $state;
   vm.params=($location.path()).split("/")[2];
   vm.huntUser = [];
-  $http.get('https://skavengers.herokuapp.com/hunts/users/' + vm.params)
-  .then(function(data) {
-    vm.huntUser.length = 0;
-    for (var i = 0; i < data.data.length; i++) {
-      vm.huntUser.push(data.data[i]);
-    }
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
+  vm.getHuntUser = function(){
+    $http.get('https://skavengers.herokuapp.com/hunts/users/' + vm.params)
+    .then(function(data) {
+      vm.huntUser.length = 0;
+      for (var i = 0; i < data.data.length; i++) {
+        vm.huntUser.push(data.data[i]);
+      }
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+  };
+
+
 }]);
 
 app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){
