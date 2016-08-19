@@ -60,6 +60,7 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   // vm.$state = $state;
   vm.hunt_id=($location.path()).split("/")[2];
   console.log(vm.hunt_id);
+  TaskService.posttask();
 
 
   $http.get('https://skavengers.herokuapp.com/hunts/' + vm.hunt_id)
@@ -80,6 +81,13 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   // vm.takeAndSubmit = sms.takeAndSubmit;
 
 }]);
+app.controller('AlertController', ['$window', '$state', 'AlertService', '$http', '$location', function($window, $state, AlertService, $http, $location){
+  var vm = this;
+  vm.$state = $state;
+  vm.hunt_id = ($location.path()).split("/")[2];
+  console.log("it should be ", vm.hunt_id);
+}]);
+
 app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '$location', 'sendMessageService', function($window, $state, HuntService, $http, $location, sms){
   var vm = this;
   // vm.$state = $state;
@@ -122,11 +130,11 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   var vm=this;
   vm.$state=$state;
   vm.EditHunt=HuntService.editHunt;
-  vm.id=$location.path().split("/")[2];
+  // vm.id=$location.path().split("/")[2];
   vm.tasks=TaskService.users;
   vm.users=UserService.usershunt;
   vm.delete=TaskService.deleteTask;
-  vm.userdelte=UserService.deleteUser;
+  vm.deleteUser=UserService.deleteUser;
   TaskService.huntTasks();
   UserService.huntUsers();
 }]);
@@ -160,6 +168,7 @@ app.controller('HuntmasterController', [ '$window', '$state','HuntmasterService'
       for (var i = 0; i < data.data.length; i++) {
         vm.huntUsers.push(data.data[i]);
       }
+      console.log(vm.huntUsers);
     })
     .catch(function(err) {
       console.log(err);
@@ -176,7 +185,8 @@ app.controller('SubmitController',['SubmitService', '$state',  '$location', '$ht
   vm.hunter=($location.path()).split("/")[2];
   vm.hunt=($location.path()).split("/")[3];
   vm.user = SubmitService.user;
+  vm.getTasks = SubmitService.getTasks;
   vm.huntTasks = SubmitService.huntTasks;
-  vm.userTasks = SubmitService.userTasks;
   vm.submit = SubmitService.submit;
+  SubmitService.getTasks();
 }]);
