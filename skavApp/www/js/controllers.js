@@ -124,10 +124,12 @@ app.controller('FooterController', ['$state', function($state){
 
 
 
-app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskService','UserServices', function($state, HuntService, $location, TaskService, UserService){
+app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskService','UserServices','UserInfo', function($state, HuntService, $location, TaskService, UserService, UserInfo){
   var vm=this;
   vm.$state=$state;
+  vm.usersToAdd =[];
   vm.EditHunt=HuntService.editHunt;
+  vm.deleteUserFromHunt = UserService.deleteUserFromHunt;
   // vm.id=$location.path().split("/")[2];
   // vm.currenthunt=HuntService.getHunt;
   vm.hunttoedit=HuntService.hunttoedit;
@@ -141,6 +143,8 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   HuntService.getHunt();
   UserService.getAllUsers();
   UserService.huntUsers();
+  UserInfo.getInfo();
+  vm.currentUserId = UserInfo.id
   vm.goback=HuntService.goback;
 
 }]);

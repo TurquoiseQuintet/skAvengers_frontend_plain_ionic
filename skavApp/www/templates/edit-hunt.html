@@ -30,7 +30,7 @@
 			<h3> Current Users: </h3>
 			<ul>
 				<li ng-repeat="user in EHC.users">
-				<button class="button button-small button-balanced" ng-click="EHC.deleteUser(user.id)" style = "margin-bottom: 1px;"> uninvite {{user.username}} </button>
+				<button class="button button-small button-balanced" ng-click="EHC.deleteUserFromHunt(user.id, EHC.hunttoedit[0].id)" style = "margin-bottom: 1px;"> uninvite {{user.username}} </button>
 			</li>
 			</ul>
 
@@ -43,13 +43,20 @@
         <img ng-src="{{user.avatar}}" style="height:120px; width:auto">
         <h3>{{user.username}}</h3>
         <div class="item item-divider">
-          <button class="button button-block button-balanced" name="add" ng-click="user.marked = true; EHC.addUser(user.id); EHC.searchText=''">Add</button>
+          <button class="button button-block button-balanced" name="add" ng-click="user.marked = true; EHC.addUser(user.id); EHC.searchText='';EHC.usersToAdd.push(user.username)">Add</button>
           <i class="icon ion-checkmark-round" ng-show="user.marked">Added!</i>
         </div>
       </div>
     </div>
+		<ul>
+			<h4>Users to add:</h4>
+			<li ng-repeat="username in EHC.usersToAdd">
+				<h4>{{username}}</h4>
+			</li>
+		</ul>
+
 		<label class="item item-input">
-			<input type="text" ng-model="EHC.searchText" placeholder="Add Users">
+			<input type="text" ng-model="EHC.searchText" placeholder="Search By Username">
 		</label>
 		<div class="button-bar">
 			<!-- Button to add task to hunt, leads to hunt view -->
