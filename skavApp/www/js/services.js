@@ -176,6 +176,12 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
         sv.message("Make sure you own the hunt you are trying to edit");
       });
   };
+
+
+  sv.goback=function(){
+    $state.go('huntmaster-view', {hunt_id: sv.hunt_id = ($location.path()).split("/")[1]} );
+  };
+
 }]);
 
 
@@ -402,7 +408,10 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
     .catch(function(err) {
       console.log(err);
     });
-  }
+  };
+  sv.goback=function(){
+    $state.go('huntmaster-view', {hunt_id: sv.hunt_id = ($location.path()).split("/")[3]} );
+  };
 }]);
 
 //picture services ------------------------------->

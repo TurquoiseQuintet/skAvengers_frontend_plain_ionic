@@ -140,6 +140,7 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   HuntService.getHunt();
   UserService.getAllUsers();
   UserService.huntUsers();
+  vm.goback=HuntService.goback;
 
 }]);
 
@@ -188,4 +189,5 @@ app.controller('SubmitController',['SubmitService', '$state',  '$location', '$ht
   vm.huntTasks = SubmitService.huntTasks;
   vm.submit = SubmitService.submit;
   SubmitService.getTasks();
+  vm.goback=SubmitService.goback;
 }]);

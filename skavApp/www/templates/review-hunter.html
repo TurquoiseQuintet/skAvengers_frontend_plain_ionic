@@ -6,6 +6,7 @@
     <div ng-repeat="task in SC.huntTasks | orderBy:'level_available'" style="margin-bottom: 1px;">
 			<button class="button button-large" ng-click="SC.submit(SC.user[0].id, task.id)">Confirm Find for: {{task.name}}</button>
     </div>
+		<button class="button button-large" ng-click="SC.goback()"> back </button>
   </ion-content>
 	<app-footer></app-footer>
 </ion-view>
