@@ -158,9 +158,7 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
         // xp_to_level_up: xp_to_level_up
       })
       .then(function(data){
-        console.log(sv.usersEdit);
         if(sv.usersEdit.length > 0){
-          console.log('POST');
           return $http.post('https://skavengers.herokuapp.com/hunts/users/' + $location.path().split("/")[2], {users: sv.usersEdit})
         }else{
           return 'nothing';
@@ -169,7 +167,6 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
       })
       .then(function(data) {
         sv.usersEdit.length =0;
-        console.log(data);
         $state.go('user');
       })
       .catch(function(err) {
@@ -236,7 +233,6 @@ app.service('TaskService', ['$http', '$window', '$location', '$state', function(
   };
 
   sv.posttask = function(_name, _xp, _level_available, _unique) {
-    console.log('test' +_name + _xp + _level_available + _unique);
     var sv = this;
     sv.hunt_id = ($location.path()).split("/")[2];
     $http.post('https://skavengers.herokuapp.com/tasks',{
@@ -247,8 +243,6 @@ app.service('TaskService', ['$http', '$window', '$location', '$state', function(
       hunt_id: sv.hunt_id
     })
       .then(function(data) {
-        console.log(data);
-        console.log("hello", sv.hunt_id);
         if(!confirm('Task Added! Add another?')){
           $state.go('huntmaster-view', {hunt_id: sv.hunt_id});
         }
@@ -293,7 +287,6 @@ sv.huntTasks=function(){
 app.service('AlertService', ['$http', '$window', '$location', function($http, $window, $location){
   var sv = this;
   sv.hunt_id = ($location.path()).split("/")[2];
-  console.log("this is it ", sv.hunt_id);
 }]);
 
 
@@ -397,19 +390,16 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
       }
     }
     for (i = 0; i < sv.huntTasks.length; i++) {
-      console.log(sv.huntTasks[i].completed, sv.huntTasks[i].name);
       if ((sv.huntTasks[i].completed !== true) && (sv.huntTasks[i].name !== null)) {
         sv.toAdd.push(sv.huntTasks[i]);
       }
     }
-    console.log(sv.toAdd);
   })
   .catch(function(err) {
     console.log(err);
   });
 };
   sv.submit = function(user_id, task_id) {
-    console.log(user_id, task_id);
     $http.put('https://skavengers.herokuapp.com/submit/' + user_id +'/' + task_id)
     .then(function() {
       $state.go('user');
@@ -515,10 +505,8 @@ sv.info = {
   number: 0
 };
 sv.getTasks = function(){
-  console.log('id' + sv.hunt_id);
   $http.get('https://skavengers.herokuapp.com/tasks/hunter/hunt/' + sv.hunt_id)
   .then(function(data){
-    console.log(data);
     sv.info.number = data.data.huntMasterNumber;
     sv.info.experience = data.data.experience;
     sv.tasks.length = 0;
@@ -545,7 +533,6 @@ app.service('HuntmasterService', ['$http', function($http){
         for (var i = 0; i < data.data.length; i++) {
           sv.hunts.push(data.data[i]);
         }
-        console.log(sv.hunts);
       })
       .catch(function(err) {
         //handle it
