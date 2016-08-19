@@ -1,9 +1,11 @@
 'use strict';
  // sign in controller -------------------------->
-app.controller('SignUpController', ['SignUpService', '$state', function(SignUpService, $state){
+app.controller('SignUpController', ['SignUpService', '$state', 'sendMessageService', function(SignUpService, $state, sms){
   var vm=this;
   vm.$state = $state;
+  vm.avatar = sms.profilePictureURL;
   vm.signUp= SignUpService.signup;
+  vm.takeProfilePicture = sms.takeProfilePicture;
 }]);
 // Log in controller -------------------------->
 app.controller('LogInController',['LogInService', 'sendMessageService','$state',  function(LogInService, sms, $state){
