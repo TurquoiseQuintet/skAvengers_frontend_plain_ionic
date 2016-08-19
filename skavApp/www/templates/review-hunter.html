@@ -1,11 +1,11 @@
-<ion-view title="review-hunter" class="bgimg">
+<ion-view title="review-hunter">
 	<app-header></app-header>
 	<app-subheader></app-subheader>
 	<ion-content class="content">
     <h1>{{ SC.user[0].username}}</h1>
     <div ng-repeat="task in SC.huntTasks">
-      <h4 ng-click="SC.submit(SC.user[0].id, task.id)">{{task.name}}</h4>
-      <h4>{{task.completed}}</h4>
+      <h4 class="button button-stable" ng-click="SC.submit(SC.user[0].id, task.id)">{{task.name}}</h4>
+      <h4>Complete: {{task.completed}}</h4>
     </div>
   </ion-content>
 	<app-footer></app-footer>
