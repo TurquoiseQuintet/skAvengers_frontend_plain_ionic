@@ -63,6 +63,7 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
   sv.hunts = [];
   sv.master = [];
   sv.users = [];
+  sv.usersEdit =[];
   sv.getAllHunts = function() {
     $http.get('https://skavengers.herokuapp.com/hunts/all')
       .then(function(data) {
@@ -141,22 +142,35 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
         }
       })
       .then(function(data) {
-        $location.path('/user');
+        $state.go('user');
       })
       .catch(function(err) {
         sv.message("a problem with the delete. Make sure you own the hunt");
       });
   };
-
+  sv.addUser = function(user_id){
+    sv.usersEdit.push(user_id);
+  };
   sv.editHunt = function(name, expiration_time, xp_to_level_up) {
     $http.put('https://skavengers.herokuapp.com/hunts/'+ $location.path().split("/")[2], {
           name:name,
           expiration: expiration_time
         // xp_to_level_up: xp_to_level_up
       })
+      .then(function(data){
+        console.log(sv.usersEdit);
+        if(sv.usersEdit.length > 0){
+          console.log('POST');
+          return $http.post('https://skavengers.herokuapp.com/hunts/users/' + $location.path().split("/")[2], {users: sv.usersEdit})
+        }else{
+          return 'nothing';
+        }
+
+      })
       .then(function(data) {
+        sv.usersEdit.length =0;
         console.log(data);
-        $location.path('user');
+        $state.go('user');
       })
       .catch(function(err) {
         sv.message("Make sure you own the hunt you are trying to edit");
@@ -342,9 +356,9 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
   sv.user = [];
   sv.huntTasks = [];
   sv.userTasks = [];
-  sv.hunter=($location.path()).split("/")[2];
-  sv.hunt=($location.path()).split("/")[3];
   sv.getTasks = function(){
+    sv.hunter=($location.path()).split("/")[2];
+    sv.hunt=($location.path()).split("/")[3];
     sv.user.length=0;
   $http.get('https://skavengers.herokuapp.com/users/' + sv.hunter)
   .then(function(data) {

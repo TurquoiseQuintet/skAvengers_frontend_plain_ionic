@@ -22,7 +22,7 @@
 			<h3>Current Tasks:</h3>
 			<ul>
 				<li ng-repeat="task in EHC.tasks">
-					<button class="button button-small button-balanced" ng-click="EHC.delete(task.id)"> delete {{task.name}} </button>
+					<button class="button button-small button-balanced" ng-click="EHC.delete(task.id)" style = "margin-bottom: 1px;"> delete {{task.name}} </button>
 				</li>
 			</ul>
 		</div>
@@ -30,12 +30,27 @@
 			<h3> Current Users: </h3>
 			<ul>
 				<li ng-repeat="user in EHC.users">
-				<button class="button button-small button-balanced" ng-click="EHC.deleteUser(user.id)"> uninvite {{user.username}} </button>
+				<button class="button button-small button-balanced" ng-click="EHC.deleteUser(user.id)" style = "margin-bottom: 1px;"> uninvite {{user.username}} </button>
 			</li>
 			</ul>
 
 
 		</div>
+
+		<div class="card" ng-repeat="user in EHC.allUsers | filter: {username: EHC.searchText}" ng-show="EHC.searchText.length > 0">
+
+      <div class="item item-avatar" ng-hide="user.id===EHC.currentUserId">
+        <img ng-src="{{user.avatar}}" style="height:120px; width:auto">
+        <h3>{{user.username}}</h3>
+        <div class="item item-divider">
+          <button class="button button-block button-balanced" name="add" ng-click="user.marked = true; EHC.addUser(user.id); EHC.searchText=''">Add</button>
+          <i class="icon ion-checkmark-round" ng-show="user.marked">Added!</i>
+        </div>
+      </div>
+    </div>
+		<label class="item item-input">
+			<input type="text" ng-model="EHC.searchText" placeholder="Add Users">
+		</label>
 		<div class="button-bar">
 			<!-- Button to add task to hunt, leads to hunt view -->
 			<!-- button to submit creation and redirect to user -->

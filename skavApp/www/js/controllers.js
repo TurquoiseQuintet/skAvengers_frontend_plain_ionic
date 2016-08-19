@@ -135,16 +135,16 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   vm.hunttoedit=HuntService.hunttoedit;
   vm.tasks=TaskService.users;
   vm.users=UserService.usershunt;
+  vm.allUsers=UserService.users;
   vm.delete=TaskService.deleteTask;
   vm.deleteUser=UserService.deleteUser;
+  vm.addUser = HuntService.addUser;
   TaskService.huntTasks();
   UserService.huntUsers();
   HuntService.getHunt();
+  UserService.getAllUsers();
 }]);
 
-app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){
-  var vm=this;
-}]);
 
 
 app.controller('HunterViewController', ['$state', 'hunterViewService', '$location', 'sendMessageService', 'UserInfo', function($state, hvs, $location, sms, UserInfo){
@@ -185,10 +185,6 @@ app.controller('HuntmasterController', [ '$window', '$state','HuntmasterService'
 app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){
   var vm=this;
   vm.$state = $state;
-  vm.hunter=($location.path()).split("/")[2];
-  vm.hunt=($location.path()).split("/")[3];
-  vm.experience=($location.path()).split("/")[4];
-  console.log(vm.experience);
   vm.user = SubmitService.user;
   vm.getTasks = SubmitService.getTasks;
   vm.huntTasks = SubmitService.huntTasks;

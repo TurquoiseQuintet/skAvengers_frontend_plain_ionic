@@ -2,16 +2,22 @@
 	<app-header></app-header>
 	<app-subheader></app-subheader>
 	<ion-content class="content">
-		  <div class="list-card" ng-repeat="user in TC.huntUsers">
-				<div class="item item-avatar">
-					<h3 class="col-xs-8" ng-click="TC.$state.go('review-hunter', {hunter_id: user.id, hunt_id: TC.params, xp: user.experience})">{{ user.username }}</h3>
-					<h3 class="col-xs-4">{{ user.experience }}</h3>
-					<img ng-src="{{user.avatar}}" style="height:90px; width: auto"/>
-				</div>
-      </div>
+			<div class="card" ng-repeat="user in TC.huntUsers">
+
+	      <div class="item item-avatar">
+	        <img ng-src="{{user.avatar}}" style="height:120px; width:auto">
+					<h3 style="float:right">
+						XP: {{user.experience}}
+					</h3>
+	        <h3>{{user.username}}</h3>
+	        <div class="item item-divider">
+	          <button class="button button-block button-balanced" ng-click="TC.$state.go('review-hunter', {hunter_id: user.id, hunt_id: TC.params, xp: user.experience})">View</button>
+	        </div>
+	      </div>
+	    </div>
 			<div class="button-bar">
 				<button class="button button-large button-positive" ng-click="TC.$state.go('edit-hunt', {hunt_id: TC.params})">Edit Hunt</button>
-				<button class="button button-large button-balanced" ng-click="TC.$state.go('new-task', {hunt_id: TC.params})">Add Task</button>
+				<button class="button button-large button-balanced" ng-click="TC.$state.go('new-task', {hunt_id: TC.params})">Add Tasks</button>
 			</div>
   </ion-content>
 	<app-footer></app-footer>
