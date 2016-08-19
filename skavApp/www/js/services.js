@@ -214,12 +214,18 @@ app.service('TaskService', ['$http', '$window', '$location', '$state', function(
       });
   };
 
-  sv.posttask = function() {
+  sv.posttask = function(_name, _xp, _level_available, _unique) {
     var sv = this;
     sv.hunt_id = ($location.path()).split("/")[2];
-    sv.completed = false;
-    $http.post('https://skavengers.herokuapp.com/tasks')
+    $http.post('https://skavengers.herokuapp.com/tasks',{
+      name: _name,
+      xp: _xp,
+      level_available: _level_available,
+      unique: _unique,
+      hunt_id: sv.hunt_id
+    })
       .then(function(data) {
+        console.log(data);
         console.log("hello", sv.hunt_id);
         if(!confirm('Task Added! Add another?')){
           $state.go('huntmaster-view', {hunt_id: sv.hunt_id});

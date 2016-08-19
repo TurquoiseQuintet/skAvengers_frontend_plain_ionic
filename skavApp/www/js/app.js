@@ -99,3 +99,6 @@ app.config(function($stateProvider, $urlRouterProvider) {
 app.config(['$httpProvider', function($httpProvider){
   $httpProvider.interceptors.push('authInterceptor');
 }]);
+app.config(function($ionicConfigProvider) {
+  $ionicConfigProvider.views.maxCache(0);
+});
