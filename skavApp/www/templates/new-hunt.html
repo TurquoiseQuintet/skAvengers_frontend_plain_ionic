@@ -15,7 +15,6 @@
       </label>
     </div>
     <div class="list list-inset">
-      <!-- select to add hunter(s) -->
       <label class="item item-input">
         <input type="text" ng-model="searchText" placeholder="Invite Players">
       </label>
@@ -25,7 +24,7 @@
           <h3>{{user.username}}</h3>
           <div class="item item-divider">
 						<button class="button button-block button-balanced" name="add" ng-click="user.marked = true; NHC.addUser(user.id)">Add</button>
-						<i class="icon ion-checkmark-round" ng-show="user.marked"></i>
+						<i class="icon ion-checkmark-round" ng-show="user.marked">Added!</i>
 				 	</div>
         </div>
       </div>
