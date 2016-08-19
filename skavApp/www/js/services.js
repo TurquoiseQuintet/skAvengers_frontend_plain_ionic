@@ -14,7 +14,6 @@ app.service('SignUpService', ['$http', '$window', '$location', function($http, $
         console.log(response);
         //path to login or does signup log you in and path to user home?
         $window.localStorage.token = response.data.token;
-
         $location.path('/user');
       })
       .catch(function(err) {
