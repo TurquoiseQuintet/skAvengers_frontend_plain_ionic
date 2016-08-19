@@ -25,14 +25,14 @@
     <!-- isUnique -->
     <h3 style="width:80%;margin:0;float:left;">Is Task Unique?</h3>
     <label class="toggle">
-      <input type="checkbox" ng-model="task.unique" ng-init="task.unique=false">
+      <input type="checkbox" ng-model="task.unique" ng-init="ATC.task.unique=false">
       <div class="track">
         <div class="handle"></div>
       </div>
     </label>
 
     <!-- Button to add task(s) -->
-    <button class="button button-large button-positive" name="submitTask" ng-click="ATC.newTask(task, hunt); ATC.$state.go('huntmaster-view', {hunt_id: ATC.hunt.id})">Add to Hunt</button>
+    <button class="button button-large button-positive" name="submitTask" ng-click="ATC.newTask(ATC.task, hunt); ATC.$state.go('huntmaster-view', {hunt_id: ATC.hunt.id})">Add to Hunt</button>
     <!-- button to return to user page -->
     <button class="button button-large button-assertive" ng-click="ATC.$state.go('huntmaster-view', {hunt_id: ATC.hunt.id})">View Hunt</button>
   </ion-content>
