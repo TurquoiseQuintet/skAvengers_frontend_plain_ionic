@@ -122,7 +122,7 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   var vm=this;
   vm.$state=$state;
   vm.EditHunt=HuntService.editHunt;
-  vm.id=$location.path().split("/")[2];
+  // vm.id=$location.path().split("/")[2];
   vm.tasks=TaskService.users;
   vm.users=UserService.usershunt;
   vm.delete=TaskService.deleteTask;

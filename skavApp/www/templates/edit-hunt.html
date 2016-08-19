@@ -18,16 +18,21 @@
 		<hr>
 		<div>
 			<h3>Current Tasks:</h3>
-			<ul ng-repeat="task in EHC.tasks">
+			<ul>
+				<li ng-repeat="task in EHC.tasks">
 				<h4> {{task.name}} </h4>
+				{{task}}
 				<button class="button button-small button-balanced" ng-click="EHC.delete(task.id)"> delete task from hunt </button>
+			</li>
 			</ul>
 		</div>
 		<div>
 			<h3> Current Users: </h3>
-			<ul ng-repeat="user in EHC.users">
+			<ul>
+				<li ng-repeat="user in EHC.users">
 				<h4> {{user.username}} <h4>
 				<button nc-click="EHC.deleteUser(user.id)"> remove user from hunt </button>
+			</li>
 			</ul>
 
 

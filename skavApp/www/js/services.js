@@ -309,10 +309,10 @@ app.service('UserServices', ['$http', '$window', '$location', 'UserInfo', functi
   };
 
   sv.huntUsers=function(){
-    UserInfo.getInfo();
-    $http.get('https://skavengers.herokuapp.com/users/'+UserInfo.userInfo.id)
+    console.log($location.path().split("/")[2]);
+    $http.get('https://skavengers.herokuapp.com/users/'+$location.path().split("/")[2])
     .then(function(data){
-      console.log(data);
+      console.log("LOOK HERE:  ", data);
       sv.usershunt.length = 0;
       for(var i=0; i<data.data.length; i++){
         sv.usershunt.push(data.data[i]);
