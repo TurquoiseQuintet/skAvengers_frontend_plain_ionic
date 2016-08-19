@@ -7,19 +7,19 @@
 		<div class="list list-inset">
 			<!-- name of the task and description -->
       <label class="item item-input">
-        <input type="text" placeholder="Task Title" ng-model="task.name">
+        <input type="text" placeholder="Task Title" ng-model="ATC.task.name">
       </label>
     </div>
 		<div class="list list-inset">
 			<!-- xp value -->
       <label class="item item-input">
-        <input type="number" placeholder="XP Value" ng-model="task.xp">
+        <input type="number" placeholder="XP Value" ng-model="ATC.task.xp">
       </label>
     </div>
 		<div class="list list-inset">
 			<!-- prerequisite level -->
       <label class="item item-input">
-        <input type="number" placeholder="XP Required" ng-model="task.level_available">
+        <input type="number" placeholder="XP Required" ng-model="ATC.task.level_available">
       </label>
     </div>
 		<!-- isUnique -->
@@ -32,9 +32,9 @@
 </label>
 
 		<!-- Button to add task(s) -->
-		<button class="button button-large button-positive" name="submitTask"  ng-click="ATC.newTask(task, hunt)">Add to Hunt</button>
+		<button class="button button-large button-positive" name="submitTask"  ng-click="ATC.newTask(ATC.task, ATC.hunt)">Add to Hunt</button>
 		<!-- button to return to user page -->
-		<button class="button button-large button-assertive" ng-click="ATC.$state.go('huntmaster-view/' + (ATC.hunt.id))">Back to User</button>
+		<button class="button button-large button-assertive" ng-click="ATC.$state.go('huntmaster-view', {hunt_id: ATC.hunt_id})">Back to User</button>
 	</ion-content>
 	<!-- <app-footer></app-footer> -->
 
