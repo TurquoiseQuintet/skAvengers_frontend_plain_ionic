@@ -64,9 +64,9 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
   sv.master = [];
   sv.users = [];
   sv.getAllHunts = function() {
-    // console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
       .then(function(data) {
+        sv.hunts.length =0;
         for (var i = 0; i < data.data.length; i++) {
           sv.hunts.push(data.data[i]);
         }
