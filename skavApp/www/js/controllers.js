@@ -78,6 +78,13 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   // vm.takeAndSubmit = sms.takeAndSubmit;
 
 }]);
+app.controller('AlertController', ['$window', '$state', 'AlertService', '$http', '$location', function($window, $state, AlertService, $http, $location){
+  var vm = this;
+  vm.$state = $state;
+  vm.hunt_id = ($location.path()).split("/")[2];
+  console.log("it should be ", vm.hunt_id);
+}]);
+
 app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '$location', 'sendMessageService', function($window, $state, HuntService, $http, $location, sms){
   var vm = this;
   // vm.$state = $state;

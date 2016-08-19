@@ -220,13 +220,8 @@ app.service('TaskService', ['$http', '$window', '$location', '$state', function(
     console.log(task);
     $http.post('https://skavengers.herokuapp.com/tasks', task)
       .then(function(data) {
-        console.log(data);
-        if(confirm("success! Would you like to add another task?")){
-          $state.go('new-task', {hunt_id: task.hunt_id.id});
-        } else {
-          $state.go('huntmaster-view', {hunt_id: task.hunt_id.id});
-        }
-
+        console.log("hello", task.hunt_id);
+        $state.go('alert', {"hunt_id": task.hunt_id});
       })
       .catch(function(err) {
         console.log("err", err);
@@ -264,6 +259,13 @@ sv.huntTasks=function(){
 };
 
 
+}]);
+
+
+app.service('AlertService', ['$http', '$window', '$location', function($http, $window, $location){
+  var sv = this;
+  sv.hunt_id = ($location.path()).split("/")[2];
+  console.log("this is it ", sv.hunt_id);
 }]);
 
 
