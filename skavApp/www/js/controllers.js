@@ -1,9 +1,11 @@
 'use strict';
  // sign in controller -------------------------->
-app.controller('SignUpController', ['SignUpService', '$state', function(SignUpService, $state){
+app.controller('SignUpController', ['SignUpService', '$state', 'sendMessageService', function(SignUpService, $state, sms){
   var vm=this;
   vm.$state = $state;
+  vm.avatar = sms.profilePictureURL;
   vm.signUp= SignUpService.signup;
+  vm.takeProfilePicture = sms.takeProfilePicture;
 }]);
 // Log in controller -------------------------->
 app.controller('LogInController',['LogInService', 'sendMessageService','$state',  function(LogInService, sms, $state){
@@ -107,6 +109,26 @@ app.controller('FooterController', ['$state', function($state){
   var vm = this;
   vm.$state = $state;
 }]);
+
+
+
+app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskService','UserServices', function($state, HuntService, $location, TaskService, UserService){
+  var vm=this;
+  vm.$state=$state;
+  vm.EditHunt=HuntService.editHunt;
+  vm.id=$location.path().split("/")[2];
+  vm.tasks=TaskService.users;
+  vm.delete=TaskService.deleteTask;
+  vm.userdelte=UserService.deleteUser;
+  TaskService.huntTasks();
+  UserService.huntUsers();
+}]);
+
+app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){
+  var vm=this;
+}]);
+
+
 app.controller('HunterViewController', ['$state', 'hunterViewService', '$location', 'sendMessageService', '$window', function($state, hvs, $location, sendMessageService, $window){
   var vm = this;
   vm.$state = $state;
