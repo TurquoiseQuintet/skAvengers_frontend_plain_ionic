@@ -66,6 +66,7 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
     // console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
       .then(function(data) {
+        sv.hunts.length = 0;
         for (var i = 0; i < data.data.length; i++) {
           sv.hunts.push(data.data[i]);
         }
@@ -78,6 +79,7 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
   sv.masterOf = function() {
     $http.get('https://skavengers.herokuapp.com/hunts/mine')
       .then(function(data) {
+        sv.master.length = 0;
         for (var i = 0; i < data.data.length; i++) {
           sv.master.push(data.data[i]);
         }
@@ -170,9 +172,11 @@ app.service('TaskService', ['$http', '$window', '$location', function($http, $wi
 
   var sv = this;
   sv.users=[];
+  sv.tasks = [];
   sv.getAlltasks = function() {
     $http.get('https://skavengers.herokuapp.com/tasks')
       .then(function(data) {
+        sv.tasks.length = 0;
         for(var i = 0; i < data.data; i ++){
           sv.tasks.push(data.data[i]);
         }
@@ -243,6 +247,7 @@ sv.huntTasks=function(){
   $http.get('http://skavengers.herokuapp.com/tasks/hunt/'+ $location.path().split("/")[2])
   .then(function(data){
     console.log(data);
+    sv.users.length = 0;
     for(var i=0; i<data.data.length; i++){
       sv.users.push(data.data[i]);
       console.log(sv.users);
@@ -284,6 +289,7 @@ app.service('UserServices', ['$http', '$window', '$location', function($http, $w
   sv.getAllUsers = function() {
     $http.get('https://skavengers.herokuapp.com/users')
       .then(function(data) {
+        sv.users.length = 0;
         for(var i = 0; i < data.data.length; i++){
           sv.users.push(data.data[i]);
         }
@@ -306,6 +312,7 @@ app.service('UserServices', ['$http', '$window', '$location', function($http, $w
   sv.huntUsers=function(){
     $http.get('https://skavengers.herokuapp.com/users/'+ $location.path().split("/")[2])
     .then(function(data){
+      sv.usershunt.length = 0;
       for(var i=0; i<data.data.length; i++){
         sv.usershunt.push(data.data[i]);
         console.log(sv.usershunt);
@@ -331,12 +338,14 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
     return $http.get('https://skavengers.herokuapp.com/tasks/hunt/' + sv.hunt)
   })
   .then(function(data) {
+    sv.huntTasks.length = 0;
     for (var i = 0; i < data.data.length; i++) {
       sv.huntTasks.push(data.data[i]);
     }
     return $http.get('https://skavengers.herokuapp.com/tasks/users_tasks')
   })
   .then(function(data) {
+    sv.userTasks.length = 0;
     for (var i = 0; i < data.data.length; i++) {
       sv.userTasks.push(data.data[i]);
     }
@@ -460,6 +469,7 @@ sv.getTasks = function(){
     console.log(data);
     sv.info.number = data.data.huntMasterNumber;
     sv.info.experience = data.data.experience;
+    sv.tasks.length = 0;
     for(var i = 0; i < data.data.tasks.length; i++){
       sv.tasks.push(data.data.tasks[i]);
     }
@@ -479,6 +489,7 @@ app.service('HuntmasterService', ['$http', function($http){
     // console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
       .then(function(data) {
+        sv.hunts.length = 0;
         for (var i = 0; i < data.data.length; i++) {
           sv.hunts.push(data.data[i]);
         }
@@ -492,6 +503,7 @@ app.service('HuntmasterService', ['$http', function($http){
   sv.masterOf = function() {
     $http.get('https://skavengers.herokuapp.com/hunts/mine')
       .then(function(data) {
+        sv.master.length = 0;
         for (var i = 0; i < data.data.length; i++) {
           sv.master.push(data.data[i]);
         }
