@@ -6,7 +6,7 @@
 				<h3 class="col-xs-8" ng-click="TC.$state.go('review-hunter', {hunter_id: user.id, hunt_id: TC.params})">{{ user.username }}</h3>
 				<h3 class="col-xs-4">{{ user.experience }}</h3>
       </div>
-			<div class="button">
+			<div class="button-bar">
 				<button class="button button-large button-positive" ng-click="TC.$state.go('edit-hunt', {hunt_id: TC.params})">Edit Hunt</button>
 				<button class="button button-large button-balanced" ng-click="TC.$state.go('new-task', {hunt_id: TC.params})">Add Task</button>
 			</div>
