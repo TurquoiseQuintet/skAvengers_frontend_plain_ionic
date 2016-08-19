@@ -136,11 +136,12 @@ app.controller('SubmitController',['SubmitService', '$state',  '$location', '$ht
 }]);
 
 
-app.controller('HunterViewController', ['$state', 'hunterViewService', '$location', 'sendMessageService', 'UserInfo', function($state, hvs, $location, sendMessageService, UserInfo){
+app.controller('HunterViewController', ['$state', 'hunterViewService', '$location', 'sendMessageService', 'UserInfo', function($state, hvs, $location, sms, UserInfo){
   var vm = this;
   vm.$state = $state;
   vm.tasks = hvs.tasks;
   vm.info = hvs.info;
+  vm.takeAndSubmit = sms.takeAndSubmit;
   hvs.hunt_id = ($location.path()).split("/")[2];
   UserInfo.getInfo();
   vm.username = UserInfo.userInfo.username;
