@@ -54,6 +54,8 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   vm.newTask = TaskService.posttask;
   // vm.$state = $state;
   vm.hunt_id=($location.path()).split("/")[2];
+
+
   $http.get('https://skavengers.herokuapp.com/hunts/' + vm.hunt_id)
   .then(function(data){
     vm.hunt=data.data;
@@ -70,6 +72,7 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   });
   // vm.newtask=function(TC.name, TC.xp, TC.location)
   // vm.takeAndSubmit = sms.takeAndSubmit;
+
 }]);
 app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '$location', 'sendMessageService', function($window, $state, HuntService, $http, $location, sms){
   var vm = this;

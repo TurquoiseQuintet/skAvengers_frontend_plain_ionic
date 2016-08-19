@@ -436,7 +436,7 @@ sv.info = {
   number: 0
 };
 sv.getTasks = function(){
-  $http.get('https://skavengers.herokuapp.com/tasks/hunt/' + sv.hunt_id)
+  $http.get('https://skavengers.herokuapp.com/tasks/hunter/hunt/' + sv.hunt_id)
   .then(function(data){
     console.log(data);
     sv.info.number = data.data.huntMasterNumber;
