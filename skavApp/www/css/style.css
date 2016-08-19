@@ -40,14 +40,20 @@ h1 {
 	color: black;
 }
 .myHunts{
+	background-image: url("/img/download.jpeg");
+ border-radius: 25px;
+ height:100px;
+ margin-left:5px;
+ margin-right:8px;
 	margin-top:5px;
 	border-width:1px;
 	border-style:solid;
 	border-color:black;
 	text-align: center;
-	background-color:rgb(215, 216, 218);
+	/*background-color:rgb(215, 216, 218);*/
 	margin-bottom:3px;
 }
+
 /*.title{
 	padding-top:30px;
 	font-family:fantasy;

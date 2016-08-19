@@ -24,6 +24,8 @@
     <input type="submit" class="button button-block button-balanced" name="submitHunt" ng-disabled="newHuntForm.$invalid" value="Submit">
 
     </form>
+    <div ng-repeat="user in NHC.users">
+    </div>
     <div class="card" ng-repeat="user in NHC.getusers | filter: {username: NHC.searchText}" ng-show="NHC.searchText.length > 0">
 
       <div class="item item-avatar" ng-hide="user.id===NHC.currentUserId">
@@ -35,9 +37,7 @@
         </div>
       </div>
     </div>
-
-
-
+  
     <!-- button to submit creation and redirect to user -->
   </ion-content>
   <app-footer></app-footer>

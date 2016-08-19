@@ -20,16 +20,19 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
   vm.logOut = LogoutService.logOut;
 }]);
 // Hunt in controllers -------------------------->
-app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', 'UserInfo', function(HuntService, UserServices, $state, $http, UserInfo){
+app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', 'UserInfo', function(HuntService, UserService, $state, $http, UserInfo){
   var vm=this;
   vm.$state=$state;
-  vm.getusers = UserServices.users;
-  UserServices.getAllUsers();
+  vm.users=UserService.usershunt;
+  vm.getusers = UserService.users;
+  UserService.getAllUsers();
   vm.create = HuntService.addHunt;
   vm.addUser = HuntService.addUser;
   UserInfo.getInfo();
   vm.currentUserId = UserInfo.userInfo.id;
 // (((atob(($window.localStorage.token.split('.'))[1])).split(",")[0]).split(":")[1]).slice(1, -1)
+
+
 
 }]);
 app.controller('HuntController', ['HuntService','UserServices','$state','$http', function(HuntService, UserServices, $state, $http) {
@@ -140,9 +143,10 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   vm.deleteUser=UserService.deleteUser;
   vm.addUser = HuntService.addUser;
   TaskService.huntTasks();
-  UserService.huntUsers();
   HuntService.getHunt();
   UserService.getAllUsers();
+  UserService.huntUsers();
+
 }]);
 
 
