@@ -12,3 +12,5 @@ This app allows task creators to generate various tasks associated with one hunt
 The application was built in two parts, using Node, Express, and PostgreSql with Knex for the API [(see other repository)](https://github.com/TurquoiseQuintet/SkAvengers), and angular/ionic for the user interface(this repository).
 
 We preferred to use PostgreSql due to its nature as a relational DB, and Express for its structure and ease of integration as an API. Ionic was used for the front end work due to its ability to transpile to other platforms (specifically Android and iOS).
+
+<a href="https://vimeo.com/179511546" target="_blank"><img src="https://i.imgur.com/4RbDFJZ.png"alt="Watch our presentation!" width="240" height="180" border="10"/></a>
