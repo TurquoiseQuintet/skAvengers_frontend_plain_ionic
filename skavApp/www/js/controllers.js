@@ -3,7 +3,7 @@
 app.controller('SignUpController', ['SignUpService', '$state', 'sendMessageService', function(SignUpService, $state, sms){
   var vm=this;
   vm.$state = $state;
-  vm.avatar = sms.profilePictureURL;
+  vm.picture = sms.picture;
   vm.signUp= SignUpService.signup;
   vm.takeProfilePicture = sms.takeProfilePicture;
 }]);
@@ -114,6 +114,7 @@ app.controller('HeaderController', ['UserServices','$state','UserInfo', function
   UserInfo.getInfo();
   vm.username = UserInfo.userInfo.username;
   vm.avatar = UserInfo.userInfo.avatar;
+  console.log(UserInfo);
   //the code below takes the user token seperates the user portio and unencrypts it then seperates
   //the values as needed and returns a username and a quoted url for the avatar
 

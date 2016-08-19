@@ -1,7 +1,7 @@
 <ion-view title="register" class="bgimg">
   <app-header></app-header>
     <ion-content class="content">
-      <form  name="registerForm" ng-submit="SUC.signUp(SUC.username, SUC.password, SUC.email, SUC.avatar, SUC.phone); SUC.username=''; SUC.password=''; SUC.email=''; SUC.phone=''; SUC.avatar;">
+      <form  name="registerForm" ng-submit="SUC.signUp(SUC.username, SUC.password, SUC.email, SUC.picture.avatar, SUC.phone); SUC.username=''; SUC.password=''; SUC.email=''; SUC.phone=''; SUC.avatar;">
       <div class="list list-inset">
         <label class="item item-input">
           <input type="text" ng-model="SUC.username" placeholder="Username" required>
@@ -23,10 +23,6 @@
         </label>
       </div>
       <div class="list list-inset">
-        <label class="item item-input">
-          <input type="text" ng-model="SUC.avatar" placeholder="Avatar URL" required>
-        </label>
-        <h3>or</h3>
         <button class="button button-large " ng-click="SUC.takeProfilePicture()">Take Profile Picture</button>
       </div>
       <input type="submit" class="button button-large button-positive" ng-disabled="registerForm.$invalid">
