@@ -236,7 +236,7 @@ app.service('TaskService', ['$http', '$window', '$location', '$state', function(
   };
 
   sv.posttask = function(_name, _xp, _level_available, _unique) {
-    console.log(_name, _xp, _level_available, _unique);
+    console.log('test' +_name + _xp + _level_available + _unique);
     var sv = this;
     sv.hunt_id = ($location.path()).split("/")[2];
     $http.post('https://skavengers.herokuapp.com/tasks',{
@@ -506,8 +506,10 @@ sv.info = {
   number: 0
 };
 sv.getTasks = function(){
+  console.log('id' + sv.hunt_id);
   $http.get('https://skavengers.herokuapp.com/tasks/hunter/hunt/' + sv.hunt_id)
   .then(function(data){
+    console.log(data);
     sv.info.number = data.data.huntMasterNumber;
     sv.info.experience = data.data.experience;
     sv.tasks.length = 0;
