@@ -191,7 +191,7 @@ app.controller('SubmitController',['SubmitService', '$state',  '$location', '$ht
   vm.$state = $state;
   vm.user = SubmitService.user;
   vm.getTasks = SubmitService.getTasks;
-  vm.huntTasks = SubmitService.huntTasks;
+  vm.huntTasks = SubmitService.toAdd;
   vm.submit = SubmitService.submit;
   SubmitService.getTasks();
   vm.goback=SubmitService.goback;
