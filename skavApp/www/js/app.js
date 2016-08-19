@@ -57,6 +57,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
     controller: 'AddTaskController',
     controllerAs: 'ATC'
   })
+  .state('alert', {
+    url: '/alert/:hunt_id',
+    templateUrl: './templates/alert.html',
+    controller: 'AlertController',
+    controllerAs: 'AC'
+  })
   .state('user', {
     url: '/user',
     templateUrl: './templates/user.html',
