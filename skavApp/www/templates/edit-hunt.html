@@ -19,22 +19,20 @@
 
 		<hr>
 		<div>
-			<h3>Current Tasks:</h3>
-			<ul>
+			<h3 style="text-align:center;">Current Tasks:</h3>
+			<ul style="text-align:center;">
 				<li ng-repeat="task in EHC.tasks">
-					<button class="button button-small button-balanced" ng-click="EHC.delete(task.id)" style = "margin-bottom: 1px;"> delete {{task.name}} </button>
+					<button class="button button-small button-assertive" ng-click="EHC.delete(task.id)" style = "margin-bottom: 1px;width:60%;"> delete {{task.name}} </button>
 				</li>
 			</ul>
 		</div>
 		<div>
-			<h3> Current Users: </h3>
-			<ul>
-				<li ng-repeat="user in EHC.users">
-				<button class="button button-small button-balanced" ng-click="EHC.deleteUser(user.id)" style = "margin-bottom: 1px;"> uninvite {{user.username}} </button>
-			</li>
-			</ul>
-
-
+			<h3 style="text-align:center;"> Current Users: </h3>
+			<div class="row" style="text-align:center;">
+				<div class="col" ng-repeat="user in EHC.users">
+				<button class="button button-small button-energized" ng-click="EHC.deleteUser(user.id)" style = "margin-bottom: 1px;"> uninvite <br> {{user.username}} </button>
+			</div>
+		</div>
 		</div>
 
 		<div class="card" ng-repeat="user in EHC.allUsers | filter: {username: EHC.searchText}" ng-show="EHC.searchText.length > 0">
