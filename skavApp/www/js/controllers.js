@@ -5,7 +5,6 @@ app.controller('SignUpController', ['SignUpService', '$state', function(SignUpSe
   vm.$state = $state;
   vm.signUp= SignUpService.signup;
 }]);
-
 // Log in controller -------------------------->
 app.controller('LogInController',['LogInService', 'sendMessageService','$state',  function(LogInService, sms, $state){
   var vm=this;
@@ -18,10 +17,7 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
   vm.$state = $state;
   vm.logOut = LogoutService.logOut;
 }]);
-
 // Hunt in controllers -------------------------->
-
-
 app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', function(HuntService, UserServices, $state, $http){
   var vm=this;
   vm.$state=$state;
@@ -30,7 +26,6 @@ app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$h
   vm.create = HuntService.addHunt;
   vm.addUser = HuntService.addUser;
 }]);
-
 app.controller('HuntController', ['HuntService','UserServices','$state','$http', function(HuntService, UserServices, $state, $http) {
   var vm = this;
   vm.$state = $state;
@@ -52,7 +47,6 @@ app.controller('HuntController', ['HuntService','UserServices','$state','$http',
   HuntService.masterOf();
   // console.log("infor here " , vm.getAllHunts);
 }]);
-
 // Task controllers --------------------------------->
 app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http', '$location', function($window, $state, TaskService, $http, $location, sms){
   var vm = this;
@@ -60,6 +54,7 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   vm.newTask = TaskService.posttask;
   // vm.$state = $state;
   vm.hunt_id=($location.path()).split("/")[2];
+
 
   $http.get('https://skavengers.herokuapp.com/hunts/' + vm.hunt_id)
   .then(function(data){
@@ -78,11 +73,7 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   // vm.newtask=function(TC.name, TC.xp, TC.location)
   // vm.takeAndSubmit = sms.takeAndSubmit;
 
-
-
 }]);
-
-
 app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '$location', 'sendMessageService', function($window, $state, HuntService, $http, $location, sms){
   var vm = this;
   // vm.$state = $state;
@@ -104,22 +95,18 @@ app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '
   // vm.newtask=function(TC.name, TC.xp, TC.location)
   // vm.takeAndSubmit = sms.takeAndSubmit;
 }]);
-
 app.controller('HeaderController', ['UserServices','$state', '$window', function(UserServices, $state, $window){
   var vm = this;
   vm.$state = $state;
-
   //the code below takes the user token seperates the user portio and unencrypts it then seperates
   //the values as needed and returns a username and a quoted url for the avatar
   vm.username=(((atob(($window.localStorage.token.split('.'))[1])).split(",")[0]).split(":")[1]).slice(1, -1);
   vm.avatar=((atob(($window.localStorage.token.split('.'))[1])).split(",")[3].split(":"))[1]+((atob(($window.localStorage.token.split('.'))[1])).split(",")[3].split(":"))[2];
 }]);
-
 app.controller('FooterController', ['$state', function($state){
   var vm = this;
   vm.$state = $state;
 }]);
-
 app.controller('HunterViewController', ['$state', 'hunterViewService', '$location', 'sendMessageService', '$window', function($state, hvs, $location, sendMessageService, $window){
   var vm = this;
   vm.$state = $state;
@@ -128,4 +115,32 @@ app.controller('HunterViewController', ['$state', 'hunterViewService', '$locatio
   hvs.hunt_id = ($location.path()).split("/")[2];
   vm.username=(((atob(($window.localStorage.token.split('.'))[1])).split(",")[0]).split(":")[1]).slice(1, -1);
   hvs.getTasks();
+}]);
+
+
+app.controller('HuntmasterController', [ '$window', '$state','HuntmasterService', '$http', '$location', function($window, $state, HuntService, $http, $location){
+  var vm = this;
+  vm.$state = $state;
+  vm.params=($location.path()).split("/")[2];
+  vm.huntUser = [];
+  $http.get('https://skavengers.herokuapp.com/hunts/users/' + vm.params)
+  .then(function(data) {
+    for (var i = 0; i < data.data.length; i++) {
+      vm.huntUser.push(data.data[i]);
+    }
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+}]);
+
+app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){
+  var vm=this;
+  vm.$state = $state;
+  vm.hunter=($location.path()).split("/")[2];
+  vm.hunt=($location.path()).split("/")[3];
+  vm.user = SubmitService.user;
+  vm.huntTasks = SubmitService.huntTasks;
+  vm.userTasks = SubmitService.userTasks;
+  vm.submit = SubmitService.submit;
 }]);

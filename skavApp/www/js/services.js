@@ -66,7 +66,6 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
     // console.log("2");
     $http.get('https://skavengers.herokuapp.com/hunts/all')
       .then(function(data) {
-        console.log(data.data);
         for (var i = 0; i < data.data.length; i++) {
           sv.hunts.push(data.data[i]);
         }
@@ -172,6 +171,7 @@ app.service('TaskService', ['$http', '$window', '$location', function($http, $wi
   //this function makes an http request to get all tasks
 
   var sv = this;
+  sv.users=[];
   sv.getAlltasks = function() {
     $http.get('https://skavengers.herokuapp.com/tasks')
       .then(function(data) {
@@ -184,17 +184,16 @@ app.service('TaskService', ['$http', '$window', '$location', function($http, $wi
       });
   };
 
-  sv.deletetask = function(task) {
-    $http.delete('https://skavengers.herokuapp.com/tasks/' + task.id, {
-        params: {
-          task: task.id
-        }
-      })
+  sv.deleteTask = function(task_id) {
+    console.log("hello??");
+    $http.delete('https://skavengers.herokuapp.com/tasks/' + task_id)
       .then(function(data) {
-        sv.result("deleted");
+        // sv.result("deleted");
+        $window.location.reload('/edit-hunt');
       })
       .catch(function(err) {
-        sv.message("make sure you own the hunt to delete the task");
+        console.log(err);
+        // sv.message("make sure you own the hunt to delete the task");
       });
   };
 
@@ -246,7 +245,18 @@ app.service('TaskService', ['$http', '$window', '$location', function($http, $wi
         sv.message = "you do not have permission to edit that";
       });
   };
-
+sv.huntTasks=function(){
+  $http.get('http://skavengers.herokuapp.com/tasks/hunt/'+ $location.path().split("/")[2])
+  .then(function(data){
+    console.log(data);
+    for(var i=0; i<data.data.length; i++){
+      sv.users.push(data.data[i]);
+    }
+  })
+  .catch(function(err){
+    console.log(err);
+  });
+};
 
 
 }]);
@@ -298,12 +308,15 @@ app.service('UserServices', ['$http', '$window', function($http, $window) {
       });
   };
 
+  sv.huntUsers=function(){}
+
 }]);
 
-app.service('SubmitService', ['$http', '$location', function($http, $location) {
+app.service('SubmitService', ['$http', '$location', '$state', function($http, $location, $state) {
   var sv = this;
   sv.user = [];
   sv.huntTasks = [];
+  sv.userTasks = [];
   sv.hunter=($location.path()).split("/")[2];
   sv.hunt=($location.path()).split("/")[3];
   $http.get('https://skavengers.herokuapp.com/users/' + sv.hunter)
@@ -312,16 +325,40 @@ app.service('SubmitService', ['$http', '$location', function($http, $location) {
     return $http.get('https://skavengers.herokuapp.com/tasks/hunt/' + sv.hunt)
   })
   .then(function(data) {
-    for (var i = 0; i < data.data.tasks.length; i++) {
-      sv.huntTasks.push(data.data.tasks[i]);
+    console.log(data);
+    for (var i = 0; i < data.data.length; i++) {
+      sv.huntTasks.push(data.data[i]);
     }
-    console.log(sv.user);
-    console.log(sv.huntTasks);
     return $http.get('https://skavengers.herokuapp.com/tasks/users_tasks')
   })
   .then(function(data) {
-    console.log(data);
+    for (var i = 0; i < data.data.length; i++) {
+      sv.userTasks.push(data.data[i]);
+    }
+    console.log(sv.users, sv.userTasks, sv.huntTasks);
+    for (var i = 0; i < sv.userTasks.length; i++) {
+      if (sv.userTasks[i].users_id == sv.user[0].id) {
+        for (var j = 0; j < sv.huntTasks.length; j++) {
+          if (sv.userTasks[i].tasks_id == sv.huntTasks[j].id) {
+            sv.huntTasks[j].completed = sv.userTasks[i].completed;
+          }
+        }
+      }
+    }
   })
+  .catch(function(err) {
+    console.log(err);
+  });
+  sv.submit = function(user_id, task_id) {
+    $http.put('https://skavengers.herokuapp.com/submit/' + user_id +'/' + task_id)
+    .then(function() {
+      console.log("next");
+      $state.go('user');
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+  }
 }]);
 
 //picture services ------------------------------->
@@ -414,4 +451,37 @@ sv.getTasks = function(){
     console.log(err);
   });
 };
+}]);
+
+app.service('HuntmasterService', ['$http', function($http){
+  var sv = this;
+  sv.hunts = [];
+  sv.master = [];
+  sv.users = [];
+  sv.getAllHunts = function() {
+    // console.log("2");
+    $http.get('https://skavengers.herokuapp.com/hunts/all')
+      .then(function(data) {
+        for (var i = 0; i < data.data.length; i++) {
+          sv.hunts.push(data.data[i]);
+        }
+        console.log(sv.hunts);
+      })
+      .catch(function(err) {
+        //handle it
+        sv.message = "problems in the oceans";
+      });
+  };
+  sv.masterOf = function() {
+    $http.get('https://skavengers.herokuapp.com/hunts/mine')
+      .then(function(data) {
+        for (var i = 0; i < data.data.length; i++) {
+          sv.master.push(data.data[i]);
+        }
+        console.log(sv.master);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  };
 }]);
