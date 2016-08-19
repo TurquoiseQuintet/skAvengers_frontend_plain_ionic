@@ -167,7 +167,7 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
 
 // task services --------------------------->
 
-app.service('TaskService', ['$http', '$window', '$location', function($http, $window, $location) {
+app.service('TaskService', ['$http', '$window', '$location', '$state', function($http, $window, $location, $state) {
   //this function makes an http request to get all tasks
 
   var sv = this;
@@ -213,14 +213,14 @@ app.service('TaskService', ['$http', '$window', '$location', function($http, $wi
       });
   };
 
-  sv.posttask = function(task) {
-    task.hunt_id = ($location.path()).split("/")[2];
-    task.completed = false;
-    console.log(task);
-    $http.post('https://skavengers.herokuapp.com/tasks', task)
+  sv.posttask = function() {
+    var sv = this;
+    sv.hunt_id = ($location.path()).split("/")[2];
+    sv.completed = false;
+    $http.post('https://skavengers.herokuapp.com/tasks')
       .then(function(data) {
-        console.log(data);
-
+        console.log("hello", data.hunt_id);
+        $state.go('alert', {"hunt_id": data.hunt_id});
       })
       .catch(function(err) {
         console.log("err", err);
@@ -256,6 +256,13 @@ sv.huntTasks=function(){
 };
 
 
+}]);
+
+
+app.service('AlertService', ['$http', '$window', '$location', function($http, $window, $location){
+  var sv = this;
+  sv.hunt_id = ($location.path()).split("/")[2];
+  console.log("this is it ", sv.hunt_id);
 }]);
 
 
@@ -331,6 +338,7 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
   sv.userTasks = [];
   sv.hunter=($location.path()).split("/")[2];
   sv.hunt=($location.path()).split("/")[3];
+  sv.getTasks = function(){
   $http.get('https://skavengers.herokuapp.com/users/' + sv.hunter)
   .then(function(data) {
     sv.user.push(data.data);
@@ -341,6 +349,7 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
     for (var i = 0; i < data.data.length; i++) {
       sv.huntTasks.push(data.data[i]);
     }
+    console.log(sv.huntTasks);
     return $http.get('https://skavengers.herokuapp.com/tasks/users_tasks')
   })
   .then(function(data) {
@@ -361,6 +370,7 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
   .catch(function(err) {
     console.log(err);
   });
+};
   sv.submit = function(user_id, task_id) {
     $http.put('https://skavengers.herokuapp.com/submit/' + user_id +'/' + task_id)
     .then(function() {

@@ -60,6 +60,7 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   // vm.$state = $state;
   vm.hunt_id=($location.path()).split("/")[2];
   console.log(vm.hunt_id);
+  TaskService.posttask();
 
 
   $http.get('https://skavengers.herokuapp.com/hunts/' + vm.hunt_id)
@@ -80,6 +81,13 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   // vm.takeAndSubmit = sms.takeAndSubmit;
 
 }]);
+app.controller('AlertController', ['$window', '$state', 'AlertService', '$http', '$location', function($window, $state, AlertService, $http, $location){
+  var vm = this;
+  vm.$state = $state;
+  vm.hunt_id = ($location.path()).split("/")[2];
+  console.log("it should be ", vm.hunt_id);
+}]);
+
 app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '$location', 'sendMessageService', function($window, $state, HuntService, $http, $location, sms){
   var vm = this;
   // vm.$state = $state;
@@ -176,7 +184,8 @@ app.controller('SubmitController',['SubmitService', '$state',  '$location', '$ht
   vm.hunter=($location.path()).split("/")[2];
   vm.hunt=($location.path()).split("/")[3];
   vm.user = SubmitService.user;
+  vm.getTasks = SubmitService.getTasks;
   vm.huntTasks = SubmitService.huntTasks;
-  vm.userTasks = SubmitService.userTasks;
   vm.submit = SubmitService.submit;
+  SubmitService.getTasks();
 }]);
