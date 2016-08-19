@@ -20,13 +20,15 @@ app.controller('LogoutController', ['LogoutService','$state',  function(LogoutSe
   vm.logOut = LogoutService.logOut;
 }]);
 // Hunt in controllers -------------------------->
-app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', '$window', function(HuntService, UserServices, $state, $http, $window){
+app.controller('NewHuntController', ['HuntService','UserServices', '$state', '$http', 'UserInfo', function(HuntService, UserServices, $state, $http, UserInfo){
   var vm=this;
   vm.$state=$state;
   vm.getusers = UserServices.users;
   UserServices.getAllUsers();
   vm.create = HuntService.addHunt;
   vm.addUser = HuntService.addUser;
+  UserInfo.getInfo();
+  vm.currentUserId = UserInfo.userInfo.id;
 // (((atob(($window.localStorage.token.split('.'))[1])).split(",")[0]).split(":")[1]).slice(1, -1)
 
 }]);
@@ -120,11 +122,11 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   var vm=this;
   vm.$state=$state;
   vm.EditHunt=HuntService.editHunt;
-  vm.id=$location.path().split("/")[2];
+  // vm.id=$location.path().split("/")[2];
   vm.tasks=TaskService.users;
   vm.users=UserService.usershunt;
   vm.delete=TaskService.deleteTask;
-  vm.userdelte=UserService.deleteUser;
+  vm.deleteUser=UserService.deleteUser;
   TaskService.huntTasks();
   UserService.huntUsers();
 }]);
@@ -154,15 +156,16 @@ app.controller('HuntmasterController', [ '$window', '$state','HuntmasterService'
   vm.getHuntUsers = function(){
     $http.get('https://skavengers.herokuapp.com/hunts/users/' + vm.params)
     .then(function(data) {
-      vm.huntUser.length = 0;
       for (var i = 0; i < data.data.length; i++) {
         vm.huntUsers.push(data.data[i]);
       }
+      console.log(vm.huntUsers);
     })
     .catch(function(err) {
       console.log(err);
     });
   };
+  vm.getHuntUsers();
 
 
 }]);

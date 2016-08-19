@@ -16,14 +16,15 @@
     </div>
     <div class="list list-inset">
       <label class="item item-input">
-        <input type="text" ng-model="searchText" placeholder="Invite Players">
+        <input type="text" ng-model="NHC.searchText" placeholder="Invite Players">
       </label>
-      <div class="card" ng-repeat="user in NHC.getusers | filter:searchText">
-        <div class="item item-avatar">
+      <div class="card" ng-repeat="user in NHC.getusers | filter:NHC.searchText" ng-show="NHC.searchText.length > 0">
+
+        <div class="item item-avatar" ng-hide="user.id===NHC.currentUserId">
           <img ng-src="{{user.avatar}}" style="height:120px; width:auto">
           <h3>{{user.username}}</h3>
           <div class="item item-divider">
-						<button class="button button-block button-balanced" name="add" ng-click="user.marked = true; NHC.addUser(user.id)">Add</button>
+						<button class="button button-block button-balanced" name="add" ng-click="user.marked = true; NHC.addUser(user.id); NHC.searchText=''">Add</button>
 						<i class="icon ion-checkmark-round" ng-show="user.marked">Added!</i>
 				 	</div>
         </div>
