@@ -31,12 +31,14 @@
           <div class="handle"></div>
         </div>
       </label>
-
-      <!-- Button to add task(s) -->
-      <input type="submit" class="button button-large button-positive" name="submitTask" value="Add To Hunt" ng-disabled="newTaskForm.$invalid">
     </form>
-    <!-- button to return to user page -->
-    <button class="button button-large button-assertive" ng-click="ATC.$state.go('huntmaster-view', {hunt_id: ATC.hunt.id})">View Hunt</button>
+      <div class="button-bar">
+        <!-- Button to add task(s) -->
+        <input type="submit" class="button button-large button-positive" name="submitTask" value="Add To Hunt" ng-disabled="newTaskForm.$invalid">
+        <!-- button to return to user page -->
+        <button class="button button-large button-assertive" ng-click="ATC.$state.go('huntmaster-view', {hunt_id: ATC.hunt.id})">View Hunt</button>
+      </div>
+
   </ion-content>
   <app-footer></app-footer>
 
