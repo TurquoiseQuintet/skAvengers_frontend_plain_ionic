@@ -512,3 +512,10 @@ app.service('HuntmasterService', ['$http', function($http){
       });
   };
 }]);
+
+app.service('UserInfo', ['$window', function($window){
+  var sv = this;
+  sv.getInfo = function(){
+    sv.userInfo = (JSON.parse(atob($window.localStorage.token.split('.').slice(1,2))));
+  }
+}])
