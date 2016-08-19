@@ -59,6 +59,7 @@ app.service("LogoutService", ['$http', '$window', "$state", function($http, $win
 // hunt services -------------------------------------->
 app.service("HuntService", ['$http', '$window', '$state','$location', function($http, $window, $state, $location) {
   var sv = this;
+  sv.hunttoedit=[];
   sv.hunts = [];
   sv.master = [];
   sv.users = [];
@@ -111,18 +112,19 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
   //my logic may be redundant but this is how I did it in the past and when I have done it other ways it didnt
   //work
   sv.getHunt = function(hunt) {
-    $http.get('https://skavengers.herokuapp.com/hunts/' + hunt.id, {
-        params: {
-          hunt: hunt.id
-        }
-      })
+    console.log($location.path().split("/")[2]);
+    $http.get('https://skavengers.herokuapp.com/hunts/' + $location.path().split("/")[2])
       .then(function(data) {
-        sv.hunt = data.data;
+        console.log(data.data);
+
+        sv.hunttoedit.push(data.data);
+
       })
       .catch(function(err) {
         //handle yo shit
         sv.message = "What a dilemma the hunt could not be found";
       });
+
   };
 
 
@@ -270,7 +272,6 @@ app.service('UserServices', ['$http', '$window', '$location', 'UserInfo', functi
   var sv = this;
   sv.usershunt=[];
   sv.deleteUser = function(user_id) {
-    console.log(user_id);
     $http.delete('https://skavengers.herokuapp.com/users/' + user_id)
       .then(function(data) {
         sv.result = "that user is trashed";
@@ -314,10 +315,8 @@ app.service('UserServices', ['$http', '$window', '$location', 'UserInfo', functi
   };
 
   sv.huntUsers=function(){
-    console.log($location.path().split("/")[2]);
     $http.get('https://skavengers.herokuapp.com/hunts/users/'+$location.path().split("/")[2])
     .then(function(data){
-      console.log("LOOK HERE:  ", data);
       sv.usershunt.length = 0;
       for(var i=0; i<data.data.length; i++){
         sv.usershunt.push(data.data[i]);

@@ -3,15 +3,17 @@
 	<app-subheader></app-subheader>
 	<ion-content class="content">
 		<div class="list list-inset">
+
 			<h3><!-- current name of the hunt --></h3>
+		
 			<label class="item item-input">
-				<input type="text" placeholder="Hunt Title" ng-model="EHC.HuntTitle">
+				<input type="text"  ng-model="EHC.HuntTitle" ng-value="EHC.hunttoedit[0].name">
 			</label>
 		</div>
 		<div class="list list-inset">
 			<h3><!-- current expiration date --></h3>
 			<label class="item item-input">
-				<input type="date" placeholder="Expiration Date" ng-model="EHC.ExpirationDate">
+				<input type="date"  ng-value="EHC.hunttoedit[0].name" ng-model="EHC.ExpirationDate">
 			</label>
 		</div>
 
