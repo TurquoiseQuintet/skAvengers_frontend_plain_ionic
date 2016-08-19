@@ -316,7 +316,6 @@ app.service('UserServices', ['$http', '$window', '$location', 'UserInfo', functi
       sv.usershunt.length = 0;
       for(var i=0; i<data.data.length; i++){
         sv.usershunt.push(data.data[i]);
-        console.log(sv.usershunt);
       }
     })
     .catch(function(err){
