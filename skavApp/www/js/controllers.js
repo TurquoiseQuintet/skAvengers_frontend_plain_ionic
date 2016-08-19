@@ -59,7 +59,7 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   vm.newTask = TaskService.posttask;
   // vm.$state = $state;
   vm.hunt_id=($location.path()).split("/")[2];
-  console.log(vm.hunt_id);
+  console.log("what do you say ", vm.hunt_id);
 
 
   $http.get('https://skavengers.herokuapp.com/hunts/' + vm.hunt_id)
@@ -186,6 +186,8 @@ app.controller('SubmitController',['SubmitService', '$state',  '$location', '$ht
   vm.$state = $state;
   vm.hunter=($location.path()).split("/")[2];
   vm.hunt=($location.path()).split("/")[3];
+  vm.experience=($location.path()).split("/")[4];
+  console.log(vm.experience);
   vm.user = SubmitService.user;
   vm.getTasks = SubmitService.getTasks;
   vm.huntTasks = SubmitService.huntTasks;
