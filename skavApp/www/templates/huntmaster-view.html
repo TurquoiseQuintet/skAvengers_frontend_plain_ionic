@@ -4,7 +4,7 @@
 	<ion-content class="content">
 		  <div class="list-card" ng-repeat="user in TC.huntUsers">
 				<div class="item item-avatar">
-					<h3 class="col-xs-8" ng-click="TC.$state.go('review-hunter', {hunter_id: user.id, hunt_id: TC.params})">{{ user.username }}</h3>
+					<h3 class="col-xs-8" ng-click="TC.$state.go('review-hunter', {hunter_id: user.id, hunt_id: TC.params, xp: user.experience})">{{ user.username }}</h3>
 					<h3 class="col-xs-4">{{ user.experience }}</h3>
 					<img ng-src="{{user.avatar}}" style="height:90px; width: auto"/>
 				</div>
