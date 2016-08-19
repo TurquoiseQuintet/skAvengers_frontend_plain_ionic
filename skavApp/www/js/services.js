@@ -495,8 +495,10 @@ sv.info = {
   number: 0
 };
 sv.getTasks = function(){
+  console.log('id' + sv.hunt_id);
   $http.get('https://skavengers.herokuapp.com/tasks/hunter/hunt/' + sv.hunt_id)
   .then(function(data){
+    console.log(data);
     sv.info.number = data.data.huntMasterNumber;
     sv.info.experience = data.data.experience;
     sv.tasks.length = 0;
