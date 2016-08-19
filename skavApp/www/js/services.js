@@ -51,7 +51,7 @@ app.service("LogInService", ['$http', '$window', '$state', function($http, $wind
 app.service("LogoutService", ['$http', '$window', "$state", function($http, $window, $state) {
   var sv = this;
   sv.logOut = function() {
-    delete $window.sessionStorage.token;
+    delete $window.localStorage.token;
     $state.go('index');
   };
 }]);

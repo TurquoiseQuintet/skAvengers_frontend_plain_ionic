@@ -99,10 +99,11 @@ app.controller('TaskController', [ '$window', '$state','HuntService', '$http', '
 app.controller('HeaderController', ['UserServices','$state', '$window', function(UserServices, $state, $window){
   var vm = this;
   vm.$state = $state;
+  console.log(atob($window.localStorage.token.split('.')[1]));
   //the code below takes the user token seperates the user portio and unencrypts it then seperates
   //the values as needed and returns a username and a quoted url for the avatar
-  vm.username=(((atob(($window.localStorage.token.split('.'))[1])).split(",")[0]).split(":")[1]).slice(1, -1);
-  vm.avatar=((atob(($window.localStorage.token.split('.'))[1])).split(",")[3].split(":"))[1]+((atob(($window.localStorage.token.split('.'))[1])).split(",")[3].split(":"))[2];
+  vm.username=atob($window.localStorage.token.split('.')[1]).split(",")[0].split(":")[1].slice(1, -1);
+  // vm.avatar=((atob(($window.localStorage.token.split('.'))[1])).split(",")[2].split(":"))[1]+((atob(($window.localStorage.token.split('.'))[1])).split(",")[3].split(":"))[2];
 }]);
 app.controller('FooterController', ['$state', function($state){
   var vm = this;
