@@ -32,7 +32,6 @@ app.controller('HuntController', ['HuntService','UserServices','$state','$http',
   var vm = this;
   vm.$state = $state;
   vm.myHunts = HuntService.hunts;
-  console.log(vm.myHunts);
   vm.myMaster = HuntService.master;
   // vm. getAllHunts= function(){
   //   console.log("2");
