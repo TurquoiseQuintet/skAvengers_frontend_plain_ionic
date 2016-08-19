@@ -3,13 +3,12 @@
 	<app-subheader></app-subheader>
 	<ion-content class="content">
 <div>
-	<h3>Experience: {{HVC.info.experience}}</h3>
+	<h3>Current XP: {{HVC.info.experience}}</h3>
 </div>
-<div ng-repeat="task in HVC.tasks">
-	<button ng-hide="task.comleted" class="button button-large" ng-click="HVC.takeAndSubmit(task.name, HVC.username, HVC.info.number)">{{task.name}}</button>
+<div ng-repeat="task in HVC.tasks| orderBy: 'level_available'">
+	<button ng-hide="task.completed || task.level_available > HVC.info.experience" class="button button-large" ng-click="HVC.takeAndSubmit(task.name, HVC.username, HVC.info.number)">{{task.name}} | Worth: {{task.xp}}XP</button>
+	<div ng-hide="task.completed || task.level_available <= HVC.info.experience" class="button button-large">Available at {{task.level_available}}XP</div>
 </div>
-<!-- button to wuss out -->
-<button class="button button-large button-assertive" name="quit" ng-click="quit">Quit Hunt</button>
 
 	</ion-content>
 	<app-footer></app-footer>
