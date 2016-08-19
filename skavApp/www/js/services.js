@@ -331,6 +331,7 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
   sv.userTasks = [];
   sv.hunter=($location.path()).split("/")[2];
   sv.hunt=($location.path()).split("/")[3];
+  sv.getTasks = function(){
   $http.get('https://skavengers.herokuapp.com/users/' + sv.hunter)
   .then(function(data) {
     sv.user.push(data.data);
@@ -341,6 +342,7 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
     for (var i = 0; i < data.data.length; i++) {
       sv.huntTasks.push(data.data[i]);
     }
+    console.log(sv.huntTasks);
     return $http.get('https://skavengers.herokuapp.com/tasks/users_tasks')
   })
   .then(function(data) {
@@ -361,6 +363,7 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
   .catch(function(err) {
     console.log(err);
   });
+};
   sv.submit = function(user_id, task_id) {
     $http.put('https://skavengers.herokuapp.com/submit/' + user_id +'/' + task_id)
     .then(function() {
