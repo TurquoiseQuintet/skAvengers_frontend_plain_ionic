@@ -167,7 +167,7 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
 
 // task services --------------------------->
 
-app.service('TaskService', ['$http', '$window', '$location', function($http, $window, $location) {
+app.service('TaskService', ['$http', '$window', '$location', '$state', function($http, $window, $location, $state) {
   //this function makes an http request to get all tasks
 
   var sv = this;
@@ -217,10 +217,16 @@ app.service('TaskService', ['$http', '$window', '$location', function($http, $wi
   sv.posttask = function(task) {
     task.hunt_id = ($location.path()).split("/")[2];
     task.completed = false;
+
     console.log(task);
     $http.post('https://skavengers.herokuapp.com/tasks', task)
       .then(function(data) {
         console.log(data);
+        if(confirm("success! Would you like to add another task?")){
+          $state.go('new-task', {hunt_id: task.hunt_id.id});
+        } else {
+          $state.go('huntmaster-view', {hunt_id: task.hunt_id.id});
+        }
 
       })
       .catch(function(err) {
