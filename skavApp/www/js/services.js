@@ -262,7 +262,7 @@ sv.huntTasks=function(){
 
 
 // user services -------------------------------->
-app.service('UserServices', ['$http', '$window', '$location', function($http, $window, $location) {
+app.service('UserServices', ['$http', '$window', '$location', 'UserInfo', function($http, $window, $location, UserInfo) {
   var sv = this;
   sv.usershunt=[];
   sv.deleteUser = function(user_id) {
@@ -309,12 +309,13 @@ app.service('UserServices', ['$http', '$window', '$location', function($http, $w
   };
 
   sv.huntUsers=function(){
-    $http.get('https://skavengers.herokuapp.com/users/'+ $location.path().split("/")[2])
+    UserInfo.getInfo();
+    $http.get('https://skavengers.herokuapp.com/users/'+UserInfo.userInfo.id)
     .then(function(data){
+      console.log(data);
       sv.usershunt.length = 0;
       for(var i=0; i<data.data.length; i++){
         sv.usershunt.push(data.data[i]);
-        console.log(sv.usershunt);
       }
     })
     .catch(function(err){
