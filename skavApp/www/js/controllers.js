@@ -57,6 +57,7 @@ app.controller('AddTaskController', ['$window', '$state', 'TaskService', '$http'
   vm.newTask = TaskService.posttask;
   // vm.$state = $state;
   vm.hunt_id=($location.path()).split("/")[2];
+  console.log(vm.hunt_id);
 
 
   $http.get('https://skavengers.herokuapp.com/hunts/' + vm.hunt_id)
@@ -121,6 +122,7 @@ app.controller('EditHuntController', ['$state', 'HuntService','$location','TaskS
   vm.EditHunt=HuntService.editHunt;
   vm.id=$location.path().split("/")[2];
   vm.tasks=TaskService.users;
+  vm.users=UserService.usershunt;
   vm.delete=TaskService.deleteTask;
   vm.userdelte=UserService.deleteUser;
   TaskService.huntTasks();
@@ -148,17 +150,21 @@ app.controller('HuntmasterController', [ '$window', '$state','HuntmasterService'
   var vm = this;
   vm.$state = $state;
   vm.params=($location.path()).split("/")[2];
-  vm.huntUser = [];
-  $http.get('https://skavengers.herokuapp.com/hunts/users/' + vm.params)
-  .then(function(data) {
-    vm.huntUser.length = 0;
-    for (var i = 0; i < data.data.length; i++) {
-      vm.huntUser.push(data.data[i]);
-    }
-  })
-  .catch(function(err) {
-    console.log(err);
-  });
+  vm.huntUsers = [];
+  vm.getHuntUsers = function(){
+    $http.get('https://skavengers.herokuapp.com/hunts/users/' + vm.params)
+    .then(function(data) {
+      vm.huntUser.length = 0;
+      for (var i = 0; i < data.data.length; i++) {
+        vm.huntUsers.push(data.data[i]);
+      }
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+  };
+
+
 }]);
 
 app.controller('SubmitController',['SubmitService', '$state',  '$location', '$http', function(SubmitService, $state, $location, $http){

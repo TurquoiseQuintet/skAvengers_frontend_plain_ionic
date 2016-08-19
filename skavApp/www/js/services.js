@@ -41,7 +41,7 @@ app.service("LogInService", ['$http', '$window', '$state', function($http, $wind
       })
       .catch(function(err) {
         console.log(err.message);
-        delete $window.sessionStorage.token;
+        delete $window.localStorage.token;
         //handle error
       });
   };
@@ -51,7 +51,7 @@ app.service("LogInService", ['$http', '$window', '$state', function($http, $wind
 app.service("LogoutService", ['$http', '$window', "$state", function($http, $window, $state) {
   var sv = this;
   sv.logOut = function() {
-    delete $window.sessionStorage.token;
+    delete $window.localStorage.token;
     $state.go('index');
   };
 }]);
@@ -187,7 +187,6 @@ app.service('TaskService', ['$http', '$window', '$location', function($http, $wi
   };
 
   sv.deleteTask = function(task_id) {
-    console.log("hello??");
     $http.delete('https://skavengers.herokuapp.com/tasks/' + task_id)
       .then(function(data) {
         // sv.result("deleted");
@@ -266,8 +265,8 @@ sv.huntTasks=function(){
 app.service('UserServices', ['$http', '$window', '$location', function($http, $window, $location) {
   var sv = this;
   sv.usershunt=[];
-  sv.deleteUser = function(user) {
-    $http.delete('https://skavengers.herokuapp.com/users/' + user.id)
+  sv.deleteUser = function(user_id) {
+    $http.delete('https://skavengers.herokuapp.com/users/' + user_id)
       .then(function(data) {
         sv.result = "that user is trashed";
       })
