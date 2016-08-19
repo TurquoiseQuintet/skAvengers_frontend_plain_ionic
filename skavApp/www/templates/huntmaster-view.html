@@ -7,8 +7,8 @@
 				<h3 class="col-xs-4">{{ user.experience }}</h3>
       </div>
 			<div>
-				<button ng-click="TC.$state.go('edit-hunt', {hunt_id: TC.params})">Edit Hunt</button>
-				<button ng-click="TC.$state.go('new-task', {hunt_id: TC.params})">Add Task</button>
+				<button class="button button-large button-positive" ng-click="TC.$state.go('edit-hunt', {hunt_id: TC.params})">Edit Hunt</button>
+				<button class="button button-large button-balanced" ng-click="TC.$state.go('new-task', {hunt_id: TC.params})">Add Task</button>
 			</div>
   </ion-content>
 	<app-footer></app-footer>
