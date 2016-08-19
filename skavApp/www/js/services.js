@@ -350,6 +350,15 @@ app.service('UserServices', ['$http', '$window', '$location', 'UserInfo', functi
     });
 
 };
+sv.deleteUserFromHunt = function(user_id, hunt_id){
+  $http.delete('https://skavengers.herokuapp.com/users/hunt/' + user_id + '/' + hunt_id)
+  .then(function(data){
+    console.log(data);
+  })
+  .catch(function(err){
+    console.log(err);
+  });
+};
 }]);
 
 app.service('SubmitService', ['$http', '$location', '$state', function($http, $location, $state) {
