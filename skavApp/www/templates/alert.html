@@ -8,6 +8,7 @@
 				<button style="width:80%;" class="button button-large button-calm" ng-click="AC.$state.go('huntmaster-view', {hunt_id: AC.hunt_id})">return to Home Page</button>
       </div>
       <div>
+				<h3>{{AC.hunt_id}}</h3>
 				<button style="width:80%;" class="button button-large button-balanced" ng-click="AC.$state.go('new-task', {hunt_id: AC.hunt_id})">Add Another Task</button>
 			</div>
     </div>
