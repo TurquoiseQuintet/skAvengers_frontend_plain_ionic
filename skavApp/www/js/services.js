@@ -148,7 +148,7 @@ app.service("HuntService", ['$http', '$window', '$state','$location', function($
         sv.message("a problem with the delete. Make sure you own the hunt");
       });
   };
-  sv.addUser = function(user_id){
+  sv.addUserEdit = function(user_id){
     sv.usersEdit.push(user_id);
   };
   sv.editHunt = function(name, expiration_time, xp_to_level_up) {
