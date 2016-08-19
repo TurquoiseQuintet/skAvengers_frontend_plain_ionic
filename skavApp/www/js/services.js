@@ -338,6 +338,7 @@ app.service('SubmitService', ['$http', '$location', '$state', function($http, $l
   sv.hunter=($location.path()).split("/")[2];
   sv.hunt=($location.path()).split("/")[3];
   sv.getTasks = function(){
+    sv.user.length=0;
   $http.get('https://skavengers.herokuapp.com/users/' + sv.hunter)
   .then(function(data) {
     sv.user.push(data.data);
