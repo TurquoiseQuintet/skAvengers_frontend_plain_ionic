@@ -2,13 +2,15 @@
   <app-header></app-header>
   <app-subheader></app-subheader>
   <ion-content class="content">
+    <h1> My Hunts </h1>
     <div ng-repeat="hunt in HC.myHunts">
-      <div ng-click="HC.$state.go('hunter-view',{hunt_id:hunt.id })">
-        <h1>{{ hunt.name }}</h1>
+      <div ng-click="HC.$state.go('hunter-view',{hunt_id:hunt.id })" class="myHunts">
+        <h1 class="title">{{ hunt.name }}</h1>
+        <p> This hunt expires on: {{hunt.expiration | date }} </p>
       </div>
     </div>
-      <h1> Master: </h1>
-    <div ng-repeat="mas in HC.myMaster">
+      <h1>Master of: </h1>
+    <div ng-repeat="mas in HC.myMaster" class="myHunts">
         <div ng-click="HC.$state.go('huntmaster-view', {hunt_id : mas.id})">
 
         <h2> {{ mas.name}} </h2>
