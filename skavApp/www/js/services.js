@@ -230,7 +230,7 @@ app.service('TaskService', ['$http', '$window', '$location', '$state', function(
   };
 
   sv.posttask = function(_name, _xp, _level_available, _unique) {
-    console.log(_name, _xp, _level_available, _unique);
+    console.log('test' +_name + _xp + _level_available + _unique);
     var sv = this;
     sv.hunt_id = ($location.path()).split("/")[2];
     $http.post('https://skavengers.herokuapp.com/tasks',{
