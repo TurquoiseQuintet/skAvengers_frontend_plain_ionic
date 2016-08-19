@@ -41,7 +41,7 @@ app.service("LogInService", ['$http', '$window', '$state', function($http, $wind
       })
       .catch(function(err) {
         console.log(err.message);
-        delete $window.sessionStorage.token;
+        delete $window.localStorage.token;
         //handle error
       });
   };
