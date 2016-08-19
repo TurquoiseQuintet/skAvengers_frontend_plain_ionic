@@ -9,7 +9,7 @@
         <p> This hunt expires on: {{hunt.expiration | date }} </p>
       </div>
     </div>
-      <h1>Master of: </h1>
+      <h1>Hunts Created: </h1>
     <div ng-repeat="mas in HC.myMaster">
         <div class="myHunts" ng-click="HC.$state.go('huntmaster-view', {hunt_id : mas.id})">
 
@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <button class="button button-large button-balanced" ng-click="HC.$state.go('new-hunt')"> Add a hunt </button>
+    <button class="button button-block button-balanced" ng-click="HC.$state.go('new-hunt')"> Add a hunt </button>
     </ion-content>
 
 
